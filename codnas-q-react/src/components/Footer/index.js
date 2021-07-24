@@ -6,7 +6,7 @@ const Footer = () => {
     <Fragment>
       <div className="bg-gray-100 py-6">
         <div className="px-4 mx-auto">
-          <div className="max-w-7xl px-1 mx-auto lg:px-4 grid grid-flow-col grid-cols-1 grid-rows-1 gap-0">
+          <div className="max-w-full -1 mx-auto lg:px-4 grid grid-flow-col grid-cols-1 grid-rows-1 gap-0">
             <div className="flex justify-between">
               <div className="space-x-2">
                 <a
