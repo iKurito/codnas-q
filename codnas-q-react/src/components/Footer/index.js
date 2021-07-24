@@ -9,28 +9,52 @@ const Footer = () => {
           <div className="max-w-7xl px-1 mx-auto lg:px-4 grid grid-flow-col grid-cols-1 grid-rows-1 gap-0">
             <div className="flex justify-between">
               <div className="space-x-2">
-                <img
-                  className="image-footer inline-block"
-                  src={SbgLogo}
-                  alt="sbg-logo"
-                />
-                <img
-                  className="image-footer inline-block"
-                  src={SbgLogo}
-                  alt="sbg-logo"
-                />
+                <a
+                  href="http://ufq.unq.edu.ar/sbg"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    className="image-footer inline-block"
+                    src={SbgLogo}
+                    alt="sbg-logo"
+                  />
+                </a>
+                <a
+                  href="http://ufq.unq.edu.ar/sbg"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    className="image-footer inline-block"
+                    src={SbgLogo}
+                    alt="sbg-logo"
+                  />
+                </a>
               </div>
               <div className="space-x-2">
-                <img
-                  className="image-footer inline-block"
-                  src={SbgLogo}
-                  alt="sbg-logo"
-                />
-                <img
-                  className="image-footer inline-block"
-                  src={SbgLogo}
-                  alt="sbg-logo"
-                />
+                <a
+                  href="http://ufq.unq.edu.ar/sbg"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    className="image-footer inline-block"
+                    src={SbgLogo}
+                    alt="sbg-logo"
+                  />
+                </a>
+                <a
+                  href="http://ufq.unq.edu.ar/sbg"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    className="image-footer inline-block"
+                    src={SbgLogo}
+                    alt="sbg-logo"
+                  />
+                </a>
               </div>
             </div>
           </div>

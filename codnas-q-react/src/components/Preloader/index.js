@@ -8,7 +8,7 @@ const Preloader = ({ show }) => {
         className={`elevate justify-center bg-gray-100 ${show ? '' : 'show'}`}
       >
         <img
-          className={`h-10 mb-10 xl:mr-20 ${show ? 'rotated' : 'loaded'}`}
+          className={`h-10 mb-10 2xl:mr-20 ${show ? 'rotated' : 'loaded'}`}
           src="/favicon.ico"
           alt="codnas-q-logo"
         />
