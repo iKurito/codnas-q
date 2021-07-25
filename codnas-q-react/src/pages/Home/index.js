@@ -7,7 +7,7 @@ import MovTern from '../../assets/img/mov_tert.gif'
 const Home = () => {
   return (
     <Fragment>
-      <div className="pt-10 pb-80">
+      <div className="pt-10 pb-60">
         <div className="px-4 sm:px-16 md:px-32 lg:px-48">
           <div className="px-1 shadow-2xl">
             <div className="p-5 sm:p-10 space-y-4 text-center">
