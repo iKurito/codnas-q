@@ -20,9 +20,9 @@ function classNames(...classes) {
 
 const Header = () => {
   return (
-    <Popover className="bg-primary-dark sticky top-0 py-1 lg:py-3 shadow-lg">
+    <Popover className="bg-primary-dark sticky top-0 py-1 lg:py-3 shadow-lg z-50">
       {({ open }) => (
-        <div className='px-4 mx-auto"'>
+        <div className="px-4 mx-auto">
           <div className="max-w-full px-1 mx-auto lg:px-4">
             <nav className="relative flex items-center justify-between h-16" aria-label="Global">
               <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
@@ -44,8 +44,8 @@ const Header = () => {
                     key={item.name}
                     to={item.path}
                     className={classNames(
-                      'text-white font-medium',
-                      `py-2 rounded-md nav-link ${item.name === 'Contact us' ? 'pl-3' : 'px-3'}`
+                      'text-white font-medium hover:bg-primary-light',
+                      'py-2 px-3 rounded-md nav-link'
                     )}
                   >
                     {item.name}
@@ -90,7 +90,7 @@ const Header = () => {
                       key={item.name}
                       to={item.path}
                       className={classNames(
-                        'text-white',
+                        'text-white hover:bg-primary-light',
                         'block px-3 py-2 rounded-md text-sm nav-link'
                       )}
                     >

@@ -5,7 +5,7 @@ import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 
 const ListBox = ({ selected, setSelected, data }) => {
   return (
-    <div>
+    <Fragment>
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative">
           <Listbox.Button className="text-sm relative w-full py-2 pl-3 pr-10 text-left bg-white rounded border border-gray-400 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm">
@@ -53,7 +53,7 @@ const ListBox = ({ selected, setSelected, data }) => {
           </Transition>
         </div>
       </Listbox>
-    </div>
+    </Fragment>
   )
 }
 
