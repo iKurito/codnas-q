@@ -17,7 +17,7 @@ import Footer from '../components/Footer'
 const App = () => {
   return (
     <Router>
-      <div className="min-h-screen">
+      <div className="min-h-screen relative">
         <Header />
         <Switch>
           <RouteWithLoader exact path={Routes.Home.path} component={Home} />

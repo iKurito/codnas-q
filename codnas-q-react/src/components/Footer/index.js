@@ -3,7 +3,7 @@ import SbgLogo from '../../assets/img/sbg-logo.png'
 
 const Footer = () => {
   return (
-    <div className="bottom-0 min-w-full">
+    <div className="bottom-0 min-w-full absolute">
       <div className="bg-gray-100 py-6">
         <div className="px-4 mx-auto">
           <div className="max-w-full px-1 mx-auto lg:px-4">
