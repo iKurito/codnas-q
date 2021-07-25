@@ -3,34 +3,14 @@ import React, { Fragment } from 'react'
 const Home = () => {
   return (
     <Fragment>
-      <div className="pb-80">
-        <h1 className="text-3xl text-blue-600">1 .HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">HOME PAGE</h1>
-        <h1 className="text-3xl text-blue-600">10. HOME PAGE</h1>
+      <div className="pt-9 pb-72">
+        <div className="px-4 sm:px-16 md:px-32 lg:px-48">
+          <div className="h-52 px-1 shadow-2xl">
+            <div className="p-10">
+              <h1>HOLA</h1>
+            </div>
+          </div>
+        </div>
       </div>
     </Fragment>
   )

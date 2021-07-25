@@ -1,5 +1,6 @@
 import React from 'react'
 import SbgLogo from '../../assets/img/sbg-logo.png'
+import UnqLogo from '../../assets/img/unq-logo.png'
 
 const Footer = () => {
   return (
@@ -8,15 +9,15 @@ const Footer = () => {
         <div className="px-4 mx-auto">
           <div className="max-w-full px-1 mx-auto lg:px-4">
             <div className="flex justify-between">
-              <div className="space-x-2">
+              <div className="space-x-2 sm:space-x-10">
                 <a href="http://ufq.unq.edu.ar/sbg" target="_blank" rel="noreferrer">
                   <img className="image-footer inline-block" src={SbgLogo} alt="sbg-logo" />
                 </a>
-                <a href="http://ufq.unq.edu.ar/sbg" target="_blank" rel="noreferrer">
-                  <img className="image-footer inline-block" src={SbgLogo} alt="sbg-logo" />
+                <a href="http://www.unq.edu.ar/" target="_blank" rel="noreferrer">
+                  <img className="image-footer inline-block" src={UnqLogo} alt="unq-logo" />
                 </a>
               </div>
-              <div className="space-x-2">
+              <div className="space-x-2 sm:space-x-10">
                 <a href="http://ufq.unq.edu.ar/sbg" target="_blank" rel="noreferrer">
                   <img className="image-footer inline-block" src={SbgLogo} alt="sbg-logo" />
                 </a>
