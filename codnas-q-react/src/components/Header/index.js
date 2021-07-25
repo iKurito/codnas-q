@@ -20,7 +20,7 @@ function classNames(...classes) {
 
 const Header = () => {
   return (
-    <Popover className="bg-primary-dark sticky top-0 py-1 lg:py-3 shadow-md">
+    <Popover className="bg-primary-dark sticky top-0 py-1 lg:py-3 shadow-lg">
       {({ open }) => (
         <div className='px-4 mx-auto"'>
           <div className="max-w-full px-1 mx-auto lg:px-4">
@@ -28,7 +28,7 @@ const Header = () => {
               <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
                 <div className="flex items-center justify-between w-full md:w-auto">
                   <Link to="/home">
-                    <img className="-mt-1 h-10" src={Logo} alt="codnas-q-logo" />
+                    <img className="-mt-1 h-6 sm:h-10" src={Logo} alt="codnas-q-logo" />
                   </Link>
                   <div className="absolute inset-y-0 right-0 flex items-center lg:hidden">
                     <Popover.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-3 hover:text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -74,7 +74,7 @@ const Header = () => {
                 <div className="px-5 pt-4 flex items-center justify-between">
                   <div className="flex-shrink-0 flex items-center">
                     <Link to="/home">
-                      <img className="-mt-1 h-10" src={Logo} alt="codnas-q-logo" />
+                      <img className="-mt-1 h-6 sm:h-10" src={Logo} alt="codnas-q-logo" />
                     </Link>
                   </div>
                   <div className="-mr-2">
