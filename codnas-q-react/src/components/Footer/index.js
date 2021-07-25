@@ -1,12 +1,12 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import SbgLogo from '../../assets/img/sbg-logo.png'
 
 const Footer = () => {
   return (
-    <Fragment>
+    <div className="bottom-0 min-w-full">
       <div className="bg-gray-100 py-6">
         <div className="px-4 mx-auto">
-          <div className="max-w-full px-1 mx-auto lg:px-4 grid grid-flow-col grid-cols-1 grid-rows-1 gap-0">
+          <div className="max-w-full px-1 mx-auto lg:px-4">
             <div className="flex justify-between">
               <div className="space-x-2">
                 <a href="http://ufq.unq.edu.ar/sbg" target="_blank" rel="noreferrer">
@@ -29,8 +29,8 @@ const Footer = () => {
         </div>
       </div>
       <footer className="bg-primary-dark py-12">
-        <div className="px-8 mx-auto">
-          <div className="max-w-7xl px-4 mx-auto lg:px-8 grid grid-flow-col grid-cols-1 grid-rows-1 gap-0">
+        <div className="px-4 mx-auto">
+          <div className="max-w-full px-1 mx-auto lg:px-4">
             <div className="flex text-center justify-center items-center">
               <p className="text-white font-medium block">
                 CoDNaS-Q is developed and maintained by the{' '}
@@ -51,7 +51,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-    </Fragment>
+    </div>
   )
 }
 

@@ -7,7 +7,7 @@ const RouteWithLoader = ({ component: Component, ...rest }) => {
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoaded(true), 1500)
+    const timer = setTimeout(() => setLoaded(true), 1000)
     return () => clearTimeout(timer)
   }, [])
 

@@ -17,18 +17,20 @@ import Footer from '../components/Footer'
 const App = () => {
   return (
     <Router>
-      <Header />
-      <Switch>
-        <RouteWithLoader exact path={Routes.Home.path} component={Home} />
-        <RouteWithLoader exact path={Routes.AdvSearch.path} component={AdvSearch} />
-        <RouteWithLoader exact path={Routes.Download.path} component={Download} />
-        <RouteWithLoader exact path={Routes.Statistics.path} component={Statistics} />
-        <RouteWithLoader exact path={Routes.About.path} component={About} />
-        <RouteWithLoader exact path={Routes.Tutorial.path} component={Tutorial} />
-        <RouteWithLoader exact path={Routes.Contact.path} component={Contact} />
-        <Redirect exact path="/" to={Routes.Home.path} />
-      </Switch>
-      <Footer />
+      <div className="min-h-screen">
+        <Header />
+        <Switch>
+          <RouteWithLoader exact path={Routes.Home.path} component={Home} />
+          <RouteWithLoader exact path={Routes.AdvSearch.path} component={AdvSearch} />
+          <RouteWithLoader exact path={Routes.Download.path} component={Download} />
+          <RouteWithLoader exact path={Routes.Statistics.path} component={Statistics} />
+          <RouteWithLoader exact path={Routes.About.path} component={About} />
+          <RouteWithLoader exact path={Routes.Tutorial.path} component={Tutorial} />
+          <RouteWithLoader exact path={Routes.Contact.path} component={Contact} />
+          <Redirect exact path="/" to={Routes.Home.path} />
+        </Switch>
+        <Footer />
+      </div>
     </Router>
   )
 }
