@@ -9,8 +9,8 @@ const Home = () => {
   return (
     <Fragment>
       <div className="pt-10 pb-60">
-        <div className="px-4 sm:px-16 md:px-32 lg:px-48">
-          <div className="px-1 shadow-2xl">
+        <div className="px-4 sm:px-16 md:px-24 lg:px-48">
+          <div className="px-1 custom-shadow">
             <div className="p-5 sm:p-10 space-y-4 text-center">
               <img className="h-16 sm:h-24 md:h-32 mx-auto" src={Logo} alt="codnas-q-logo" />
               <h1 className="text-gray-700 text-xl sm:text-2xl md:text-4xl font-bold">
