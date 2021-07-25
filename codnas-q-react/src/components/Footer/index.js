@@ -1,4 +1,3 @@
-import React from 'react'
 import SbgLogo from '../../assets/img/sbg-logo.png'
 import UnqLogo from '../../assets/img/unq-logo.png'
 
