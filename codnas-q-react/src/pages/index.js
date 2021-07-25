@@ -13,12 +13,14 @@ import Contact from './Contact'
 // components
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import ScrollToTop from '../components/ScrollToTop'
 
 const App = () => {
   return (
     <Router>
       <div className="min-h-screen relative">
         <Header />
+        <ScrollToTop />
         <Switch>
           <RouteWithLoader exact path={Routes.Home.path} component={Home} />
           <RouteWithLoader exact path={Routes.AdvSearch.path} component={AdvSearch} />
