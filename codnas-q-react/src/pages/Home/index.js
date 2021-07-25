@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import Search from './Search'
 import Logo from '../../assets/img/codnas-q-logo.png'
 import MovFixed from '../../assets/img/mov_mixed.gif'
 import MovRigid from '../../assets/img/mov_rigid.gif'
@@ -24,6 +25,7 @@ const Home = () => {
                 quaternary level, for a large number of proteins determined under different
                 experimental conditions and from a wide variety of families and species.
               </h2>
+              <Search />
               <h2 className="text-sm sm:text-base">
                 Example entries: 2vcq | Hydrolase | Mus musculus
               </h2>
