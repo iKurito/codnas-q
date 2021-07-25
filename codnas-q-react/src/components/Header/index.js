@@ -1,5 +1,5 @@
 import { Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 // Logo CoDNaS-Q
@@ -19,6 +19,10 @@ function classNames(...classes) {
 }
 
 const Header = () => {
+  const location = useLocation()
+
+  const { pathname } = location
+
   return (
     <Popover className="bg-primary-dark sticky top-0 py-1 lg:py-3 shadow-lg z-50">
       {({ open }) => (
@@ -45,7 +49,9 @@ const Header = () => {
                     to={item.path}
                     className={classNames(
                       'text-white font-medium hover:bg-primary-light',
-                      'py-2 px-3 rounded-md nav-link'
+                      `py-2 px-3 rounded-md nav-link ${
+                        pathname === item.path ? 'bg-primary-light' : ''
+                      }`
                     )}
                   >
                     {item.name}
@@ -91,7 +97,9 @@ const Header = () => {
                       to={item.path}
                       className={classNames(
                         'text-white hover:bg-primary-light',
-                        'block px-3 py-2 rounded-md text-sm nav-link'
+                        `block px-3 py-2 rounded-md text-sm nav-link ${
+                          pathname === item.path ? 'bg-primary-light' : ''
+                        }`
                       )}
                     >
                       {item.name}
