@@ -15,7 +15,7 @@ const Result = () => {
     <section className="pt-4 lg:pt-0 md:col-span-3">
       <div className="space-y-2">
         <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-700">Results</h1>
-        {loading ? (
+        {!loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-6 pt-2">
             {skeleton.map((item) => (
               <div key={item} className="col-span-1 mx-auto custom-shadow pt-4 pl-6">
