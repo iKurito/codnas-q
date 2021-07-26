@@ -1,0 +1,18 @@
+export const data = [
+  { key: '1', value: '3649', description: 'Number of clusters (~different proteins)' },
+  { key: '2', value: '18790', description: 'Number of protein conformers' },
+  { key: '3', value: '51467', description: 'Number of protein chains' },
+  { key: '4', value: '5.15', description: 'Average number of conformers per protein' },
+  { key: '5', value: '', description: 'Number of clusters per group:' },
+  { key: '6', value: '421', description: 'Tertiary Deformations' },
+  { key: '7', value: '2806', description: 'Mixed Motions' },
+  { key: '8', value: '394', description: 'Rigid Body movements' },
+  { key: '9', value: '1759', description: 'Families (pfam)' },
+  { key: '10', value: '8.11 Å', description: 'Highest maximum quaternary RMSD' },
+  { key: '11', value: '0.99 Å', description: 'Average maximum quaternary RMSD' },
+  { key: '12', value: '0.04 Å', description: 'Lowest maximum quaternary RMSD' },
+  { key: '13', value: '2.54 Å', description: 'Highest maximum tertiary RMSD' },
+  { key: '14', value: '0.95 Å', description: 'Average maximum tertiary RMSD' },
+  { key: '15', value: '0 Å', description: 'Lowest maximum tertiary RMSD' },
+  { key: '16', value: '3283', description: 'Annotated genes' },
+]
