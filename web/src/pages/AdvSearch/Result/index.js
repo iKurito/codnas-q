@@ -6,7 +6,7 @@ import Protein from '../../../assets/img/protein.png'
 
 const skeleton = [1, 2, 3, 4, 5, 6]
 
-const PageSize = 10
+const PageSize = 6
 
 const Result = () => {
   const [currentPage, setCurrentPage] = useState(1)
@@ -61,27 +61,31 @@ const Result = () => {
               pageSize={PageSize}
               onPageChange={(page) => setCurrentPage(page)}
             />
-            <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-6 py-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 py-5">
               {currentTableData.map((item) => {
                 return (
                   <div
                     key={item.id}
-                    className="col-span-1 mx-auto custom-shadow p-4 w-full  cursor-pointer"
+                    className="col-span-1 mx-auto custom-shadow p-4 w-full cursor-pointer hover:shadow-2xl"
                     onClick={() => console.log(item.id)}
                   >
-                    <h1>Cluster {item.id}</h1>
+                    <h1 className="text-base sm:text-lg md:text-xl font-bold text-gray-700">
+                      Cluster {item.id}
+                    </h1>
                     <hr />
-                    <div className="grid grid-cols-2">
-                      <div className="self-center">
-                        <h1>Group: {item.group}</h1>
+                    <div className="grid grid-cols-1 xl:grid-cols-2">
+                      <div className="self-center space-y-2">
+                        <h1 className="text-sm sm:text-base">Group: {item.group}</h1>
                         <hr />
-                        <h1>Oligomeric State: {item.oligomeric}</h1>
+                        <h1 className="text-sm sm:text-base">
+                          Oligomeric State: {item.oligomeric}
+                        </h1>
                         <hr />
-                        <h1>Conformers Quantity: {item.num}</h1>
+                        <h1 className="text-sm sm:text-base">Conformers Quantity: {item.num}</h1>
                         <hr />
-                        <h1>Max RMSD Quaternary: {item.quat}</h1>
+                        <h1 className="text-sm sm:text-base">Max RMSD Quaternary: {item.quat}</h1>
                         <hr />
-                        <h1>Max RMSD Tertiary: {item.ter}</h1>
+                        <h1 className="text-sm sm:text-base">Max RMSD Tertiary: {item.ter}</h1>
                       </div>
                       <div className="slef-center">
                         <img className="mx-auto" src={Protein} alt="protein" />
