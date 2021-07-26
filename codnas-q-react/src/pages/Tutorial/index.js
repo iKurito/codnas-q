@@ -1,6 +1,12 @@
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
+import SmoothScroll from 'smooth-scroll'
 import Information from './Information'
 import Menu from './Menu'
+
+export const scroll = new SmoothScroll('a[href*="#"]', {
+  speed: 1000,
+  speedAsDuration: true,
+})
 
 const Tutorial = () => {
   return (
