@@ -8,7 +8,7 @@ const About = () => {
         <div className="px-4 sm:px-16 md:px-24 lg:px-32 xl:px-48">
           <div className="p-5 sm:p-10 space-y-4">
             <h1 className="text-gray-700 text-3xl md:text-4xl font-bold text-center">About</h1>
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-700 text-justify">
+            <h2 className="pt-5 text-xl sm:text-2xl font-bold text-gray-700 text-justify">
               What is CoDNaS-Q?
             </h2>
             <p className="text-sm sm:text-base text-justify">

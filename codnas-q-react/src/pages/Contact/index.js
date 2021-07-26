@@ -7,7 +7,7 @@ const Contact = () => {
         <div className="px-4 sm:px-16 md:px-24 lg:px-32 xl:px-48">
           <div className="p-5 sm:p-10 space-y-4">
             <h1 className="text-gray-700 text-3xl md:text-4xl font-bold text-center">Contact Us</h1>
-            <p className="text-sm sm:text-base text-justify">
+            <p className="pt-5 text-sm sm:text-base text-justify">
               CoDNaS-Q —Conformational Diversity of Native State-Quaternary— is a high confidence
               database of conformational diversity in proteins that present a biologically relevant
               quaternary structure. CoDNaS Quaternary possess a collection of redundant complexes
