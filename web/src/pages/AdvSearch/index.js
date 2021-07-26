@@ -11,7 +11,7 @@ const AdvSearch = () => {
             <h1 className="text-gray-700 text-3xl md:text-4xl font-bold text-center">
               Advanced Search
             </h1>
-            <div className="pt-5 space-y-4 md:space-y-0 md:space-x-10 grid lg:grid-cols-4">
+            <div className="pt-5  md:space-y-0 lg:space-x-10 grid lg:grid-cols-4">
               <Filter />
               <Result />
             </div>
