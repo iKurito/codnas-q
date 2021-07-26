@@ -6,7 +6,7 @@ import Protein from '../../../assets/img/protein.png'
 
 const skeleton = [1, 2, 3, 4, 5, 6]
 
-const PageSize = 6
+const PageSize = 10
 
 const Result = () => {
   const [currentPage, setCurrentPage] = useState(1)

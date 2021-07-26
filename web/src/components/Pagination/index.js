@@ -69,6 +69,10 @@ const Pagination = (props) => {
   )
 }
 
+Pagination.defaultProps = {
+  siblingCount: 1,
+}
+
 Pagination.propTypes = {
   onPageChange: PropTypes.any.isRequired,
   totalCount: PropTypes.any.isRequired,
