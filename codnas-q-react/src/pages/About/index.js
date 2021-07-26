@@ -8,7 +8,9 @@ const About = () => {
         <div className="px-4 sm:px-16 md:px-24 lg:px-32 xl:px-48">
           <div className="p-5 sm:p-10 space-y-4">
             <h1 className="text-gray-700 text-3xl md:text-4xl font-bold text-center">About</h1>
-            <h2 className="text-base text-gray-700 font-bold">What is CoDNaS-Q?</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-700 text-justify">
+              What is CoDNaS-Q?
+            </h2>
             <p className="text-sm sm:text-base text-justify">
               CoDNaS-Q —Conformational Diversity of Native State-Quaternary— is a high confidence
               database of conformational diversity in proteins that present a biologically relevant
@@ -18,7 +20,9 @@ const About = () => {
               length, etc), cross linked data with other databases (UniProt and Pfam) and structural
               information of the protein (RMSD, oligomeric state, conformers, etc).
             </p>
-            <h2 className="text-base text-gray-700 font-bold">What is it used for?</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-700 text-justify">
+              What is it used for?
+            </h2>
             <p className="text-sm sm:text-base text-justify">
               The database allows the user find through different criteria and filters proteins in
               several conformations, taking into account their biological quaternary structure.The
@@ -27,7 +31,9 @@ const About = () => {
               the experimental conditions associated to each structure have been considered to allow
               users associate protein conformational changes with the biological function.
             </p>
-            <h2 className="text-base text-gray-700 font-bold">Database implementation</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-700 text-justify">
+              Database implementation
+            </h2>
             <p className="text-sm sm:text-base text-justify">
               CoDNaS Quaternary uses homoligomeric proteins annotated by the algorithm QSbio (Dey et
               al. 2018), that combines PISA (Krissinel and Henrick 2007), EPPIC (Duarte et al. 2012)
@@ -39,7 +45,7 @@ const About = () => {
               maximum RMSD between pair of conformers is a measure of the protein conformational
               diversity.
             </p>
-            <h2 className="text-base text-gray-700 font-bold">Example</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-700 text-justify">Example</h2>
             <p className="text-sm sm:text-base text-justify">
               The fructose-1,6-bisphosphatase (FBPase) is a key regulatory enzyme of gluconeogenic
               pathway. It catalyzes the hydrolysis of fructose-1,6-bisphosphate to
