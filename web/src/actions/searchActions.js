@@ -2,16 +2,16 @@ import clientAxios from '../config/axios'
 import {
   START_GETTING_SEARCH_RESULTS,
   GET_SEARCH_RESULTS_SUCCESS,
-  GET_SEARCH_RESULTS_ERRROR,
+  GET_SEARCH_RESULTS_ERROR,
 } from '../types'
 
 // Function that gets the search results
-export function obtenerProductosAction() {
+export function getSearchResultsAction() {
   return async (dispatch) => {
     dispatch(getSearchResults())
     try {
-      const respuesta = await clientAxios.get('/productos')
-      dispatch(getSearchResultsSuccess(respuesta.data))
+      const result = await clientAxios.get('/search/clusters')
+      dispatch(getSearchResultsSuccess(result.data.payload))
     } catch (error) {
       dispatch(getSearchResultsError())
     }
@@ -23,12 +23,12 @@ const getSearchResults = () => ({
   payload: true,
 })
 
-const getSearchResultsSuccess = (productos) => ({
+const getSearchResultsSuccess = (data) => ({
   type: GET_SEARCH_RESULTS_SUCCESS,
-  payload: productos,
+  payload: data,
 })
 
 const getSearchResultsError = () => ({
-  type: GET_SEARCH_RESULTS_ERRROR,
+  type: GET_SEARCH_RESULTS_ERROR,
   payload: true,
 })

@@ -6,7 +6,7 @@ import {
 
 // Initial State
 const initialState = {
-  searchResults: [],
+  searchResults: null,
   error: null,
   loading: false,
 }

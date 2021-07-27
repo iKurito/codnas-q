@@ -14,25 +14,30 @@ import Contact from './Contact'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import ScrollToTop from '../components/ScrollToTop'
+// Redux
+import { Provider } from 'react-redux'
+import store from '../store'
 
 const App = () => {
   return (
     <Router>
-      <div className="min-h-screen relative">
-        <Header />
-        <ScrollToTop />
-        <Switch>
-          <RouteWithLoader exact path={Routes.Home.path} component={Home} />
-          <RouteWithLoader exact path={Routes.AdvSearch.path} component={AdvSearch} />
-          <RouteWithLoader exact path={Routes.Download.path} component={Download} />
-          <RouteWithLoader exact path={Routes.Statistics.path} component={Statistics} />
-          <RouteWithLoader exact path={Routes.About.path} component={About} />
-          <RouteWithLoader exact path={Routes.Tutorial.path} component={Tutorial} />
-          <RouteWithLoader exact path={Routes.Contact.path} component={Contact} />
-          <Redirect exact path="/" to={Routes.Home.path} />
-        </Switch>
-        <Footer />
-      </div>
+      <Provider store={store}>
+        <div className="min-h-screen relative">
+          <Header />
+          <ScrollToTop />
+          <Switch>
+            <RouteWithLoader exact path={Routes.Home.path} component={Home} />
+            <RouteWithLoader exact path={Routes.AdvSearch.path} component={AdvSearch} />
+            <RouteWithLoader exact path={Routes.Download.path} component={Download} />
+            <RouteWithLoader exact path={Routes.Statistics.path} component={Statistics} />
+            <RouteWithLoader exact path={Routes.About.path} component={About} />
+            <RouteWithLoader exact path={Routes.Tutorial.path} component={Tutorial} />
+            <RouteWithLoader exact path={Routes.Contact.path} component={Contact} />
+            <Redirect exact path="/" to={Routes.Home.path} />
+          </Switch>
+          <Footer />
+        </div>
+      </Provider>
     </Router>
   )
 }

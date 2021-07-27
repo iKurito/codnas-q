@@ -1,8 +1,9 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import ContentLoader from 'react-content-loader'
 import Pagination from '../../../components/Pagination'
-import { data } from './data'
 import Protein from '../../../assets/img/protein.png'
+import { useSelector } from 'react-redux'
+import { data } from './data'
 
 const skeleton = [1, 2, 3, 4, 5, 6]
 
@@ -10,24 +11,24 @@ const PageSize = 10
 
 const Result = () => {
   const [currentPage, setCurrentPage] = useState(1)
-  const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(true), 1000)
-    return () => clearTimeout(timer)
-  }, [])
+  // Get State
+  const searchResults = useSelector((state) => state.search.searchResults)
 
   const currentTableData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize
-    const lastPageIndex = firstPageIndex + PageSize
-    return data.slice(firstPageIndex, lastPageIndex)
+    if (searchResults) {
+      const firstPageIndex = (currentPage - 1) * PageSize
+      const lastPageIndex = firstPageIndex + PageSize
+      return searchResults.slice(firstPageIndex, lastPageIndex)
+    }
+    return data
   }, [currentPage])
 
   return (
     <section className="pt-4 lg:pt-0 md:col-span-3">
       <div className="space-y-2">
         <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-700">Results</h1>
-        {!loading ? (
+        {!searchResults ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-6 pt-2">
             {skeleton.map((item) => (
               <div key={item} className="col-span-1 mx-auto custom-shadow pt-4 pl-6">
@@ -57,7 +58,7 @@ const Result = () => {
             <Pagination
               className="pagination-bar"
               currentPage={currentPage}
-              totalCount={data.length}
+              totalCount={searchResults.length}
               pageSize={PageSize}
               onPageChange={(page) => setCurrentPage(page)}
             />
@@ -65,27 +66,33 @@ const Result = () => {
               {currentTableData.map((item) => {
                 return (
                   <div
-                    key={item.id}
+                    key={item.cluster_id}
                     className="col-span-1 mx-auto custom-shadow p-4 w-full cursor-pointer hover:shadow-2xl"
-                    onClick={() => console.log(item.id)}
+                    onClick={() => console.log(item.cluster_id)}
                   >
-                    <h1 className="text-base sm:text-lg md:text-xl font-bold text-gray-700">
-                      Cluster {item.id}
+                    <h1 className="pb-2 text-base sm:text-lg md:text-xl font-bold text-gray-700">
+                      Cluster: {item.codnasq_id}
                     </h1>
                     <hr />
                     <div className="grid grid-cols-1 xl:grid-cols-2">
                       <div className="self-center space-y-2">
-                        <h1 className="text-sm sm:text-base">Group: {item.group}</h1>
+                        <h1 className="pt-2 text-sm sm:text-base">Group: {item.group}</h1>
                         <hr />
                         <h1 className="text-sm sm:text-base">
-                          Oligomeric State: {item.oligomeric}
+                          Oligomeric State: {item.oligomeric_state}
                         </h1>
                         <hr />
-                        <h1 className="text-sm sm:text-base">Conformers Quantity: {item.num}</h1>
+                        <h1 className="text-sm sm:text-base">
+                          Conformers Quantity: {item.num_conf}
+                        </h1>
                         <hr />
-                        <h1 className="text-sm sm:text-base">Max RMSD Quaternary: {item.quat}</h1>
+                        <h1 className="text-sm sm:text-base">
+                          Max RMSD Quaternary: {item.max_rmsd_quaternary} Å
+                        </h1>
                         <hr />
-                        <h1 className="text-sm sm:text-base">Max RMSD Tertiary: {item.ter}</h1>
+                        <h1 className="text-sm sm:text-base">
+                          Max RMSD Tertiary: {item.max_rmsd_tertiary} Å
+                        </h1>
                       </div>
                       <div className="slef-center">
                         <img className="mx-auto" src={Protein} alt="protein" />
@@ -98,7 +105,7 @@ const Result = () => {
             <Pagination
               className="pagination-bar"
               currentPage={currentPage}
-              totalCount={data.length}
+              totalCount={searchResults.length}
               pageSize={PageSize}
               onPageChange={(page) => setCurrentPage(page)}
             />

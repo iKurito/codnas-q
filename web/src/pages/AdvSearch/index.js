@@ -1,8 +1,22 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import Filter from './Filter'
 import Result from './Result'
+// Redux
+import { useSelector, useDispatch } from 'react-redux'
+import { getSearchResultsAction } from '../../actions/searchActions'
 
 const AdvSearch = () => {
+  const dispatch = useDispatch()
+
+  const searchResults = useSelector((state) => state.search.searchResults)
+
+  useEffect(() => {
+    const getClusters = () => dispatch(getSearchResultsAction())
+    if (searchResults == null) {
+      getClusters()
+    }
+  }, [])
+
   return (
     <Fragment>
       <div className="pt-6 pb-52">
