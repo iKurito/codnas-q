@@ -7,13 +7,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ResultParser {
 
-    public static ResultDTO toResultDTO(Cluster cluster) {
+    public static ResultDTO toResultDTO(Cluster cluster, Integer num) {
         ResultDTO resultDTO = new ResultDTO();
         resultDTO.setCluster_id(cluster.getCluster_id());
         resultDTO.setCodnasq_id(cluster.getCodnasq_id());
         resultDTO.setGroup(groupParse(cluster.getCluster_group()));
         resultDTO.setOligomeric_state(cluster.getOligomeric_state());
-        resultDTO.setNum_conf(0);
+        resultDTO.setNum_conf(num);
         resultDTO.setMax_rmsd_quaternary(cluster.getMax_rmsd_quaternary());
         resultDTO.setMax_rmsd_tertiary(cluster.getMax_rmsd_tertiary());
         return resultDTO;
