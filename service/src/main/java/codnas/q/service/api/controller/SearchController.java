@@ -3,7 +3,7 @@ package codnas.q.service.api.controller;
 import codnas.q.service.api.response.RestResponse;
 import codnas.q.service.core.service.impl.SearchService;
 import codnas.q.service.shared.dto.ResultDTO;
-import codnas.q.service.shared.util.message.ClusterMessage;
+import codnas.q.service.shared.util.message.SearchMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +25,8 @@ public class SearchController {
     public ResponseEntity<?> getAllClusters() {
         RestResponse restResponse;
         List<ResultDTO> resultDTOS = searchService.getAllClusters();
-        if (resultDTOS == null) restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.NO_SUCCESS_GET_RESULTS);
-        else restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.SUCCESS_GET_RESULTS, resultDTOS);
+        if (resultDTOS == null) restResponse = new RestResponse(HttpStatus.OK, SearchMessage.NO_SUCCESS_GET_RESULTS);
+        else restResponse = new RestResponse(HttpStatus.OK, SearchMessage.SUCCESS_GET_RESULTS, resultDTOS);
         return ResponseEntity.
                 status(restResponse.getStatus()).
                 body(restResponse);
