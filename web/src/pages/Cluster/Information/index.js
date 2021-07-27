@@ -1,6 +1,15 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
+import ReactLoading from 'react-loading'
+import Plot from '../Plot'
 
 const Information = () => {
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoaded(true), 1000)
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <Fragment>
       <div className="border border-gray-200 rounded-t-xl shadow-md hover:shadow-2xl">
@@ -9,7 +18,7 @@ const Information = () => {
             Cluster Information
           </h2>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 p-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 p-4">
           <div className="overflow-x-auto overflow-y-auto">
             <table className="w-full table-auto table-striped min-w-max">
               <tbody className="w-full">
@@ -132,7 +141,16 @@ const Information = () => {
               </tbody>
             </table>
           </div>
-          <div className="lg:col-span-2 xl:col-span-1">3</div>
+          <div className="lg:col-span-2 xl:col-span-1 mx-auto self-center pt-4 xl:pt-0">
+            {loaded ? (
+              <div>
+                <h2 className="text-center">Max RMSD distribution </h2>
+                <Plot maxRmsdQuat={0.2} maxRmsdTert={1.0} />
+              </div>
+            ) : (
+              <ReactLoading type="spin" color="#2d699b" />
+            )}
+          </div>
         </div>
       </div>
     </Fragment>
