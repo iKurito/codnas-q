@@ -11,8 +11,12 @@ export function getClusterDetailAction(clusterId) {
     dispatch(getClusterDetail())
     try {
       const urlClusterInformation = `/cluster/information/${clusterId}`
-      const [res1] = await Promise.all([clientAxios(urlClusterInformation)])
-      dispatch(getClusterDetailSuccess(res1.data.payload))
+      const urlPairMaximumQuaternary = `/cluster/pairMaxQuat/${clusterId}`
+      const [res1, res2] = await Promise.all([
+        clientAxios(urlClusterInformation),
+        clientAxios(urlPairMaximumQuaternary),
+      ])
+      dispatch(getClusterDetailSuccess({ res1: res1.data.payload, res2: res2.data.payload }))
     } catch (error) {
       dispatch(getClusterDetailError())
     }

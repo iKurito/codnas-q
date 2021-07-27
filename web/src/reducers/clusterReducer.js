@@ -7,6 +7,7 @@ import {
 // Initial State
 const initialState = {
   information: null,
+  pairMaximum: null,
   error: null,
   loading: false,
 }
@@ -21,7 +22,8 @@ export default function (state = initialState, action) {
     case GET_CLUSTER_INFORMATION_SUCCESS:
       return {
         ...state,
-        information: action.payload,
+        information: action.payload.res1,
+        pairMaximum: action.payload.res2,
         loading: false,
         error: null,
       }

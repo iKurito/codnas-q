@@ -1,8 +1,11 @@
 import { Fragment, useEffect } from 'react'
 import { useParams } from 'react-router'
-import Information from './Information' // Redux
+import Information from './Information'
+// Redux
 import { useSelector, useDispatch } from 'react-redux'
 import { getClusterDetailAction } from '../../actions/clusterActions'
+import Maximum from './Maximum'
+import Conformer from './Conformer'
 
 const Cluster = () => {
   const dispatch = useDispatch()
@@ -26,6 +29,8 @@ const Cluster = () => {
               Cluster {id}
             </h1>
             <div className="pt-5">{information && <Information />}</div>
+            <div className="pt-5">{information && <Maximum />}</div>
+            <div className="pt-5">{information && <Conformer />}</div>
           </div>
         </div>
       </div>
