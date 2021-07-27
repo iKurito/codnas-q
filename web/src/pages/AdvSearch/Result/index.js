@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { useHistory } from 'react-router'
 import ContentLoader from 'react-content-loader'
 import Pagination from '../../../components/Pagination'
 import Protein from '../../../assets/img/protein.png'
@@ -10,6 +11,7 @@ const skeleton = [1, 2, 3, 4, 5, 6]
 const PageSize = 10
 
 const Result = () => {
+  const history = useHistory()
   const [currentPage, setCurrentPage] = useState(1)
 
   // Get State
@@ -68,7 +70,7 @@ const Result = () => {
                   <div
                     key={item.cluster_id}
                     className="col-span-1 mx-auto custom-shadow p-4 w-full cursor-pointer hover:shadow-2xl"
-                    onClick={() => console.log(item.cluster_id)}
+                    onClick={() => history.push(`/cluster/${item.cluster_id}`)}
                   >
                     <h1 className="pb-2 text-base sm:text-lg md:text-xl font-bold text-gray-700">
                       Cluster: {item.codnasq_id}
