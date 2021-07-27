@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from 'react'
 import ReactLoading from 'react-loading'
+import { useSelector } from 'react-redux'
 import Plot from '../Plot'
 
 const Information = () => {
@@ -9,6 +10,8 @@ const Information = () => {
     const timer = setTimeout(() => setLoaded(true), 1000)
     return () => clearTimeout(timer)
   }, [])
+
+  const information = useSelector((state) => state.cluster.information)
 
   return (
     <Fragment>
@@ -20,16 +23,18 @@ const Information = () => {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 p-4">
           <div className="overflow-x-auto overflow-y-auto">
-            <table className="w-full table-auto table-striped min-w-max">
+            <table className="w-full table-fixed table-striped">
               <tbody className="w-full">
                 <tr className="h-11 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
-                  <td className="text-left px-2 md:px-4">
+                  <td className="w-1/3 text-left px-2 md:px-4">
                     <p className="text-xs sm:text-sm font-medium leading-none text-gray-800">
                       Cluster ID:
                     </p>
                   </td>
-                  <td className="text-left pl-10 pr-2 md:px-10 ">
-                    <p className="text-xs sm:text-sm leading-5 text-gray-600">datum.value</p>
+                  <td className="w-2/3 text-left pl-10 pr-2 md:px-10 ">
+                    <p className="text-xs sm:text-sm leading-5 text-gray-600">
+                      {information.cluster_id}
+                    </p>
                   </td>
                 </tr>
                 <tr className="h-11 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
@@ -39,7 +44,9 @@ const Information = () => {
                     </p>
                   </td>
                   <td className="text-left pl-10 pr-2 md:px-10 ">
-                    <p className="text-xs sm:text-sm leading-5 text-gray-600">datum.value</p>
+                    <p className="text-xs sm:text-sm leading-5 text-gray-600">
+                      {information.group}
+                    </p>
                   </td>
                 </tr>
                 <tr className="h-11 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
@@ -49,7 +56,9 @@ const Information = () => {
                     </p>
                   </td>
                   <td className="text-left pl-10 pr-2 md:px-10 ">
-                    <p className="text-xs sm:text-sm leading-5 text-gray-600">datum.value</p>
+                    <p className="text-xs sm:text-sm leading-5 text-gray-600">
+                      {information.oligomeric_state}
+                    </p>
                   </td>
                 </tr>
                 <tr className="h-11 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
@@ -59,7 +68,9 @@ const Information = () => {
                     </p>
                   </td>
                   <td className="text-left pl-10 pr-2 md:px-10 ">
-                    <p className="text-xs sm:text-sm leading-5 text-gray-600">datum.value</p>
+                    <p className="text-xs sm:text-sm leading-5 text-gray-600">
+                      {information.num_conf}
+                    </p>
                   </td>
                 </tr>
                 <tr className="h-11 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
@@ -69,7 +80,9 @@ const Information = () => {
                     </p>
                   </td>
                   <td className="text-left pl-10 pr-2 md:px-10 ">
-                    <p className="text-xs sm:text-sm leading-5 text-gray-600">datum.value</p>
+                    <p className="text-xs sm:text-sm leading-5 text-gray-600">
+                      {information.max_rmsd_quaternary} Å
+                    </p>
                   </td>
                 </tr>
                 <tr className="h-11 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
@@ -79,23 +92,25 @@ const Information = () => {
                     </p>
                   </td>
                   <td className="text-left pl-10 pr-2 md:px-10 ">
-                    <p className="text-xs sm:text-sm leading-5 text-gray-600">datum.value</p>
+                    <p className="text-xs sm:text-sm leading-5 text-gray-600">
+                      {information.max_rmsd_tertiary} Å
+                    </p>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div className="overflow-x-auto overflow-y-auto">
-            <table className="w-full table-auto table-striped min-w-max">
+            <table className="w-full table-fixed table-striped">
               <tbody className="w-full">
                 <tr className="h-11 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
-                  <td className="text-left px-2 md:px-4">
+                  <td className="w-1/3 text-left px-2 md:px-4">
                     <p className="text-xs sm:text-sm font-medium leading-none text-gray-800">
                       Name:
                     </p>
                   </td>
-                  <td className="text-left pl-10 pr-2 md:px-10 ">
-                    <p className="text-xs sm:text-sm leading-5 text-gray-600">datum.value</p>
+                  <td className="w-2/3 text-left pl-10 pr-2 md:px-10 ">
+                    <p className="text-xs sm:text-sm leading-5 text-gray-600">{information.name}</p>
                   </td>
                 </tr>
                 <tr className="h-11 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
@@ -105,7 +120,9 @@ const Information = () => {
                     </p>
                   </td>
                   <td className="text-left pl-10 pr-2 md:px-10 ">
-                    <p className="text-xs sm:text-sm leading-5 text-gray-600">datum.value</p>
+                    <p className="text-xs sm:text-sm leading-5 text-gray-600">
+                      {information.description}
+                    </p>
                   </td>
                 </tr>
                 <tr className="h-11 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
@@ -115,7 +132,9 @@ const Information = () => {
                     </p>
                   </td>
                   <td className="text-left pl-10 pr-2 md:px-10 ">
-                    <p className="text-xs sm:text-sm leading-5 text-gray-600">datum.value</p>
+                    <p className="text-xs sm:text-sm leading-5 text-gray-600">
+                      {information.organism}
+                    </p>
                   </td>
                 </tr>
                 <tr className="h-11 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
@@ -125,7 +144,9 @@ const Information = () => {
                     </p>
                   </td>
                   <td className="text-left pl-10 pr-2 md:px-10 ">
-                    <p className="text-xs sm:text-sm leading-5 text-gray-600">datum.value</p>
+                    <p className="text-xs sm:text-sm leading-5 text-gray-600">
+                      {information.genes}
+                    </p>
                   </td>
                 </tr>
                 <tr className="h-11 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100">
@@ -135,7 +156,9 @@ const Information = () => {
                     </p>
                   </td>
                   <td className="text-left pl-10 pr-2 md:px-10 ">
-                    <p className="text-xs sm:text-sm leading-5 text-gray-600">datum.value</p>
+                    <p className="text-xs sm:text-sm leading-5 text-gray-600">
+                      {information.length}
+                    </p>
                   </td>
                 </tr>
               </tbody>
@@ -145,7 +168,10 @@ const Information = () => {
             {loaded ? (
               <div>
                 <h2 className="text-center">Max RMSD distribution </h2>
-                <Plot maxRmsdQuat={0.2} maxRmsdTert={1.0} />
+                <Plot
+                  maxRmsdQuat={information.max_rmsd_quaternary}
+                  maxRmsdTert={information.max_rmsd_tertiary}
+                />
               </div>
             ) : (
               <ReactLoading type="spin" color="#2d699b" />
