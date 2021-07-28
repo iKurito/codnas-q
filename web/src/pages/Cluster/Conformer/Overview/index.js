@@ -183,7 +183,7 @@ const Overview = ({ idx }) => {
           </div>
         </div>
       </div>
-      <View />
+      <View idx={idx} />
     </Fragment>
   )
 }
