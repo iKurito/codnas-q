@@ -168,10 +168,14 @@ const Information = () => {
             {loaded ? (
               <div className="overflow-y-auto overflow-x-auto">
                 <h2 className="text-center">Max RMSD distribution </h2>
-                <Plot
-                  maxRmsdQuat={information.max_rmsd_quaternary}
-                  maxRmsdTert={information.max_rmsd_tertiary}
-                />
+                <div id="svg-view">
+                  <Plot
+                    maxRmsdQuat={information.max_rmsd_quaternary}
+                    maxRmsdTert={information.max_rmsd_tertiary}
+                    w={window.screen.width < 400 ? 200 : 400}
+                    h={window.screen.width < 400 ? 100 : 230}
+                  />
+                </div>
               </div>
             ) : (
               <ReactLoading type="spin" color="#2d699b" />

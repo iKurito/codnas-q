@@ -3,19 +3,19 @@ import * as d3 from 'd3'
 import { useEffect } from 'react'
 import data from './data.json'
 
-const Plot = ({ maxRmsdQuat, maxRmsdTert }) => {
+const Plot = ({ maxRmsdQuat, maxRmsdTert, w, h }) => {
   // set the dimensions and margins of the graph
   const margin = { top: 10, right: 30, bottom: 40, left: 60 }
-  const width = 400 - margin.left - margin.right
-  const height = 230 - margin.top - margin.bottom
+  const width = w - margin.left - margin.right
+  const height = h - margin.top - margin.bottom
 
   useEffect(() => {
     // append the svg object to the body of the page
     const svg = d3
       .select('#scatter')
       .append('svg')
-      .attr('width', width + margin.left + margin.right)
-      .attr('height', height + margin.top + margin.bottom)
+      .attr('width', w)
+      .attr('height', h)
       .append('g')
       .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
@@ -128,6 +128,8 @@ const Plot = ({ maxRmsdQuat, maxRmsdTert }) => {
 Plot.propTypes = {
   maxRmsdQuat: PropTypes.number.isRequired,
   maxRmsdTert: PropTypes.number.isRequired,
+  w: PropTypes.number.isRequired,
+  h: PropTypes.number.isRequired,
 }
 
 export default Plot
