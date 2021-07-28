@@ -5,15 +5,17 @@ import ReactLoading from 'react-loading'
 
 const View = ({ idx }) => {
   const [loaded, setLoaded] = useState(false)
+  const [loading, setLoading] = useState(false)
   const conformer = useSelector((state) => state.cluster.conformers[idx])
 
   useEffect(() => {
     setLoaded(false)
+    setLoading(false)
     const timer = setTimeout(() => {
-      setLoaded(true)
       const NGL = require('ngl')
       const pdbName = conformer.information.pdb_id
       const pdb = `rcsb://${pdbName}.pdb.gz`
+      setLoaded(true)
       const stage = new NGL.Stage('view', { backgroundColor: 'white' })
       NGL.DatasourceRegistry.add(
         'data',
@@ -23,6 +25,7 @@ const View = ({ idx }) => {
         o.addRepresentation('cartoon')
         o.addRepresentation('base')
         o.autoView()
+        setLoading(true)
       })
     }, 2000)
     return () => clearTimeout(timer)
@@ -48,9 +51,16 @@ const View = ({ idx }) => {
       </div>
       <div className="p-4 flex place-content-center">
         {loaded ? (
-          <div id="view" className="h-96 w-40 lg:w-96" onWheel={() => onWheel()} />
+          <div
+            id="view"
+            className="h-96 w-40 lg:w-96"
+            onWheel={() => onWheel()}
+            title={`${!loading ? 'Loading...' : conformer.information.pdb_id}`}
+          />
         ) : (
-          <ReactLoading type="spin" color="#2d699b" />
+          <div id="loader">
+            <ReactLoading type="spin" color="#2d699b" />
+          </div>
         )}
       </div>
     </div>
