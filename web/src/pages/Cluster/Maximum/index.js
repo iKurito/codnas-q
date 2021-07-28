@@ -119,8 +119,8 @@ const Maximum = () => {
             </tbody>
           </table>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2">
-          <Superposition />
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
+          <Superposition query={pairMaximum[0].name} target={pairMaximum[1].name} />
           <div className="p-4">
             <img
               className="h-96 mx-auto"
