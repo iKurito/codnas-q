@@ -12,11 +12,30 @@ public class ResultParser {
         resultDTO.setCluster_id(cluster.getCluster_id());
         resultDTO.setCodnasq_id(cluster.getCodnasq_id());
         resultDTO.setGroup(groupParse(cluster.getCluster_group()));
-        resultDTO.setOligomeric_state(cluster.getOligomeric_state());
+        resultDTO.setOligomeric_state(oligomericStateParse(cluster.getOligomeric_state()));
         resultDTO.setNum_conf(num);
         resultDTO.setMax_rmsd_quaternary(cluster.getMax_rmsd_quaternary());
         resultDTO.setMax_rmsd_tertiary(cluster.getMax_rmsd_tertiary());
         return resultDTO;
+    }
+
+    private static String oligomericStateParse(Integer type) {
+        String oligomeric_state = type.toString();
+        if (type == 2) oligomeric_state = "Dimer";
+        else if (type == 3) oligomeric_state = "Trimer";
+        else if (type == 4) oligomeric_state ="Tetramer";
+        else if (type == 5) oligomeric_state = "Pentamer";
+        else if (type == 6) oligomeric_state = "Hexamer";
+        else if (type == 7) oligomeric_state = "Heptamer";
+        else if (type == 8) oligomeric_state = "Octamer";
+        else if (type == 9) oligomeric_state = "Nonamer";
+        else if (type == 10) oligomeric_state ="Decamer";
+        else if (type == 11) oligomeric_state = "Undecamer";
+        else if (type == 12) oligomeric_state = "Dodecamer";
+        else if (type == 14) oligomeric_state = "Tetradecamer";
+        else if (type == 24) oligomeric_state = "24-mer";
+        else if (type == 60) oligomeric_state = "60-mer";
+        return oligomeric_state;
     }
 
     private static String groupParse(String type) {

@@ -25,7 +25,7 @@ public class Cluster {
     private String codnasq_id;
 
     @Column
-    private String oligomeric_state;
+    private Integer oligomeric_state;
 
     @Column
     private Double max_rmsd_tertiary;
