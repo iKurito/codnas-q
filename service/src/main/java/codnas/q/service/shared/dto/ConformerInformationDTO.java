@@ -7,12 +7,18 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ConformerDTO {
+public class ConformerInformationDTO {
     private String pdb_id;
+    private String description;
+    private String pfam_id;
+    private String uniprot_id;
+    private String gene_names;
     private Integer biological_assembly;
+    private String ligands;
     private Double resolution;
     private String length;
     private String name;
     private String organism;
-    private ConformerInformationDTO information;
+    private Double pH;
+    private String temp;
 }

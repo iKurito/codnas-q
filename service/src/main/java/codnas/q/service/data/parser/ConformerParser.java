@@ -14,6 +14,7 @@ public class ConformerParser {
         conformerDTO.setLength(conformer.getLength());
         conformerDTO.setName(conformer.getName());
         conformerDTO.setOrganism(conformer.getOrganism());
+        conformerDTO.setInformation(ConformerInformationParser.toConformerInformationDTO(conformer));
         return conformerDTO;
     }
 }

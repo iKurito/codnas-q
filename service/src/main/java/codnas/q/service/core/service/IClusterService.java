@@ -2,6 +2,7 @@ package codnas.q.service.core.service;
 
 import codnas.q.service.shared.dto.ClusterInformationDTO;
 import codnas.q.service.shared.dto.ConformerDTO;
+import codnas.q.service.shared.dto.ConformerInformationDTO;
 import codnas.q.service.shared.dto.PairMaxQuatDTO;
 
 import java.util.List;

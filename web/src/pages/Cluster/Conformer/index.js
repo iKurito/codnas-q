@@ -4,6 +4,7 @@ import MuiAlert from '@material-ui/lab/Alert'
 import CompareArrowsIcon from '@material-ui/icons/CompareArrows'
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core'
 import { useSelector } from 'react-redux'
+import Overview from './Overview'
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />
@@ -138,8 +139,8 @@ const Conformer = () => {
             />
           </MuiThemeProvider>
         </div>
-        {loading && <div>{idx}</div>}
       </div>
+      {loading && <Overview idx={idx} />}
     </Fragment>
   )
 }
