@@ -26,7 +26,14 @@ const Overview = ({ idx }) => {
                   </td>
                   <td className="w-2/3 text-left pl-10 pr-2 md:px-10 ">
                     <p className="text-xs sm:text-sm leading-5 text-gray-600">
-                      {conformer.information.pdb_id}
+                      <a
+                        className="text-primary-original hover:text-primary-dark"
+                        href={`https://www.rcsb.org/structure/${conformer.information.pdb_id}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {conformer.information.pdb_id}
+                      </a>
                     </p>
                   </td>
                 </tr>
@@ -50,7 +57,14 @@ const Overview = ({ idx }) => {
                   </td>
                   <td className="text-left pl-10 pr-2 md:px-10 ">
                     <p className="text-xs sm:text-sm leading-5 text-gray-600">
-                      {conformer.information.pfam_id}
+                      <a
+                        className="text-primary-original hover:text-primary-dark"
+                        href={`https://pfam.xfam.org/family/${conformer.information.pfam_id}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {conformer.information.pfam_id}
+                      </a>
                     </p>
                   </td>
                 </tr>
@@ -62,7 +76,14 @@ const Overview = ({ idx }) => {
                   </td>
                   <td className="text-left pl-10 pr-2 md:px-10 ">
                     <p className="text-xs sm:text-sm leading-5 text-gray-600">
-                      {conformer.information.uniprot_id}
+                      <a
+                        className="text-primary-original hover:text-primary-dark"
+                        href={`https://www.uniprot.org/uniprot/${conformer.information.uniprot_id}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {conformer.information.uniprot_id}
+                      </a>
                     </p>
                   </td>
                 </tr>
