@@ -3,12 +3,7 @@ import MaterialTable from 'material-table'
 import MuiAlert from '@material-ui/lab/Alert'
 import CompareArrowsIcon from '@material-ui/icons/CompareArrows'
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core'
-
-const conformers = [
-  { id: 1, conformer: 'Conformero 1', length: '21' },
-  { id: 2, conformer: 'Conformero 2', length: '22' },
-  { id: 3, conformer: 'Conformero 3', length: '23' },
-]
+import { useSelector } from 'react-redux'
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />
@@ -19,6 +14,8 @@ const Conformer = () => {
   const [loading, setLoading] = useState(false)
   const [idx, setIdx] = useState(0)
   const [open, setOpen] = useState(false)
+
+  const conformers = useSelector((state) => state.cluster.conformers)
 
   const handleClick = () => {
     setOpen(true)
@@ -73,27 +70,22 @@ const Conformer = () => {
           <MuiThemeProvider theme={theme}>
             <MaterialTable
               columns={[
-                { title: <h1 className="text-sm sm:text-base">PDB</h1>, field: 'conformer' },
+                { title: <h1 className="text-sm sm:text-base">PDB</h1>, field: 'pdb_id' },
                 {
                   title: <h1 className="text-sm sm:text-base">Biological Assembly</h1>,
-                  field: 'length',
+                  field: 'biological_assembly',
                   type: 'numeric',
                   align: 'left',
                 },
                 {
                   title: <h1 className="text-sm sm:text-base">Resolution</h1>,
-                  field: 'conformer',
+                  field: 'resolution',
                   type: 'numeric',
                   align: 'left',
                 },
-                {
-                  title: <h1 className="text-sm sm:text-base">Length</h1>,
-                  field: 'conformer',
-                  type: 'numeric',
-                  align: 'left',
-                },
-                { title: <h1 className="text-sm sm:text-base">Name</h1>, field: 'conformer' },
-                { title: <h1 className="text-sm sm:text-base">Organism</h1>, field: 'conformer' },
+                { title: <h1 className="text-sm sm:text-base">Length</h1>, field: 'length' },
+                { title: <h1 className="text-sm sm:text-base">Name</h1>, field: 'name' },
+                { title: <h1 className="text-sm sm:text-base">Organism</h1>, field: 'organism' },
               ]}
               data={conformers}
               onRowClick={(evt, row) => onRowClick(row)}

@@ -166,7 +166,7 @@ const Information = () => {
           </div>
           <div className="lg:col-span-2 xl:col-span-1 mx-auto self-center pt-4 xl:pt-0">
             {loaded ? (
-              <div>
+              <div className="overflow-y-auto overflow-x-auto">
                 <h2 className="text-center">Max RMSD distribution </h2>
                 <Plot
                   maxRmsdQuat={information.max_rmsd_quaternary}

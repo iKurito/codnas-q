@@ -8,6 +8,7 @@ import {
 const initialState = {
   information: null,
   pairMaximum: null,
+  conformers: null,
   error: null,
   loading: false,
 }
@@ -24,6 +25,7 @@ export default function (state = initialState, action) {
         ...state,
         information: action.payload.res1,
         pairMaximum: action.payload.res2,
+        conformers: action.payload.res3,
         loading: false,
         error: null,
       }
