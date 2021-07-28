@@ -70,20 +70,34 @@ const Conformer = () => {
           <MuiThemeProvider theme={theme}>
             <MaterialTable
               columns={[
-                { title: <h1 className="text-sm sm:text-base">PDB</h1>, field: 'pdb_id' },
+                {
+                  title: <h1 className="text-sm sm:text-base p-0">PDB</h1>,
+                  field: 'pdb_id',
+                  width: null,
+                  cellStyle: { width: 20 },
+                },
                 {
                   title: <h1 className="text-sm sm:text-base">Biological Assembly</h1>,
                   field: 'biological_assembly',
                   type: 'numeric',
                   align: 'left',
+                  width: null,
+                  cellStyle: { width: 250 },
                 },
                 {
                   title: <h1 className="text-sm sm:text-base">Resolution</h1>,
                   field: 'resolution',
                   type: 'numeric',
                   align: 'left',
+                  width: null,
+                  cellStyle: { width: 250 },
                 },
-                { title: <h1 className="text-sm sm:text-base">Length</h1>, field: 'length' },
+                {
+                  title: <h1 className="text-sm sm:text-base">Length</h1>,
+                  field: 'length',
+                  width: null,
+                  cellStyle: { width: 250 },
+                },
                 { title: <h1 className="text-sm sm:text-base">Name</h1>, field: 'name' },
                 { title: <h1 className="text-sm sm:text-base">Organism</h1>, field: 'organism' },
               ]}
@@ -96,6 +110,9 @@ const Conformer = () => {
                 rowStyle: (rowData) => ({
                   backgroundColor: selectedRow === rowData.tableData.id ? '#66a1d3' : '#fff',
                 }),
+                headerStyle: {
+                  minWidth: 40,
+                },
               }}
               actions={[
                 {
