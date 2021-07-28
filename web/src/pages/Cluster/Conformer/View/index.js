@@ -28,6 +28,19 @@ const View = ({ idx }) => {
     return () => clearTimeout(timer)
   }, [idx])
 
+  const onWheel = () => {
+    const element = document.getElementById('view')
+    function wheel(event) {
+      event.preventDefault()
+      return false
+    }
+    element.onmouseenter = function x() {
+      element.addEventListener('DOMMouseScroll', wheel, false)
+    }
+    document.onmousewheel = wheel
+    element.onmousewheel = document.onmousewheel
+  }
+
   return (
     <div className="mt-8 border border-gray-200 rounded-t-xl shadow-md hover:shadow-2xl">
       <div className="bg-gray-200 rounded-t-xl p-4">
@@ -35,7 +48,7 @@ const View = ({ idx }) => {
       </div>
       <div className="p-4 flex place-content-center">
         {loaded ? (
-          <div id="view" className="h-80 w-40 lg:w-80" />
+          <div id="view" className="h-96 w-40 lg:w-96" onWheel={() => onWheel()} />
         ) : (
           <ReactLoading type="spin" color="#2d699b" />
         )}
