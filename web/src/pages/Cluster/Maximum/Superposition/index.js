@@ -16,13 +16,18 @@ const Superposition = ({ query, target }) => {
         'data',
         new NGL.StaticDatasource('https://unpkg.com/ngl@0.10.4-1/')
       )
-      stage.loadFile(conformer1).then(function lFile(o) {
-        o.addRepresentation('cartoon', { color: 'red' })
-        o.autoView()
-      })
-      stage.loadFile(conformer2).then(function lFile(o) {
-        o.addRepresentation('cartoon', { color: 'green' })
-        o.autoView()
+      Promise.all([
+        stage.loadFile(conformer1, { sele: ':A' }).then(function lFile(o) {
+          o.addRepresentation('cartoon', { color: 'red' })
+          return o
+        }),
+        stage.loadFile(conformer2, { sele: ':A' }).then(function lFile(o) {
+          o.addRepresentation('cartoon', { color: 'green' })
+          return o
+        }),
+      ]).then(function lFile(o) {
+        o[0].superpose(o[1], false, '1-320:A')
+        o[0].autoView(':A')
       })
     }, 1000)
     return () => clearTimeout(timer)
