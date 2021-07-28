@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 // Redux
 import { useSelector } from 'react-redux'
+import Superposition from './Superposition'
 
 const headers = [
   { id: 1, value: '' },
@@ -117,6 +118,16 @@ const Maximum = () => {
               ))}
             </tbody>
           </table>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          <Superposition />
+          <div className="p-4">
+            <img
+              className="h-96 mx-auto"
+              src={`http://ufq.unq.edu.ar/codnasq/assets/dendrograms/${pairMaximum[0].name}_dendrogram_2020.png`}
+              alt="dendogram"
+            />
+          </div>
         </div>
       </div>
     </Fragment>
