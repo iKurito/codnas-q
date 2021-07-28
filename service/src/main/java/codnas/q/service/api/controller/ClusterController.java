@@ -3,6 +3,7 @@ package codnas.q.service.api.controller;
 import codnas.q.service.api.response.RestResponse;
 import codnas.q.service.core.service.impl.ClusterService;
 import codnas.q.service.shared.dto.ClusterInformationDTO;
+import codnas.q.service.shared.dto.ConformerDTO;
 import codnas.q.service.shared.dto.PairMaxQuatDTO;
 import codnas.q.service.shared.util.message.ClusterMessage;
 import org.springframework.http.HttpStatus;
@@ -34,11 +35,22 @@ public class ClusterController {
     }
 
     @GetMapping(value = "/cluster/pairMaxQuat/{cluster_id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getPariMaximumQuaternary(@PathVariable Integer cluster_id) {
+    public ResponseEntity<?> getPairMaximumQuaternary(@PathVariable Integer cluster_id) {
         RestResponse restResponse;
         List<PairMaxQuatDTO> pairMaxQuatDTOS = clusterService.getPairMaxQuat(cluster_id);
         if (pairMaxQuatDTOS == null) restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.NO_SUCCESS_GET_PAIR_MAXIMUM);
         else restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.SUCCESS_GET_PAIR_MAXIMUM, pairMaxQuatDTOS);
+        return ResponseEntity.
+                status(restResponse.getStatus()).
+                body(restResponse);
+    }
+
+    @GetMapping(value = "/cluster/conformers/{cluster_id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getConformers(@PathVariable Integer cluster_id) {
+        RestResponse restResponse;
+        List<ConformerDTO> conformerDTOS = clusterService.getConformers(cluster_id);
+        if (conformerDTOS == null) restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.NO_SUCCESS_GET_CONFORMERS);
+        else restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.SUCCESS_GET_CONFORMERS, conformerDTOS);
         return ResponseEntity.
                 status(restResponse.getStatus()).
                 body(restResponse);

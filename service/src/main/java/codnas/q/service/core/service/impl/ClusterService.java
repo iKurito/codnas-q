@@ -5,11 +5,13 @@ import codnas.q.service.core.model.Conformer;
 import codnas.q.service.core.model.ConformerPair;
 import codnas.q.service.core.service.IClusterService;
 import codnas.q.service.data.parser.ClusterInformationParser;
+import codnas.q.service.data.parser.ConformerParser;
 import codnas.q.service.data.parser.PairMaxQuatParser;
 import codnas.q.service.data.repository.IClusterDAO;
 import codnas.q.service.data.repository.IConformerDAO;
 import codnas.q.service.data.repository.IConformerPairDAO;
 import codnas.q.service.shared.dto.ClusterInformationDTO;
+import codnas.q.service.shared.dto.ConformerDTO;
 import codnas.q.service.shared.dto.PairMaxQuatDTO;
 import org.springframework.stereotype.Service;
 
@@ -61,6 +63,24 @@ public class ClusterService implements IClusterService {
                 // Comparison
                 pairMaxQuatDTOS.add(PairMaxQuatParser.toPairMaxQuatDTO(conformer1, conformerPair, 3, false));
                 return pairMaxQuatDTOS;
+            }
+            return null;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public List<ConformerDTO> getConformers(Integer cluster_id) {
+        try {
+            Optional<Cluster> cluster = clusterDAO.findById(cluster_id);
+            if (cluster.isPresent()) {
+                List<Conformer> conformers = conformerDAO.getAllConformersByClusterId(cluster.get().getCodnasq_id());
+                List<ConformerDTO> conformerDTOS = new ArrayList<>();
+                conformers.forEach(conformer -> {
+                    conformerDTOS.add(ConformerParser.toConformerDTO(conformer));
+                });
+                return conformerDTOS;
             }
             return null;
         } catch (Exception e) {
