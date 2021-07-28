@@ -60,7 +60,7 @@ const Maximum = () => {
                   </td>
                   <td className="text-center font-bold pl-10 pr-2 md:px-10 ">
                     <p className="text-xs sm:text-sm leading-5 text-gray-600">
-                      {item.data.max_rmsd_quat ? `${item.data.max_rmsd_quat} Å` : ''}
+                      {item.data.max_rmsd_quat ? `${item.data.max_rmsd_quat}Å` : ''}
                     </p>
                   </td>
                   <td className="text-center pl-10 pr-2 md:px-10 ">

@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import ReactLoading from 'react-loading'
 
 const Superposition = ({ query, target }) => {
   const [loaded, setLoaded] = useState(false)
@@ -43,12 +44,12 @@ const Superposition = ({ query, target }) => {
   return (
     <Fragment>
       <div className="p-4 justify-self-center">
-        {loaded && (
-          <div
-            id="viewport"
-            className="h-80 w-40 lg:w-full min-w-full"
-            onWheel={() => onWheel()}
-          ></div>
+        {loaded ? (
+          <div id="viewport" className="h-80 w-40 lg:w-96" onWheel={() => onWheel()} />
+        ) : (
+          <div id="loader">
+            <ReactLoading type="spin" color="#2d699b" />
+          </div>
         )}
       </div>
     </Fragment>
