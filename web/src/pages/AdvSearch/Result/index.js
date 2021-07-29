@@ -14,8 +14,6 @@ const Result = ({ searchResults }) => {
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize
     const lastPageIndex = firstPageIndex + PageSize
-    console.log(searchResults)
-    console.log(searchResults.slice(firstPageIndex, lastPageIndex))
     return searchResults.slice(firstPageIndex, lastPageIndex)
   }, [currentPage])
 

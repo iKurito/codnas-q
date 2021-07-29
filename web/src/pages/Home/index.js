@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Search from './Search'
 import Logo from '../../assets/img/codnas-q-logo.png'
@@ -6,11 +6,20 @@ import MovFixed from '../../assets/img/mov_mixed.gif'
 import MovRigid from '../../assets/img/mov_rigid.gif'
 import MovTern from '../../assets/img/mov_tert.gif'
 // Redux
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { getSearchResultsByGroupAction } from '../../actions/searchActions'
 
 const Home = ({ history }) => {
   const dispatch = useDispatch()
+
+  const searchResults = useSelector((state) => state.search.searchResults)
+
+  useEffect(() => {
+    if (searchResults.length > 0) {
+      const cleanResults = () => dispatch(getSearchResultsByGroupAction())
+      cleanResults()
+    }
+  }, [])
 
   const onClick = (group) => {
     const getClusters = () => dispatch(getSearchResultsByGroupAction(group))
@@ -44,7 +53,11 @@ const Home = ({ history }) => {
               <h2 className="text-sm sm:text-base pt-6 pb-2">browse by type of movement</h2>
               <div className="px-6 lg:px-24">
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
-                  <div className="col-span-1">
+                  <div
+                    className="col-span-1 cursor-pointer"
+                    onClick={() => onClick('a')}
+                    title="Tertiary Deformations"
+                  >
                     <img
                       className="h-24 md:h-36 xl:h-48 mx-auto"
                       src={MovTern}
@@ -54,7 +67,11 @@ const Home = ({ history }) => {
                       Tertiary Deformations
                     </h1>
                   </div>
-                  <div className="col-span-1">
+                  <div
+                    className="col-span-1 cursor-pointer"
+                    onClick={() => onClick('b')}
+                    title="Mixed Motions"
+                  >
                     <img
                       className="h-24 md:h-36 xl:h-48 mx-auto"
                       src={MovFixed}
@@ -67,6 +84,7 @@ const Home = ({ history }) => {
                   <div
                     className="col-span-2 sm:col-span-1 cursor-pointer"
                     onClick={() => onClick('c')}
+                    title="Rigid Body"
                   >
                     <img className="h-24 md:h-36 xl:h-48 mx-auto" src={MovRigid} alt="rigid-body" />
                     <h1 className="mt-5 text-blue-500 font-bold text-xs sm:text-base">

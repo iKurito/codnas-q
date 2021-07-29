@@ -12,11 +12,14 @@ const AdvSearch = () => {
   const dispatch = useDispatch()
 
   const searchResults = useSelector((state) => state.search.searchResults)
+  const loading = useSelector((state) => state.search.loading)
 
   useEffect(() => {
-    const getClusters = () => dispatch(getSearchResultsAction())
-    if (searchResults.length === 0) {
-      getClusters()
+    if (!loading) {
+      if (searchResults.length === 0) {
+        const getClusters = () => dispatch(getSearchResultsAction())
+        getClusters()
+      }
     }
   }, [])
 
