@@ -95,7 +95,7 @@ const Overview = ({ idx }) => {
                   </td>
                   <td className="text-left pl-10 pr-2 md:px-10 ">
                     <p className="text-xs sm:text-sm leading-5 text-gray-600">
-                      {conformer.information.gene_names} Å
+                      {conformer.information.gene_names}
                     </p>
                   </td>
                 </tr>
@@ -107,7 +107,7 @@ const Overview = ({ idx }) => {
                   </td>
                   <td className="text-left pl-10 pr-2 md:px-10 ">
                     <p className="text-xs sm:text-sm leading-5 text-gray-600">
-                      {conformer.information.biological_assembly} Å
+                      {conformer.information.biological_assembly}
                     </p>
                   </td>
                 </tr>
@@ -119,7 +119,7 @@ const Overview = ({ idx }) => {
                   </td>
                   <td className="text-left pl-10 pr-2 md:px-10 ">
                     <p className="text-xs sm:text-sm leading-5 text-gray-600">
-                      {conformer.information.ligands} Å
+                      {conformer.information.ligands}
                     </p>
                   </td>
                 </tr>
