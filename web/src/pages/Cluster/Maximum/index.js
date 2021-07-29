@@ -22,6 +22,7 @@ const headers = [
 
 const Maximum = () => {
   const pairMaximum = useSelector((state) => state.cluster.pairMaximum)
+  const information = useSelector((state) => state.cluster.information)
 
   return (
     <Fragment>
@@ -124,7 +125,7 @@ const Maximum = () => {
           <div className="p-4">
             <img
               className="h-96 mx-auto"
-              src={`http://ufq.unq.edu.ar/codnasq/assets/dendrograms/${pairMaximum[0].name}_dendrogram_2020.png`}
+              src={`http://ufq.unq.edu.ar/codnasq/assets/dendrograms/${information.cluster_id}_dendrogram_2020.png`}
               alt="dendogram"
             />
           </div>
