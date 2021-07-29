@@ -93,4 +93,41 @@ public class SearchService implements ISearchService {
             return null;
         }
     }
+
+    @Override
+    public List<ResultDTO> getAllClustersByAllFieldsFromHome(String value) {
+        try {
+            List<ResultDTO> resultDTOS = new ArrayList<>();
+            List<String> clusters = new ArrayList<>();
+            List<Conformer> conformers;
+            // PDB
+            Conformer conformer = conformerDAO.getConformerById(value);
+            if (conformer != null) {
+                Cluster cluster = clusterDAO.getByCodnasqId(conformer.getCluster_id());
+                conformers = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
+                resultDTOS.add(ResultParser.toResultDTO(cluster, conformers.size()));
+            }
+            // Name
+            conformers = conformerDAO.getConformersByName(value);
+            add(conformers, clusters, resultDTOS);
+            // Organism
+            conformers = conformerDAO.getConformersByOrganism(value);
+            add(conformers, clusters, resultDTOS);
+            return resultDTOS;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private List<ResultDTO> add(List<Conformer> conformers, List<String> clusters, List<ResultDTO> resultDTOS) {
+        conformers.forEach(conformer -> {
+            if (!(clusters.contains(conformer.getCluster_id()))) {
+                clusters.add(conformer.getCluster_id());
+                Cluster cluster = clusterDAO.getByCodnasqId(conformer.getCluster_id());
+                List<Conformer> conformerList = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
+                resultDTOS.add(ResultParser.toResultDTO(cluster, conformerList.size()));
+            }
+        });
+        return resultDTOS;
+    }
 }

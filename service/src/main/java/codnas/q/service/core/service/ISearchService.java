@@ -9,4 +9,5 @@ public interface ISearchService {
     List<ResultDTO> getAllClutersByGroup(String group);
     List<ResultDTO> getAllClustersByName(String name);
     List<ResultDTO> getAllClustersByOrganism(String organism);
+    List<ResultDTO> getAllClustersByAllFieldsFromHome(String value);
 }

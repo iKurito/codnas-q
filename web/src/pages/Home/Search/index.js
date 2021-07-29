@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import {
   getSearchResultsByNameAction,
   getSearchResultsByOrganismAction,
+  getSearchResultsByAllFieldsAction,
 } from '../../../actions/searchActions'
 import ListBox from '../../../components/ListBox'
 import { areas } from './data'
@@ -28,6 +29,9 @@ const Search = () => {
           getClusters()
         } else if (area.name === 'Organism') {
           const getClusters = () => dispatch(getSearchResultsByOrganismAction(query))
+          getClusters()
+        } else {
+          const getClusters = () => dispatch(getSearchResultsByAllFieldsAction(query))
           getClusters()
         }
         history.push('/adv-search')

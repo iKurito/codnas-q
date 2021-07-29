@@ -64,4 +64,15 @@ public class SearchController {
                 status(restResponse.getStatus()).
                 body(restResponse);
     }
+
+    @GetMapping(value = "/search/clusters/allFields/{value}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getAllClustersByAllFields(@PathVariable String value) {
+        RestResponse restResponse;
+        List<ResultDTO> resultDTOS = searchService.getAllClustersByAllFieldsFromHome(value);
+        if (resultDTOS == null) restResponse = new RestResponse(HttpStatus.OK, SearchMessage.NO_SUCCESS_GET_RESULTS);
+        else restResponse = new RestResponse(HttpStatus.OK, SearchMessage.SUCCESS_GET_RESULTS, resultDTOS);
+        return ResponseEntity.
+                status(restResponse.getStatus()).
+                body(restResponse);
+    }
 }

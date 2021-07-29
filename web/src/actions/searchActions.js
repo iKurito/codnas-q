@@ -62,12 +62,25 @@ export function getSearchResultsByNameAction(name) {
   }
 }
 
-// Function that gets the search results by name
+// Function that gets the search results by Organism
 export function getSearchResultsByOrganismAction(organism) {
   return async (dispatch) => {
     dispatch(getSearchResults())
     try {
       const result = await clientAxios.get(`/search/clusters/organism/${organism}`)
+      dispatch(getSearchResultsSuccess(result.data.payload))
+    } catch (error) {
+      dispatch(getSearchResultsError())
+    }
+  }
+}
+
+// Function that gets the search results by all fields
+export function getSearchResultsByAllFieldsAction(value) {
+  return async (dispatch) => {
+    dispatch(getSearchResults())
+    try {
+      const result = await clientAxios.get(`/search/clusters/allFields/${value}`)
       dispatch(getSearchResultsSuccess(result.data.payload))
     } catch (error) {
       dispatch(getSearchResultsError())
