@@ -19,4 +19,7 @@ public interface IConformerDAO extends JpaRepository<Conformer, Integer> {
 
     @Query(value = "SELECT * from conformer where organism like concat('%', :organism, '%');", nativeQuery = true)
     List<Conformer> getConformersByOrganism(@Param("organism") String organism);
+
+    @Query(value = "SELECT * from conformer where description like concat('%', :description, '%');", nativeQuery = true)
+    List<Conformer> getConformersByDescription(@Param("description") String description);
 }

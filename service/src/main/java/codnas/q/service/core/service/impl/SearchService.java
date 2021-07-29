@@ -115,7 +115,6 @@ public class SearchService implements ISearchService {
         try {
             List<ResultDTO> resultDTOS = new ArrayList<>();
             List<String> clusters = new ArrayList<>();
-            List<Conformer> conformers = new ArrayList<>();
             // Cluster ID
             if (!queryDTO.getClusterId().equals("")) {
                 String[] strings = queryDTO.getClusterId().split(",");
@@ -164,6 +163,15 @@ public class SearchService implements ISearchService {
                         ResultDTO resultDTO = ResultParser.toResultDTO(cluster, conformersGroup.size());
                         resultDTOS.add(resultDTO);
                     }
+                });
+            }
+            // Description
+            if (!queryDTO.getDescription().equals("")) {
+                String[] strings = queryDTO.getDescription().split(",");
+                List<String> clustersStrings = Arrays.asList(strings);
+                clustersStrings.forEach(s -> {
+                    List<Conformer> conformers = conformerDAO.getConformersByDescription(s);
+                    conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS));
                 });
             }
             return resultDTOS;
