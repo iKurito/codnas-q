@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Search from './Search'
 import Logo from '../../assets/img/codnas-q-logo.png'
@@ -9,6 +10,8 @@ import MovTern from '../../assets/img/mov_tert.gif'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   getSearchResultsByGroupAction,
+  getSearchResultsByNameAction,
+  getSearchResultsByOrganismAction,
   cleanSearchResultsAction,
 } from '../../actions/searchActions'
 
@@ -24,9 +27,17 @@ const Home = ({ history }) => {
     }
   }, [])
 
-  const onClick = (group) => {
-    const getClusters = () => dispatch(getSearchResultsByGroupAction(group))
-    getClusters()
+  const onClick = (value) => {
+    if (value === 'a' || value === 'b' || value === 'c') {
+      const getClusters = () => dispatch(getSearchResultsByGroupAction(value))
+      getClusters()
+    } else if (value === 'Hydrolase') {
+      const getClusters = () => dispatch(getSearchResultsByNameAction(value))
+      getClusters()
+    } else {
+      const getClusters = () => dispatch(getSearchResultsByOrganismAction(value))
+      getClusters()
+    }
     history.push('/adv-search')
   }
 
@@ -51,7 +62,24 @@ const Home = ({ history }) => {
               </h2>
               <Search />
               <h2 className="text-sm sm:text-base">
-                Example entries: 2vcq | Hydrolase | Mus musculus
+                Example entries:{' '}
+                <Link className="text-primary-original hover:text-primary-dark" to="/cluster/155">
+                  2vcq
+                </Link>{' '}
+                |{' '}
+                <span
+                  className="text-primary-original hover:text-primary-dark cursor-pointer"
+                  onClick={() => onClick('Hydrolase')}
+                >
+                  Hydrolase
+                </span>{' '}
+                |{' '}
+                <span
+                  className="text-primary-original hover:text-primary-dark cursor-pointer"
+                  onClick={() => onClick('Mus musculus')}
+                >
+                  Mus musculus
+                </span>
               </h2>
               <h2 className="text-sm sm:text-base pt-6 pb-2">browse by type of movement</h2>
               <div className="px-6 lg:px-24">
