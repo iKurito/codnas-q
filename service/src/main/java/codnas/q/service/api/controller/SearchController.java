@@ -31,4 +31,15 @@ public class SearchController {
                 status(restResponse.getStatus()).
                 body(restResponse);
     }
+
+    @GetMapping(value = "/search/clusters/{group}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getAllClustersByGroup(@PathVariable String group) {
+        RestResponse restResponse;
+        List<ResultDTO> resultDTOS = searchService.getAllClutersByGroup(group);
+        if (resultDTOS == null) restResponse = new RestResponse(HttpStatus.OK, SearchMessage.NO_SUCCESS_GET_RESULTS);
+        else restResponse = new RestResponse(HttpStatus.OK, SearchMessage.SUCCESS_GET_RESULTS, resultDTOS);
+        return ResponseEntity.
+                status(restResponse.getStatus()).
+                body(restResponse);
+    }
 }

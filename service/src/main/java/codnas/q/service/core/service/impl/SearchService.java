@@ -37,4 +37,20 @@ public class SearchService implements ISearchService {
             return null;
         }
     }
+
+    @Override
+    public List<ResultDTO> getAllClutersByGroup(String group) {
+        try {
+            List<ResultDTO> resultDTOS = new ArrayList<>();
+            List<Cluster> clusters = clusterDAO.getAllByGroup(group);
+            clusters.forEach(cluster -> {
+                List<Conformer> conformers = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
+                ResultDTO resultDTO = ResultParser.toResultDTO(cluster, conformers.size());
+                resultDTOS.add(resultDTO);
+            });
+            return resultDTOS;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
