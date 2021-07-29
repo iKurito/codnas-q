@@ -1,9 +1,12 @@
 import React, { Fragment, useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { getSearchResultsByNameAction } from '../../../actions/searchActions'
 import ListBox from '../../../components/ListBox'
 import { areas } from './data'
 
 const Search = () => {
+  const dispatch = useDispatch()
   const history = useHistory()
 
   const [area, setArea] = useState(areas[0])
@@ -17,6 +20,10 @@ const Search = () => {
       if (area.name === 'Cluster (by PDB)') {
         history.push(`/cluster/${query}`)
       } else {
+        if (area.name === 'Name') {
+          const getClusters = () => dispatch(getSearchResultsByNameAction(query))
+          getClusters()
+        }
         history.push('/adv-search')
       }
     }

@@ -49,6 +49,19 @@ export function getSearchResultsByGroupAction(group) {
   }
 }
 
+// Function that gets the search results by name
+export function getSearchResultsByNameAction(name) {
+  return async (dispatch) => {
+    dispatch(getSearchResults())
+    try {
+      const result = await clientAxios.get(`/search/clusters/name/${name}`)
+      dispatch(getSearchResultsSuccess(result.data.payload))
+    } catch (error) {
+      dispatch(getSearchResultsError())
+    }
+  }
+}
+
 // Function that cleans the search results
 export function cleanSearchResultsAction() {
   return async (dispatch) => {
