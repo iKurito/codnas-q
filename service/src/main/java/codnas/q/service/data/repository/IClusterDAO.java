@@ -13,4 +13,7 @@ public interface IClusterDAO extends JpaRepository<Cluster, Integer> {
 
     @Query(value = "select * from cluster where codnasq_id = :codnasq_id", nativeQuery = true)
     Cluster getByCodnasqId(@Param("codnasq_id") String codnasq_id);
+
+    @Query(value = "select * from cluster where oligomeric_state = :oligomeric_state", nativeQuery = true)
+    List<Cluster> getAllByOligomericState(@Param("oligomeric_state") Integer oligomeric_state);
 }
