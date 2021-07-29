@@ -24,7 +24,7 @@ public class ClusterController {
     }
 
     @GetMapping(value = "/cluster/information/{cluster_id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getClusterInformation(@PathVariable Integer cluster_id) {
+    public ResponseEntity<?> getClusterInformation(@PathVariable String cluster_id) {
         RestResponse restResponse;
         ClusterInformationDTO clusterInformationDTO = clusterService.getClusterInformation(cluster_id);
         if (clusterInformationDTO == null) restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.NO_SUCCESS_GET_CLUSTER_INFORMATION);
@@ -35,7 +35,7 @@ public class ClusterController {
     }
 
     @GetMapping(value = "/cluster/pairMaxQuat/{cluster_id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getPairMaximumQuaternary(@PathVariable Integer cluster_id) {
+    public ResponseEntity<?> getPairMaximumQuaternary(@PathVariable String cluster_id) {
         RestResponse restResponse;
         List<PairMaxQuatDTO> pairMaxQuatDTOS = clusterService.getPairMaxQuat(cluster_id);
         if (pairMaxQuatDTOS == null) restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.NO_SUCCESS_GET_PAIR_MAXIMUM);
@@ -46,7 +46,7 @@ public class ClusterController {
     }
 
     @GetMapping(value = "/cluster/conformers/{cluster_id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getConformers(@PathVariable Integer cluster_id) {
+    public ResponseEntity<?> getConformers(@PathVariable String cluster_id) {
         RestResponse restResponse;
         List<ConformerDTO> conformerDTOS = clusterService.getConformers(cluster_id);
         if (conformerDTOS == null) restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.NO_SUCCESS_GET_CONFORMERS);

@@ -10,4 +10,7 @@ import java.util.List;
 public interface IClusterDAO extends JpaRepository<Cluster, Integer> {
     @Query(value = "select * from cluster where cluster_group = :group", nativeQuery = true)
     List<Cluster> getAllByGroup(@Param("group") String group);
+
+    @Query(value = "select * from cluster where codnasq_id = :codnasq_id", nativeQuery = true)
+    Cluster getByCodnasqId(@Param("codnasq_id") String codnasq_id);
 }

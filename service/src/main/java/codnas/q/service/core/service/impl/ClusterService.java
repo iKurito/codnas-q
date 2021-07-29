@@ -18,6 +18,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class ClusterService implements IClusterService {
@@ -32,13 +34,22 @@ public class ClusterService implements IClusterService {
     }
 
     @Override
-    public ClusterInformationDTO getClusterInformation(Integer cluster_id) {
+    public ClusterInformationDTO getClusterInformation(String cluster_id) {
         try {
-            Optional<Cluster> cluster = clusterDAO.findById(cluster_id);
-            if (cluster.isPresent()) {
-                Conformer conformer = conformerDAO.getConformerById(cluster.get().getCodnasq_id());
-                List<Conformer> conformers = conformerDAO.getAllConformersByClusterId(cluster.get().getCodnasq_id());
-                return ClusterInformationParser.toClusterInformationDTO(cluster.get(), conformer, conformers.size());
+            Pattern pat = Pattern.compile("[+-]?\\d*(\\.\\d+)?");
+            Matcher mat = pat.matcher(cluster_id);
+            if (mat.matches()) {
+                Optional<Cluster> cluster = clusterDAO.findById(Integer.parseInt(cluster_id));
+                if (cluster.isPresent()) {
+                    Conformer conformer = conformerDAO.getConformerById(cluster.get().getCodnasq_id());
+                    List<Conformer> conformers = conformerDAO.getAllConformersByClusterId(cluster.get().getCodnasq_id());
+                    return ClusterInformationParser.toClusterInformationDTO(cluster.get(), conformer, conformers.size());
+                }
+            } else {
+                Conformer conformer = conformerDAO.getConformerById(cluster_id);
+                Cluster cluster = clusterDAO.getByCodnasqId(conformer.getCluster_id());
+                List<Conformer> conformers = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
+                return ClusterInformationParser.toClusterInformationDTO(cluster, conformer, conformers.size());
             }
             return null;
         } catch (Exception e) {
@@ -47,42 +58,59 @@ public class ClusterService implements IClusterService {
     }
 
     @Override
-    public List<PairMaxQuatDTO> getPairMaxQuat(Integer cluster_id) {
+    public List<PairMaxQuatDTO> getPairMaxQuat(String cluster_id) {
         try {
-            Optional<Cluster> cluster = clusterDAO.findById(cluster_id);
-            if (cluster.isPresent()) {
-                List<PairMaxQuatDTO> pairMaxQuatDTOS = new ArrayList<>();
-                ConformerPair conformerPair = conformerPairDAO.getConformerPairByMaxRmsd(cluster.get().getCodnasq_id(),
-                        cluster.get().getMax_rmsd_quaternary());
-                // Conformer 1
-                Conformer conformer1 = conformerDAO.getConformerById(conformerPair.getQuery_id());
-                pairMaxQuatDTOS.add(PairMaxQuatParser.toPairMaxQuatDTO(conformer1, conformerPair, 1, true));
-                // Conformer 2
-                Conformer conformer2 = conformerDAO.getConformerById(conformerPair.getTarget_id());
-                pairMaxQuatDTOS.add(PairMaxQuatParser.toPairMaxQuatDTO(conformer2, conformerPair, 2, true));
-                // Comparison
-                pairMaxQuatDTOS.add(PairMaxQuatParser.toPairMaxQuatDTO(conformer1, conformerPair, 3, false));
-                return pairMaxQuatDTOS;
+            Pattern pat = Pattern.compile("[+-]?\\d*(\\.\\d+)?");
+            Matcher mat = pat.matcher(cluster_id);
+            ConformerPair conformerPair = new ConformerPair();
+            if (mat.matches()) {
+                Optional<Cluster> cluster = clusterDAO.findById(Integer.parseInt(cluster_id));
+                if (cluster.isPresent()) {
+                    conformerPair = conformerPairDAO.getConformerPairByMaxRmsd(cluster.get().getCodnasq_id(),
+                            cluster.get().getMax_rmsd_quaternary());
+                }
+            } else {
+                Conformer conformer = conformerDAO.getConformerById(cluster_id);
+                Cluster cluster = clusterDAO.getByCodnasqId(conformer.getCluster_id());
+                conformerPair = conformerPairDAO.getConformerPairByMaxRmsd(cluster.getCodnasq_id(),
+                        cluster.getMax_rmsd_quaternary());
             }
-            return null;
+            List<PairMaxQuatDTO> pairMaxQuatDTOS = new ArrayList<>();
+            // Conformer 1
+            Conformer conformer1 = conformerDAO.getConformerById(conformerPair.getQuery_id());
+            pairMaxQuatDTOS.add(PairMaxQuatParser.toPairMaxQuatDTO(conformer1, conformerPair, 1, true));
+            // Conformer 2
+            Conformer conformer2 = conformerDAO.getConformerById(conformerPair.getTarget_id());
+            pairMaxQuatDTOS.add(PairMaxQuatParser.toPairMaxQuatDTO(conformer2, conformerPair, 2, true));
+            // Comparison
+            pairMaxQuatDTOS.add(PairMaxQuatParser.toPairMaxQuatDTO(conformer1, conformerPair, 3, false));
+            return pairMaxQuatDTOS;
         } catch (Exception e) {
             return null;
         }
     }
 
     @Override
-    public List<ConformerDTO> getConformers(Integer cluster_id) {
+    public List<ConformerDTO> getConformers(String cluster_id) {
         try {
-            Optional<Cluster> cluster = clusterDAO.findById(cluster_id);
-            if (cluster.isPresent()) {
-                List<Conformer> conformers = conformerDAO.getAllConformersByClusterId(cluster.get().getCodnasq_id());
-                List<ConformerDTO> conformerDTOS = new ArrayList<>();
-                conformers.forEach(conformer -> {
-                    conformerDTOS.add(ConformerParser.toConformerDTO(conformer));
-                });
-                return conformerDTOS;
+            Pattern pat = Pattern.compile("[+-]?\\d*(\\.\\d+)?");
+            Matcher mat = pat.matcher(cluster_id);
+            List<Conformer> conformers = new ArrayList<>();
+            if (mat.matches()) {
+                Optional<Cluster> cluster = clusterDAO.findById(Integer.parseInt(cluster_id));
+                if (cluster.isPresent()) {
+                    conformers = conformerDAO.getAllConformersByClusterId(cluster.get().getCodnasq_id());
+                }
+            } else {
+                Conformer conformer = conformerDAO.getConformerById(cluster_id);
+                Cluster cluster = clusterDAO.getByCodnasqId(conformer.getCluster_id());
+                conformers = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
             }
-            return null;
+            List<ConformerDTO> conformerDTOS = new ArrayList<>();
+            conformers.forEach(conformer -> {
+                conformerDTOS.add(ConformerParser.toConformerDTO(conformer));
+            });
+            return conformerDTOS;
         } catch (Exception e) {
             return null;
         }
