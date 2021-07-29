@@ -14,7 +14,7 @@ const AdvSearch = () => {
   const searchResults = useSelector((state) => state.search.searchResults)
   const loading = useSelector((state) => state.search.loading)
 
-  const [load, setLoaded] = useState(true)
+  const [load, setLoaded] = useState(false)
 
   useEffect(() => {
     if (!loading) {
@@ -31,9 +31,7 @@ const AdvSearch = () => {
   }
 
   useEffect(() => {
-    setLoaded(true)
-    const timer = setTimeout(() => setLoaded(false), 500)
-    return () => clearTimeout(timer)
+    setLoaded(false)
   }, [searchResults])
 
   return (
@@ -45,7 +43,7 @@ const AdvSearch = () => {
               Advanced Search
             </h1>
             <div className="pt-5  md:space-y-0 lg:space-x-10 grid lg:grid-cols-4">
-              <Filter />
+              <Filter setLoaded={setLoaded} />
               {load ? (
                 <div className="md:col-span-3">
                   <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-6 pt-2">

@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import PropTypes from 'prop-types'
 import Cluster from '../Cluster'
 import Conformer from '../Conformer'
 import { useDispatch } from 'react-redux'
 import { getSearchResultsFromAdvSearchAction } from '../../../actions/searchActions'
 
-const Filter = () => {
+const Filter = ({ setLoaded }) => {
   const dispatch = useDispatch()
   const [query, setQuery] = useState({
     clusterId: '',
@@ -60,6 +61,7 @@ const Filter = () => {
       } else {
         const getClusters = () => dispatch(getSearchResultsFromAdvSearchAction(query))
         getClusters()
+        setLoaded(true)
       }
     }
   }
@@ -74,6 +76,10 @@ const Filter = () => {
       </div>
     </aside>
   )
+}
+
+Filter.propTypes = {
+  setLoaded: PropTypes.func.isRequired,
 }
 
 export default Filter
