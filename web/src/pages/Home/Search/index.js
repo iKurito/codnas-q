@@ -1,7 +1,10 @@
 import React, { Fragment, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { getSearchResultsByNameAction } from '../../../actions/searchActions'
+import {
+  getSearchResultsByNameAction,
+  getSearchResultsByOrganismAction,
+} from '../../../actions/searchActions'
 import ListBox from '../../../components/ListBox'
 import { areas } from './data'
 
@@ -22,6 +25,9 @@ const Search = () => {
       } else {
         if (area.name === 'Name') {
           const getClusters = () => dispatch(getSearchResultsByNameAction(query))
+          getClusters()
+        } else if (area.name === 'Organism') {
+          const getClusters = () => dispatch(getSearchResultsByOrganismAction(query))
           getClusters()
         }
         history.push('/adv-search')

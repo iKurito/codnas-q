@@ -73,4 +73,24 @@ public class SearchService implements ISearchService {
             return null;
         }
     }
+
+    @Override
+    public List<ResultDTO> getAllClustersByOrganism(String organism) {
+        try {
+            List<ResultDTO> resultDTOS = new ArrayList<>();
+            List<Conformer> conformers = conformerDAO.getConformersByOrganism(organism);
+            List<String> clusters = new ArrayList<>();
+            conformers.forEach(conformer -> {
+                if (!(clusters.contains(conformer.getCluster_id()))) {
+                    clusters.add(conformer.getCluster_id());
+                    Cluster cluster = clusterDAO.getByCodnasqId(conformer.getCluster_id());
+                    List<Conformer> conformerList = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
+                    resultDTOS.add(ResultParser.toResultDTO(cluster, conformerList.size()));
+                }
+            });
+            return resultDTOS;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
