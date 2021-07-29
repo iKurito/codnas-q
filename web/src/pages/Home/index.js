@@ -7,7 +7,10 @@ import MovRigid from '../../assets/img/mov_rigid.gif'
 import MovTern from '../../assets/img/mov_tert.gif'
 // Redux
 import { useSelector, useDispatch } from 'react-redux'
-import { getSearchResultsByGroupAction } from '../../actions/searchActions'
+import {
+  getSearchResultsByGroupAction,
+  cleanSearchResultsAction,
+} from '../../actions/searchActions'
 
 const Home = ({ history }) => {
   const dispatch = useDispatch()
@@ -16,7 +19,7 @@ const Home = ({ history }) => {
 
   useEffect(() => {
     if (searchResults.length > 0) {
-      const cleanResults = () => dispatch(getSearchResultsByGroupAction())
+      const cleanResults = () => dispatch(cleanSearchResultsAction())
       cleanResults()
     }
   }, [])
