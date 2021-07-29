@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import Filter from './Filter'
 import Result from './Result'
 import ContentLoader from 'react-content-loader'
@@ -14,6 +14,8 @@ const AdvSearch = () => {
   const searchResults = useSelector((state) => state.search.searchResults)
   const loading = useSelector((state) => state.search.loading)
 
+  const [load, setLoaded] = useState(true)
+
   useEffect(() => {
     if (!loading) {
       if (searchResults.length === 0) {
@@ -28,6 +30,12 @@ const AdvSearch = () => {
     getClusters()
   }
 
+  useEffect(() => {
+    setLoaded(true)
+    const timer = setTimeout(() => setLoaded(false), 500)
+    return () => clearTimeout(timer)
+  }, [searchResults])
+
   return (
     <Fragment>
       <div className="pt-6 pb-52">
@@ -38,7 +46,34 @@ const AdvSearch = () => {
             </h1>
             <div className="pt-5  md:space-y-0 lg:space-x-10 grid lg:grid-cols-4">
               <Filter />
-              {searchResults.length > 0 ? (
+              {load ? (
+                <div className="md:col-span-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-6 pt-2">
+                    {skeleton.map((item) => (
+                      <div key={item} className="col-span-1 mx-auto custom-shadow pt-4 pl-6">
+                        <ContentLoader
+                          className="h-24 sm:h-24 lg:h-28 xl:h-32"
+                          speed={2}
+                          viewBox="0 0 400 150"
+                          backgroundColor="#f3f3f3"
+                          foregroundColor="#ecebeb"
+                        >
+                          <circle cx="10" cy="20" r="8" />
+                          <rect x="25" y="15" rx="5" ry="5" width="220" height="10" />
+                          <circle cx="10" cy="50" r="8" />
+                          <rect x="25" y="45" rx="5" ry="5" width="220" height="10" />
+                          <circle cx="10" cy="80" r="8" />
+                          <rect x="25" y="75" rx="5" ry="5" width="220" height="10" />
+                          <circle cx="10" cy="110" r="8" />
+                          <rect x="25" y="105" rx="5" ry="5" width="220" height="10" />
+                          <circle cx="578" cy="227" r="10" />
+                          <circle cx="315" cy="63" r="55" />
+                        </ContentLoader>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : searchResults.length > 0 ? (
                 <Result searchResults={searchResults} />
               ) : loading ? (
                 <div className="md:col-span-3">
