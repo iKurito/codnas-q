@@ -1,16 +1,19 @@
 import { Fragment } from 'react'
+import PropTypes from 'prop-types'
 
-const Cluster = () => {
+const Cluster = ({ onKeyPress, setQuery, query }) => {
   return (
     <Fragment>
       <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-700">Cluster Properties</h1>
-      <form className="space-y-2">
+      <form className="space-y-2" onKeyPress={(e) => onKeyPress(e)}>
         <h2 className="text-sm sm:text-base font-bold text-gray-700 text-justify">Cluster ID</h2>
         <input
           className="text-xs sm:text-sm appearance-none border border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primary-dark"
           id="clusterId"
           type="text"
           placeholder="Cluster ID..."
+          name="clusterId"
+          onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 sm:gap-4 sm:pt-2">
           <div className="space-y-2">
@@ -22,6 +25,8 @@ const Cluster = () => {
               id="oligState"
               type="text"
               placeholder="Oligomeric State..."
+              name="oligomericState"
+              onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
             />
           </div>
           <div className="space-y-2">
@@ -31,6 +36,8 @@ const Cluster = () => {
               id="oligState"
               type="text"
               placeholder="Oligomeric State..."
+              name="group"
+              onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
             />
           </div>
         </div>
@@ -46,6 +53,8 @@ const Cluster = () => {
                 type="number"
                 step=".01"
                 placeholder="From..."
+                name="quatFrom"
+                onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
               />
               <input
                 className="text-xs sm:text-sm appearance-none border border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primary-dark"
@@ -53,6 +62,8 @@ const Cluster = () => {
                 type="number"
                 step=".01"
                 placeholder="To..."
+                name="quatTo"
+                onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
               />
             </div>
           </div>
@@ -67,6 +78,8 @@ const Cluster = () => {
                 type="number"
                 step=".01"
                 placeholder="From..."
+                name="tertFrom"
+                onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
               />
               <input
                 className="text-xs sm:text-sm appearance-none border border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primary-dark"
@@ -74,6 +87,8 @@ const Cluster = () => {
                 type="number"
                 step=".01"
                 placeholder="To..."
+                name="tertTo"
+                onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
               />
             </div>
           </div>
@@ -81,6 +96,12 @@ const Cluster = () => {
       </form>
     </Fragment>
   )
+}
+
+Cluster.propTypes = {
+  onKeyPress: PropTypes.func.isRequired,
+  setQuery: PropTypes.func.isRequired,
+  query: PropTypes.any.isRequired,
 }
 
 export default Cluster
