@@ -41,7 +41,7 @@ export function getSearchResultsByGroupAction(group) {
   return async (dispatch) => {
     dispatch(getSearchResults())
     try {
-      const result = await clientAxios.get(`/search/clusters/${group}`)
+      const result = await clientAxios.get(`/search/clusters/group/${group}`)
       dispatch(getSearchResultsSuccess(result.data.payload))
     } catch (error) {
       dispatch(getSearchResultsError())
