@@ -88,6 +88,19 @@ export function getSearchResultsByAllFieldsAction(value) {
   }
 }
 
+// Function that gets the search results by all fields
+export function getSearchResultsFromAdvSearchAction(data) {
+  return async (dispatch) => {
+    dispatch(getSearchResults())
+    try {
+      const result = await clientAxios.post('/search/clusters/allFields', data)
+      dispatch(getSearchResultsSuccess(result.data.payload))
+    } catch (error) {
+      dispatch(getSearchResultsError())
+    }
+  }
+}
+
 // Function that cleans the search results
 export function cleanSearchResultsAction() {
   return async (dispatch) => {

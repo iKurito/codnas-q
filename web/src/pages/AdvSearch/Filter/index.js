@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import Cluster from '../Cluster'
 import Conformer from '../Conformer'
+import { useDispatch } from 'react-redux'
+import { getSearchResultsFromAdvSearchAction } from '../../../actions/searchActions'
 
 const Filter = () => {
+  const dispatch = useDispatch()
   const [query, setQuery] = useState({
     clusterId: '',
     oligomericState: '',
@@ -20,7 +23,7 @@ const Filter = () => {
     temperature: '',
   })
 
-  /* const {
+  const {
     clusterId,
     oligomericState,
     group,
@@ -34,11 +37,30 @@ const Filter = () => {
     name,
     organism,
     temperature,
-  } = query */
+  } = query
 
   const onKeyPress = (e) => {
     if (e.key === 'Enter') {
-      console.log(query)
+      if (
+        clusterId.trim() === '' &&
+        oligomericState.trim() === '' &&
+        group.trim() === '' &&
+        quatFrom.trim() === '' &&
+        quatTo.trim() === '' &&
+        tertFrom.trim() === '' &&
+        tertTo.trim() === '' &&
+        description.trim() === '' &&
+        resolution.trim() === '' &&
+        length.trim() === '' &&
+        name.trim() === '' &&
+        organism.trim() === '' &&
+        temperature.trim() === ''
+      ) {
+        console.log('PONER ERORR')
+      } else {
+        const getClusters = () => dispatch(getSearchResultsFromAdvSearchAction(query))
+        getClusters()
+      }
     }
   }
 
