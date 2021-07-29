@@ -6,11 +6,16 @@ import codnas.q.service.core.service.ISearchService;
 import codnas.q.service.data.parser.ResultParser;
 import codnas.q.service.data.repository.IClusterDAO;
 import codnas.q.service.data.repository.IConformerDAO;
+import codnas.q.service.shared.dto.QueryDTO;
 import codnas.q.service.shared.dto.ResultDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class SearchService implements ISearchService {
@@ -99,6 +104,43 @@ public class SearchService implements ISearchService {
             // Organism
             conformers = conformerDAO.getConformersByOrganism(value);
             addToResultDTOS(conformers, clusters, resultDTOS);
+            return resultDTOS;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public List<ResultDTO> getAllClustersFromAdvSearch(QueryDTO queryDTO) {
+        try {
+            List<ResultDTO> resultDTOS = new ArrayList<>();
+            List<String> clusters = new ArrayList<>();
+            List<Conformer> conformers = new ArrayList<>();
+            // Cluster ID
+            if (!queryDTO.getClusterId().equals("")) {
+                String[] strings = queryDTO.getClusterId().split(",");
+                List<String> clustersStrings = Arrays.asList(strings);
+                clustersStrings.forEach(s -> {
+                    Pattern pat = Pattern.compile("[+-]?\\d*(\\.\\d+)?");
+                    Matcher mat = pat.matcher(s);
+                    if (mat.matches()) {
+                        clusters.add(s);
+                        Optional<Cluster> cluster = clusterDAO.findById(Integer.parseInt(s));
+                        if (cluster.isPresent()) {
+                            List<Conformer> conformerList = conformerDAO.getAllConformersByClusterId(cluster.get().getCodnasq_id());
+                            resultDTOS.add(ResultParser.toResultDTO(cluster.get(), conformerList.size()));
+                        }
+                    } else {
+                        Conformer conformer = conformerDAO.getConformerById(s);
+                        if (conformer != null) {
+                            Cluster cluster = clusterDAO.getByCodnasqId(conformer.getCluster_id());
+                            List<Conformer> conformerList = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
+                            resultDTOS.add(ResultParser.toResultDTO(cluster, conformerList.size()));
+                        }
+                    }
+                });
+            }
+            // Oligomeric State
             return resultDTOS;
         } catch (Exception e) {
             return null;
