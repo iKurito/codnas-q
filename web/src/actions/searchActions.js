@@ -32,3 +32,16 @@ const getSearchResultsError = () => ({
   type: GET_SEARCH_RESULTS_ERROR,
   payload: true,
 })
+
+// Function that gets the search results by group
+export function getSearchResultsByGroupAction(group) {
+  return async (dispatch) => {
+    dispatch(getSearchResults())
+    try {
+      const result = await clientAxios.get(`/search/clusters/${group}`)
+      dispatch(getSearchResultsSuccess(result.data.payload))
+    } catch (error) {
+      dispatch(getSearchResultsError())
+    }
+  }
+}

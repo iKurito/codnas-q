@@ -1,11 +1,23 @@
 import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
 import Search from './Search'
 import Logo from '../../assets/img/codnas-q-logo.png'
 import MovFixed from '../../assets/img/mov_mixed.gif'
 import MovRigid from '../../assets/img/mov_rigid.gif'
 import MovTern from '../../assets/img/mov_tert.gif'
+// Redux
+import { useDispatch } from 'react-redux'
+import { getSearchResultsByGroupAction } from '../../actions/searchActions'
 
-const Home = () => {
+const Home = ({ history }) => {
+  const dispatch = useDispatch()
+
+  const onClick = (group) => {
+    const getClusters = () => dispatch(getSearchResultsByGroupAction(group))
+    getClusters()
+    history.push('/adv-search')
+  }
+
   return (
     <Fragment>
       <div className="pt-10 pb-60">
@@ -52,7 +64,10 @@ const Home = () => {
                       Mixed Motions
                     </h1>
                   </div>
-                  <div className="col-span-2 sm:col-span-1">
+                  <div
+                    className="col-span-2 sm:col-span-1 cursor-pointer"
+                    onClick={() => onClick('c')}
+                  >
                     <img className="h-24 md:h-36 xl:h-48 mx-auto" src={MovRigid} alt="rigid-body" />
                     <h1 className="mt-5 text-blue-500 font-bold text-xs sm:text-base">
                       Rigid Body
@@ -66,6 +81,10 @@ const Home = () => {
       </div>
     </Fragment>
   )
+}
+
+Home.propTypes = {
+  history: PropTypes.any.isRequired,
 }
 
 export default Home

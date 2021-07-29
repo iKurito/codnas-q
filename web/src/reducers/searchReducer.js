@@ -6,9 +6,9 @@ import {
 
 // Initial State
 const initialState = {
-  searchResults: null,
+  searchResults: [],
   error: null,
-  loading: false,
+  loading: true,
 }
 
 export default function (state = initialState, action) {
