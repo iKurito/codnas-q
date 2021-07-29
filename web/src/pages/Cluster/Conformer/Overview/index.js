@@ -195,7 +195,7 @@ const Overview = ({ idx }) => {
                   </td>
                   <td className="text-left pl-10 pr-2 md:px-10 ">
                     <p className="text-xs sm:text-sm leading-5 text-gray-600">
-                      {conformer.information.temp} K°
+                      {conformer.information.temp} K
                     </p>
                   </td>
                 </tr>
