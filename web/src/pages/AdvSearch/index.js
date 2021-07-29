@@ -23,6 +23,11 @@ const AdvSearch = () => {
     }
   }, [])
 
+  const getAllClusters = () => {
+    const getClusters = () => dispatch(getSearchResultsAction())
+    getClusters()
+  }
+
   return (
     <Fragment>
       <div className="pt-6 pb-52">
@@ -63,7 +68,15 @@ const AdvSearch = () => {
                   </div>
                 </div>
               ) : (
-                <h1>Sorry! Results not found.</h1>
+                <div>
+                  <h1>Sorry! Results not found.</h1>
+                  <span
+                    className="cursor-pointer text-primary-original hover:text-primary-dark"
+                    onClick={() => getAllClusters()}
+                  >
+                    Get All Clusters List
+                  </span>
+                </div>
               )}
             </div>
           </div>
