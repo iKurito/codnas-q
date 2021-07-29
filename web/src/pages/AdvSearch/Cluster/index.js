@@ -31,14 +31,33 @@ const Cluster = ({ onKeyPress, setQuery, query }) => {
           </div>
           <div className="space-y-2">
             <h2 className="text-sm sm:text-base font-bold text-gray-700 text-justify">Group</h2>
+          </div>
+          <div>
             <input
-              className="text-xs sm:text-sm appearance-none border border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primary-dark"
-              id="oligState"
-              type="text"
-              placeholder="Oligomeric State..."
+              type="radio"
+              value="a"
               name="group"
               onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
-            />
+            />{' '}
+            <span className="text-xs sm:text-sm">Tertiary Deformations</span>
+          </div>
+          <div>
+            <input
+              type="radio"
+              value="b"
+              name="group"
+              onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
+            />{' '}
+            <span className="text-xs sm:text-sm">Mixed Motions</span>
+          </div>
+          <div>
+            <input
+              type="radio"
+              value="c"
+              name="group"
+              onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
+            />{' '}
+            <span className="text-xs sm:text-sm">Rigid Body</span>
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 sm:gap-4 sm:pt-2">
