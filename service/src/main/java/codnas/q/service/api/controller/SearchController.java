@@ -35,7 +35,7 @@ public class SearchController {
     @GetMapping(value = "/search/clusters/group/{group}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllClustersByGroup(@PathVariable String group) {
         RestResponse restResponse;
-        List<ResultDTO> resultDTOS = searchService.getAllClutersByGroup(group);
+        List<ResultDTO> resultDTOS = searchService.getAllClustersByGroup(group);
         if (resultDTOS == null) restResponse = new RestResponse(HttpStatus.OK, SearchMessage.NO_SUCCESS_GET_RESULTS);
         else restResponse = new RestResponse(HttpStatus.OK, SearchMessage.SUCCESS_GET_RESULTS, resultDTOS);
         return ResponseEntity.

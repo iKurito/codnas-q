@@ -39,7 +39,7 @@ public class SearchService implements ISearchService {
     }
 
     @Override
-    public List<ResultDTO> getAllClutersByGroup(String group) {
+    public List<ResultDTO> getAllClustersByGroup(String group) {
         try {
             List<ResultDTO> resultDTOS = new ArrayList<>();
             List<Cluster> clusters = clusterDAO.getAllByGroup(group);
@@ -60,14 +60,7 @@ public class SearchService implements ISearchService {
             List<ResultDTO> resultDTOS = new ArrayList<>();
             List<Conformer> conformers = conformerDAO.getConformersByName(name);
             List<String> clusters = new ArrayList<>();
-            conformers.forEach(conformer -> {
-                if (!(clusters.contains(conformer.getCluster_id()))) {
-                    clusters.add(conformer.getCluster_id());
-                    Cluster cluster = clusterDAO.getByCodnasqId(conformer.getCluster_id());
-                    List<Conformer> conformerList = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
-                    resultDTOS.add(ResultParser.toResultDTO(cluster, conformerList.size()));
-                }
-            });
+            addToResultDTOS(conformers, clusters, resultDTOS);
             return resultDTOS;
         } catch (Exception e) {
             return null;
@@ -80,14 +73,7 @@ public class SearchService implements ISearchService {
             List<ResultDTO> resultDTOS = new ArrayList<>();
             List<Conformer> conformers = conformerDAO.getConformersByOrganism(organism);
             List<String> clusters = new ArrayList<>();
-            conformers.forEach(conformer -> {
-                if (!(clusters.contains(conformer.getCluster_id()))) {
-                    clusters.add(conformer.getCluster_id());
-                    Cluster cluster = clusterDAO.getByCodnasqId(conformer.getCluster_id());
-                    List<Conformer> conformerList = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
-                    resultDTOS.add(ResultParser.toResultDTO(cluster, conformerList.size()));
-                }
-            });
+            addToResultDTOS(conformers, clusters, resultDTOS);
             return resultDTOS;
         } catch (Exception e) {
             return null;
@@ -109,17 +95,17 @@ public class SearchService implements ISearchService {
             }
             // Name
             conformers = conformerDAO.getConformersByName(value);
-            add(conformers, clusters, resultDTOS);
+            addToResultDTOS(conformers, clusters, resultDTOS);
             // Organism
             conformers = conformerDAO.getConformersByOrganism(value);
-            add(conformers, clusters, resultDTOS);
+            addToResultDTOS(conformers, clusters, resultDTOS);
             return resultDTOS;
         } catch (Exception e) {
             return null;
         }
     }
 
-    private List<ResultDTO> add(List<Conformer> conformers, List<String> clusters, List<ResultDTO> resultDTOS) {
+    private void addToResultDTOS(List<Conformer> conformers, List<String> clusters, List<ResultDTO> resultDTOS) {
         conformers.forEach(conformer -> {
             if (!(clusters.contains(conformer.getCluster_id()))) {
                 clusters.add(conformer.getCluster_id());
@@ -128,6 +114,5 @@ public class SearchService implements ISearchService {
                 resultDTOS.add(ResultParser.toResultDTO(cluster, conformerList.size()));
             }
         });
-        return resultDTOS;
     }
 }
