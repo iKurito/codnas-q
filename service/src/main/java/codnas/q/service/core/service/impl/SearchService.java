@@ -155,6 +155,17 @@ public class SearchService implements ISearchService {
                     });
                 });
             }
+            // Group
+            if (!queryDTO.getGroup().equals("")) {
+                List<Cluster> clustersGroup = clusterDAO.getAllByGroup(queryDTO.getGroup());
+                clustersGroup.forEach(cluster -> {
+                    if (!(clusters.contains(cluster.getCodnasq_id()))) {
+                        List<Conformer> conformersGroup = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
+                        ResultDTO resultDTO = ResultParser.toResultDTO(cluster, conformersGroup.size());
+                        resultDTOS.add(resultDTO);
+                    }
+                });
+            }
             return resultDTOS;
         } catch (Exception e) {
             return null;
