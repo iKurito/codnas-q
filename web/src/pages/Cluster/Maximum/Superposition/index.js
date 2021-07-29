@@ -52,8 +52,8 @@ const Superposition = ({ query, target }) => {
       <div className="p-4 justify-self-center" style={{ textAlign: '-webkit-center' }}>
         {loaded ? (
           <>
-            <div id="viewport" className="h-96 w-40 lg:w-96" onWheel={() => onWheel()} />
-            <span>View superposed coordinates files</span>
+            <div id="viewport" className="h-40 sm:h-96 w-40 lg:w-96" onWheel={() => onWheel()} />
+            <span className="text-sm sm:text-base">View superposed coordinates files</span>
             <div className="grid grid-cols-2 gap-2 sm:gap-4">
               <div>
                 <Brightness1Icon

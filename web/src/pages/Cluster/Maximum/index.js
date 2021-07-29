@@ -122,20 +122,26 @@ const Maximum = () => {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
           <Superposition query={pairMaximum[0].name} target={pairMaximum[1].name} />
-          <div className="p-4 text-center">
-            <img
-              className="h-96 mx-auto"
-              src={`http://ufq.unq.edu.ar/codnasq/assets/dendrograms/${information.cluster_id}_dendrogram_2020.png`}
-              alt="dendogram"
-            />
-            <a
-              className="text-primary-original hover:text-primary-dark"
-              href={`http://ufq.unq.edu.ar/codnasq/assets/dendrograms/${information.cluster_id}_dendrogram_2020.png`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span>View full size dendrogram </span>
-            </a>
+          <div>
+            <div className="overflow-auto">
+              <div className="p-4 h-auto" style={{ width: '800px', textAlign: '-webkit-center' }}>
+                <img
+                  className="mx-auto"
+                  src={`http://ufq.unq.edu.ar/codnasq/assets/dendrograms/${information.cluster_id}_dendrogram_2020.png`}
+                  alt="dendogram"
+                />
+              </div>
+            </div>
+            <div className="text-center pb-4">
+              <a
+                className="text-primary-original hover:text-primary-dark"
+                href={`http://ufq.unq.edu.ar/codnasq/assets/dendrograms/${information.cluster_id}_dendrogram_2020.png`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="text-sm sm:text-base">View full size dendrogram </span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
