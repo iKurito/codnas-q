@@ -7,4 +7,5 @@ import java.util.List;
 public interface ISearchService {
     List<ResultDTO> getAllClusters();
     List<ResultDTO> getAllClutersByGroup(String group);
+    List<ResultDTO> getAllClustersByName(String name);
 }
