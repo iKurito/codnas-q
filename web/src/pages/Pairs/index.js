@@ -1,27 +1,48 @@
 import { Fragment, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core'
+import MaterialTable from 'material-table'
+import { useSelector, useDispatch } from 'react-redux'
+import { getPairsDetailsAction } from '../../actions/pairActions'
 
 const Pairs = () => {
+  const dispatch = useDispatch()
   const params = useParams()
   const { id, conformers } = params
 
   const [loading, setLoading] = useState(false)
+  const [selectedRow, setSelectedRow] = useState(null)
+  const [idx, setIdx] = useState(0)
+
+  const pairs = useSelector((state) => state.pair.comparison)
+  // const loaded = useSelector((state) => state.pair.loading)
 
   useEffect(() => {
     console.log(conformers)
-    setLoading(false)
+    const getPairsComparison = () => dispatch(getPairsDetailsAction(conformers))
+    getPairsComparison()
   }, [])
+
+  const onRowClick = (row) => {
+    setIdx(row.tableData.id)
+    setSelectedRow(row.tableData.id)
+    setLoading(true)
+  }
+
+  const theme = createMuiTheme({
+    palette: {
+      secondary: {
+        main: '#2d699b',
+      },
+    },
+  })
 
   return (
     <Fragment>
       <div className="pt-6 pb-52">
         <div className="sm:px-4">
           <div className="p-5 sm:p-10 space-y-4">
-            {loading ? (
-              <h1 className="text-center text-xl font-bold text-gray-700">
-                Loading of Selected Pairs... Please wait.
-              </h1>
-            ) : (
+            {pairs ? (
               <>
                 <h1 className="text-gray-700 text-3xl md:text-4xl font-bold text-center">
                   Cluster {id}
@@ -39,9 +60,63 @@ const Pairs = () => {
                         conformers.
                       </h1>
                     </div>
+                    <div className="text-xs sm:text-sm p-4">
+                      <MuiThemeProvider theme={theme}>
+                        <MaterialTable
+                          columns={[
+                            {
+                              title: <h1 className="text-sm sm:text-base p-0">Conformer 1</h1>,
+                              field: 'query',
+                            },
+                            {
+                              title: <h1 className="text-sm sm:text-base">Conformer 2</h1>,
+                              field: 'target',
+                            },
+                            {
+                              title: <h1 className="text-sm sm:text-base">Seq. Id</h1>,
+                              field: 'seq_id',
+                            },
+                            {
+                              title: <h1 className="text-sm sm:text-base">RMSD [Å]</h1>,
+                              field: 'rmsd',
+                            },
+                            {
+                              title: <h1 className="text-sm sm:text-base">Struc. Similarity</h1>,
+                              field: 'struct_similarity',
+                            },
+                            {
+                              title: <h1 className="text-sm sm:text-base">Struc. Equivalent</h1>,
+                              field: 'struct_equivalent',
+                            },
+                            {
+                              title: <h1 className="text-sm sm:text-base">Distance Error</h1>,
+                              field: 'dist_error',
+                            },
+                          ]}
+                          data={pairs}
+                          onRowClick={(evt, row) => onRowClick(row)}
+                          options={{
+                            padding: 'dense',
+                            showTitle: false,
+                            rowStyle: (rowData) => ({
+                              backgroundColor:
+                                selectedRow === rowData.tableData.id ? '#66a1d3' : '#fff',
+                            }),
+                            headerStyle: {
+                              minWidth: 40,
+                            },
+                          }}
+                        />
+                      </MuiThemeProvider>
+                    </div>
                   </div>
+                  {loading && <h1>{idx}</h1>}
                 </div>
               </>
+            ) : (
+              <h1 className="text-center text-xl font-bold text-gray-700">
+                Loading of Selected Pairs... Please wait.
+              </h1>
             )}
           </div>
         </div>
