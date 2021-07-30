@@ -33,6 +33,7 @@ const Filter = ({ setLoaded }) => {
     tertFrom,
     tertTo,
     description,
+    bioAssembly,
     resolution,
     length,
     name,
@@ -51,6 +52,7 @@ const Filter = ({ setLoaded }) => {
         tertFrom.trim() === '' &&
         tertTo.trim() === '' &&
         description.trim() === '' &&
+        bioAssembly.trim() === '' &&
         resolution.trim() === '' &&
         length.trim() === '' &&
         name.trim() === '' &&
