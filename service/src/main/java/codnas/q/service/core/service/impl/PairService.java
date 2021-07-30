@@ -1,11 +1,13 @@
 package codnas.q.service.core.service.impl;
 
+import codnas.q.service.core.model.Cluster;
 import codnas.q.service.core.model.Conformer;
 import codnas.q.service.core.model.ConformerPair;
 import codnas.q.service.core.model.Perm;
 import codnas.q.service.core.service.IConformerService;
 import codnas.q.service.core.service.IPairService;
 import codnas.q.service.data.parser.PairParser;
+import codnas.q.service.data.repository.IClusterDAO;
 import codnas.q.service.data.repository.IConformerDAO;
 import codnas.q.service.data.repository.IConformerPairDAO;
 import codnas.q.service.shared.dto.PairDTO;
@@ -23,10 +25,13 @@ public class PairService implements IPairService {
 
     private final IConformerPairDAO conformerPairDAO;
     private final IConformerDAO conformerDAO;
+    private final IClusterDAO clusterDAO;
 
-    public PairService(IConformerPairDAO conformerPairDAO, IConformerDAO conformerDAO) {
+    public PairService(IConformerPairDAO conformerPairDAO, IConformerDAO conformerDAO,
+                       IClusterDAO clusterDAO) {
         this.conformerPairDAO = conformerPairDAO;
         this.conformerDAO = conformerDAO;
+        this.clusterDAO = clusterDAO;
     }
 
     @Override
@@ -36,18 +41,23 @@ public class PairService implements IPairService {
             List<PairDTO> pairDTOS = new ArrayList<>();
             String[] conformers = query.split("-");
             if (conformers.length > 1) {
-                Perm2(conformers, "", 2, conformers.length, pdbHashSet);
-                var ref = new Object() {
-                    int id = 1;
-                };
-                pdbHashSet.forEach(s -> {
-                    LOGGER.info("KURITO: INICIO {}. {}", ref.id, s);
-                    ConformerPair conformerPair = conformerPairDAO.getConformerPairByQueryIdAndTargetId(s.getVal1(), s.getVal2());
-                    Conformer conformer1 = conformerDAO.getConformerById(conformerPair.getQuery_id());
-                    Conformer conformer2 = conformerDAO.getConformerById(conformerPair.getTarget_id());
-                    pairDTOS.add(PairParser.toPairParserDTO(ref.id, conformer1, conformer2, conformerPair));
-                    ref.id++;
-                });
+                Cluster cluster = clusterDAO.getByCodnasqId(conformers[0]);
+                if (cluster != null) {
+                    Perm2(conformers, "", 2, conformers.length, pdbHashSet);
+                    var ref = new Object() {
+                        int id = 1;
+                    };
+                    pdbHashSet.forEach(s -> {
+                        LOGGER.info("KURITO: INICIO {}. {}", ref.id, s);
+                        ConformerPair conformerPair = conformerPairDAO.getConformerPairByQueryIdAndTargetId(s.getVal1(), s.getVal2());
+                        if (conformerPair != null) {
+                            Conformer conformer1 = conformerDAO.getConformerById(conformerPair.getQuery_id());
+                            Conformer conformer2 = conformerDAO.getConformerById(conformerPair.getTarget_id());
+                            pairDTOS.add(PairParser.toPairParserDTO(ref.id, conformer1, conformer2, conformerPair, cluster));
+                            ref.id++;
+                        }
+                    });
+                }
                 return pairDTOS;
             }
             return null;

@@ -1,5 +1,6 @@
 package codnas.q.service.data.parser;
 
+import codnas.q.service.core.model.Cluster;
 import codnas.q.service.core.model.Conformer;
 import codnas.q.service.core.model.ConformerPair;
 import codnas.q.service.shared.dto.PairDTO;
@@ -12,9 +13,11 @@ import java.util.List;
 @Slf4j
 public class PairParser {
     public static PairDTO toPairParserDTO(Integer id, Conformer conformer1,
-                                          Conformer conformer2, ConformerPair conformerPair) {
+                                          Conformer conformer2, ConformerPair conformerPair,
+                                          Cluster cluster) {
         PairDTO pairDTO = new PairDTO();
         pairDTO.setId(id);
+        pairDTO.setCluster_id(cluster.getCluster_id());
         pairDTO.setQuery(conformerPair.getQuery_id());
         pairDTO.setCodnasq_id(conformer1.getCluster_id());
         pairDTO.setTarget(conformerPair.getTarget_id());
