@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Cluster from '../Cluster'
 import Conformer from '../Conformer'
@@ -69,14 +69,14 @@ const Filter = ({ setLoaded }) => {
   }
 
   return (
-    <aside className="md:block space-y-4 md:col-span-1">
+    <Fragment>
       <div className="space-y-2">
         <Cluster onKeyPress={onKeyPress} setQuery={setQuery} query={query} />
       </div>
       <div className="space-y-2">
         <Conformer onKeyPress={onKeyPress} setQuery={setQuery} query={query} />
       </div>
-    </aside>
+    </Fragment>
   )
 }
 
