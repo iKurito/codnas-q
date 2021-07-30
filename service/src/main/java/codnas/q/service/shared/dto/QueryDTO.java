@@ -17,8 +17,10 @@ public class QueryDTO {
     private String tertTo;
     private String description;
     private String bioAssembly;
-    private String resolution;
-    private String length;
+    private String resFrom;
+    private String resTo;
+    private String lengthFrom;
+    private String lengthTo;
     private String name;
     private String organism;
     private String temperature;

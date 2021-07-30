@@ -25,4 +25,7 @@ public interface IConformerDAO extends JpaRepository<Conformer, Integer> {
 
     @Query(value = "SELECT * from conformer where biological_assembly = :biological_assembly", nativeQuery = true)
     List<Conformer> getConformersByBioAssembly(@Param("biological_assembly") Integer biological_assembly);
+
+    @Query(value = "select * from conformer where resolution >= :resFrom and resolution <= :resTo", nativeQuery = true)
+    List<Conformer> getAllByResolutionRange(@Param("resFrom") Double resFrom, @Param("resTo") Double resTo);
 }

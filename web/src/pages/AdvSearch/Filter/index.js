@@ -17,8 +17,10 @@ const Filter = ({ setLoaded }) => {
     tertTo: '',
     description: '',
     bioAssembly: '',
-    resolution: '',
-    length: '',
+    resFrom: '',
+    resTo: '',
+    lengthFrom: '',
+    lengthTo: '',
     name: '',
     organism: '',
     temperature: '',
@@ -34,8 +36,10 @@ const Filter = ({ setLoaded }) => {
     tertTo,
     description,
     bioAssembly,
-    resolution,
-    length,
+    resFrom,
+    resTo,
+    lengthFrom,
+    lengthTo,
     name,
     organism,
     temperature,
@@ -53,8 +57,10 @@ const Filter = ({ setLoaded }) => {
         tertTo.trim() === '' &&
         description.trim() === '' &&
         bioAssembly.trim() === '' &&
-        resolution.trim() === '' &&
-        length.trim() === '' &&
+        resFrom.trim() === '' &&
+        resTo.trim() === '' &&
+        lengthFrom.trim() === '' &&
+        lengthTo.trim() === '' &&
         name.trim() === '' &&
         organism.trim() === '' &&
         temperature.trim() === ''

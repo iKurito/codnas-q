@@ -28,24 +28,58 @@ const Conformer = ({ onKeyPress, setQuery, query }) => {
           name="bioAssembly"
           onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
         />
-        <h2 className="text-sm sm:text-base font-bold text-gray-700 text-justify">Resolution</h2>
-        <input
-          className=" text-xs sm:text-sm appearance-none border border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primary-dark"
-          id="resolution"
-          type="text"
-          placeholder="Resolution..."
-          name="resolution"
-          onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
-        />
-        <h2 className="text-sm sm:text-base font-bold text-gray-700 text-justify">Length</h2>
-        <input
-          className="text-xs sm:text-sm appearance-none border border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primary-dark"
-          id="length"
-          type="text"
-          placeholder="Length..."
-          name="length"
-          onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
-        />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 sm:gap-4 sm:pt-2">
+          <div className="space-y-2">
+            <h2 className="text-sm sm:text-base font-bold text-gray-700 text-justify">
+              Resolution
+            </h2>
+            <div className="grid grid-cols-2 gap-2">
+              <input
+                className="text-xs sm:text-sm appearance-none border border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primary-dark"
+                id="resFrom"
+                type="number"
+                step=".01"
+                placeholder="From..."
+                name="resFrom"
+                onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
+              />
+              <input
+                className="text-xs sm:text-sm appearance-none border border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primary-dark"
+                id="resTo"
+                type="number"
+                step=".01"
+                placeholder="To..."
+                name="resTo"
+                onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 sm:gap-4 sm:pt-2">
+          <div className="space-y-2">
+            <h2 className="text-sm sm:text-base font-bold text-gray-700 text-justify">Length</h2>
+            <div className="grid grid-cols-2 gap-2">
+              <input
+                className="text-xs sm:text-sm appearance-none border border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primary-dark"
+                id="lengthFrom"
+                type="number"
+                step=".01"
+                placeholder="From..."
+                name="lengthFrom"
+                onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
+              />
+              <input
+                className="text-xs sm:text-sm appearance-none border border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primary-dark"
+                id="lengthTo"
+                type="number"
+                step=".01"
+                placeholder="To..."
+                name="lengthTo"
+                onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
+              />
+            </div>
+          </div>
+        </div>
         <h2 className="text-sm sm:text-base font-bold text-gray-700 text-justify">Name</h2>
         <input
           className="text-xs sm:text-sm appearance-none border border-gray-300 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:border-primary-dark"

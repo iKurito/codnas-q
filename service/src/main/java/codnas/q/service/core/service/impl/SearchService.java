@@ -191,6 +191,11 @@ public class SearchService implements ISearchService {
                     }
                 });
             }
+            // Resolution (From && To)
+            if (!queryDTO.getResFrom().equals("") && !queryDTO.getResTo().equals("")) {
+                List<Conformer> conformers = conformerDAO.getAllByResolutionRange(Double.parseDouble(queryDTO.getResFrom()), Double.parseDouble(queryDTO.getResTo()));
+                conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS));
+            }
             // Name
             if (!queryDTO.getName().equals("")) {
                 String[] strings = queryDTO.getName().split(",");
