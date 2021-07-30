@@ -105,7 +105,7 @@ const AdvSearch = () => {
                     </div>
                   </div>
                 ) : (
-                  <div>
+                  <div className="pt-3">
                     <h1>Sorry! Results not found.</h1>
                     <span
                       className="cursor-pointer text-primary-original hover:text-primary-dark"
