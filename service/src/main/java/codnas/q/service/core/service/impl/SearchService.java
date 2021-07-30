@@ -196,6 +196,12 @@ public class SearchService implements ISearchService {
                 List<Conformer> conformers = conformerDAO.getAllByResolutionRange(Double.parseDouble(queryDTO.getResFrom()), Double.parseDouble(queryDTO.getResTo()));
                 conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS));
             }
+            // Length (From && To)
+            if (!queryDTO.getLengthFrom().equals("") && !queryDTO.getLengthTo().equals("")) {
+                List<Conformer> conformers =
+                        conformerDAO.getAllByLengthRange(Integer.parseInt(queryDTO.getLengthFrom()), Integer.parseInt(queryDTO.getLengthTo()));
+                conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS));
+            }
             // Name
             if (!queryDTO.getName().equals("")) {
                 String[] strings = queryDTO.getName().split(",");

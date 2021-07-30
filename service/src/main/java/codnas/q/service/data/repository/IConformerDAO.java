@@ -28,4 +28,7 @@ public interface IConformerDAO extends JpaRepository<Conformer, Integer> {
 
     @Query(value = "select * from conformer where resolution >= :resFrom and resolution <= :resTo", nativeQuery = true)
     List<Conformer> getAllByResolutionRange(@Param("resFrom") Double resFrom, @Param("resTo") Double resTo);
+
+    @Query(value = "select * from conformer where length >= :lengthFrom and length <= :lengthTo", nativeQuery = true)
+    List<Conformer> getAllByLengthRange(@Param("lengthFrom") Integer lengthFrom, @Param("lengthTo") Integer lengthTo);
 }
