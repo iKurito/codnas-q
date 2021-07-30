@@ -196,6 +196,16 @@ public class SearchService implements ISearchService {
                     conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS));
                 });
             }
+            // Organism
+            // Name
+            if (!queryDTO.getOrganism().equals("")) {
+                String[] strings = queryDTO.getOrganism().split(",");
+                List<String> organismStrings = Arrays.asList(strings);
+                organismStrings.forEach(s -> {
+                    List<Conformer> conformers = conformerDAO.getConformersByOrganism(s);
+                    conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS));
+                });
+            }
             return resultDTOS;
         } catch (Exception e) {
             return null;
