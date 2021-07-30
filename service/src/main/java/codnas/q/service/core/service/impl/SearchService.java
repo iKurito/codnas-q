@@ -197,7 +197,6 @@ public class SearchService implements ISearchService {
                 });
             }
             // Organism
-            // Name
             if (!queryDTO.getOrganism().equals("")) {
                 String[] strings = queryDTO.getOrganism().split(",");
                 List<String> organismStrings = Arrays.asList(strings);
