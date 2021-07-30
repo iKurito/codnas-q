@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import MaterialTable from 'material-table'
 import MuiAlert from '@material-ui/lab/Alert'
@@ -6,6 +6,7 @@ import CompareArrowsIcon from '@material-ui/icons/CompareArrows'
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core'
 import { useSelector } from 'react-redux'
 import Overview from './Overview'
+import ReactLoading from 'react-loading'
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />
@@ -13,6 +14,7 @@ function Alert(props) {
 
 const Conformer = () => {
   const params = useParams()
+  const [loadPdb, setLoadPdb] = useState(false)
   const [selectedRow, setSelectedRow] = useState(null)
   const [loading, setLoading] = useState(false)
   const [idx, setIdx] = useState(0)
@@ -21,6 +23,14 @@ const Conformer = () => {
   const conformers = useSelector((state) => state.cluster.conformers)
 
   const { id } = params
+
+  useEffect(() => {
+    setLoadPdb(false)
+    const timer = setTimeout(() => {
+      setLoadPdb(true)
+    }, 500)
+    return () => clearTimeout(timer)
+  }, [idx, loading])
 
   const handleClick = () => {
     setOpen(true)
@@ -143,7 +153,14 @@ const Conformer = () => {
           </MuiThemeProvider>
         </div>
       </div>
-      {loading && <Overview idx={idx} />}
+      {loading &&
+        (loadPdb ? (
+          <Overview idx={idx} />
+        ) : (
+          <div id="loader" className="pt-12" style={{ textAlign: '-webkit-center' }}>
+            <ReactLoading type="spin" color="#2d699b" />
+          </div>
+        ))}
     </Fragment>
   )
 }
