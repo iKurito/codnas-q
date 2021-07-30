@@ -177,14 +177,23 @@ public class SearchService implements ISearchService {
             // Biological Assembly
             if (!queryDTO.getBioAssembly().equals("")) {
                 String[] strings = queryDTO.getBioAssembly().split(",");
-                List<String> clustersStrings = Arrays.asList(strings);
-                clustersStrings.forEach(s -> {
+                List<String> bioStrings = Arrays.asList(strings);
+                bioStrings.forEach(s -> {
                     Pattern pat = Pattern.compile("[+-]?\\d*(\\.\\d+)?");
                     Matcher mat = pat.matcher(s);
                     if (mat.matches()) {
                         List<Conformer> conformers = conformerDAO.getConformersByBioAssembly(Integer.parseInt(s));
                         conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS));
                     }
+                });
+            }
+            // Name
+            if (!queryDTO.getName().equals("")) {
+                String[] strings = queryDTO.getName().split(",");
+                List<String> nameStrings = Arrays.asList(strings);
+                nameStrings.forEach(s -> {
+                    List<Conformer> conformers = conformerDAO.getConformersByName(s);
+                    conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS));
                 });
             }
             return resultDTOS;
