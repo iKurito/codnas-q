@@ -30,7 +30,7 @@ const Pairs = () => {
       setLoadSuperposition(true)
     }, 500)
     return () => clearTimeout(timer)
-  }, [idx])
+  }, [idx, loading])
 
   const onRowClick = (row) => {
     setIdx(row.tableData.id)
@@ -129,7 +129,7 @@ const Pairs = () => {
                           target={pairs[idx].target}
                         />
                       ) : (
-                        <div id="loader">
+                        <div id="loader" style={{ textAlign: '-webkit-center' }}>
                           <ReactLoading type="spin" color="#2d699b" />
                         </div>
                       ))}
