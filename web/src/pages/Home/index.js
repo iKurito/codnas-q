@@ -14,11 +14,17 @@ import {
   getSearchResultsByOrganismAction,
   cleanSearchResultsAction,
 } from '../../actions/searchActions'
+import { cleanClusterDetailsAction } from '../../actions/clusterActions'
 
 const Home = ({ history }) => {
   const dispatch = useDispatch()
 
   const searchResults = useSelector((state) => state.search.searchResults)
+
+  useEffect(() => {
+    const cleanClusters = () => dispatch(cleanClusterDetailsAction())
+    cleanClusters()
+  }, [])
 
   useEffect(() => {
     if (searchResults.length > 0) {

@@ -1,8 +1,11 @@
 import clientAxios from '../config/axios'
 import {
-  START_GETTING_CLUSTER_INFORMATION,
-  GET_CLUSTER_INFORMATION_SUCCESS,
-  GET_CLUSTER_INFORMATION_ERROR,
+  START_GETTING_CLUSTER_DETAILS,
+  GET_CLUSTER_DETAILS_SUCCESS,
+  GET_CLUSTER_DETAILS_ERROR,
+  START_CLEANING_CLUSTER_DETAILS,
+  CLEAN_CLUSTER_DETAILS_SUCCESS,
+  CLEAN_CLUSTER_DETAILS_ERROR,
 } from '../types'
 
 // Function that gets the cluster detail
@@ -32,16 +35,43 @@ export function getClusterDetailAction(clusterId) {
 }
 
 const getClusterDetail = () => ({
-  type: START_GETTING_CLUSTER_INFORMATION,
+  type: START_GETTING_CLUSTER_DETAILS,
   payload: true,
 })
 
 const getClusterDetailSuccess = (data) => ({
-  type: GET_CLUSTER_INFORMATION_SUCCESS,
+  type: GET_CLUSTER_DETAILS_SUCCESS,
   payload: data,
 })
 
 const getClusterDetailError = () => ({
-  type: GET_CLUSTER_INFORMATION_ERROR,
+  type: GET_CLUSTER_DETAILS_ERROR,
+  payload: true,
+})
+
+// Function that cleans the cluster details
+export function cleanClusterDetailsAction() {
+  return (dispatch) => {
+    console.log('HOLA')
+    dispatch(cleanClusterDetails())
+    try {
+      dispatch(cleanClusterDetailsSuccess())
+    } catch (error) {
+      dispatch(cleanClusterDetailsError())
+    }
+  }
+}
+
+const cleanClusterDetails = () => ({
+  type: START_CLEANING_CLUSTER_DETAILS,
+  payload: true,
+})
+
+const cleanClusterDetailsSuccess = () => ({
+  type: CLEAN_CLUSTER_DETAILS_SUCCESS,
+})
+
+const cleanClusterDetailsError = () => ({
+  type: CLEAN_CLUSTER_DETAILS_ERROR,
   payload: true,
 })
