@@ -18,7 +18,7 @@ const headers = [
   { id: 14, value: 'Ligands' },
 ]
 
-const Comparison = ({ data }) => {
+const Comparison = ({ data, codnasqId }) => {
   return (
     <Fragment>
       <div className="border border-gray-200 rounded-t-xl shadow-md hover:shadow-2xl">
@@ -115,6 +115,30 @@ const Comparison = ({ data }) => {
             </tbody>
           </table>
         </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
+          <div></div>
+          <div>
+            <div className="overflow-auto">
+              <div className="p-4 h-auto" style={{ width: '800px', textAlign: '-webkit-center' }}>
+                <img
+                  className="mx-auto"
+                  src={`http://ufq.unq.edu.ar/codnasq/assets/dendrograms/${codnasqId}_dendrogram_2020.png`}
+                  alt="dendogram"
+                />
+              </div>
+            </div>
+            <div className="text-center pb-4">
+              <a
+                className="text-primary-original hover:text-primary-dark"
+                href={`http://ufq.unq.edu.ar/codnasq/assets/dendrograms/${codnasqId}_dendrogram_2020.png`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="text-sm sm:text-base">View full size dendrogram </span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </Fragment>
   )
@@ -122,6 +146,7 @@ const Comparison = ({ data }) => {
 
 Comparison.propTypes = {
   data: PropTypes.any.isRequired,
+  codnasqId: PropTypes.string.isRequired,
 }
 
 export default Comparison

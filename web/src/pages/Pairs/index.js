@@ -111,7 +111,9 @@ const Pairs = () => {
                       </MuiThemeProvider>
                     </div>
                   </div>
-                  {loading && <Comparison data={pairs[idx].pairQuatDTOS} />}
+                  {loading && (
+                    <Comparison data={pairs[idx].pairQuatDTOS} codnasqId={pairs[idx].codnasq_id} />
+                  )}
                 </div>
               </>
             ) : (

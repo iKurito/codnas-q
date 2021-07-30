@@ -16,6 +16,7 @@ public class PairParser {
         PairDTO pairDTO = new PairDTO();
         pairDTO.setId(id);
         pairDTO.setQuery(conformerPair.getQuery_id());
+        pairDTO.setCodnasq_id(conformer1.getCluster_id());
         pairDTO.setTarget(conformerPair.getTarget_id());
         pairDTO.setSeq_id(conformerPair.getSequence_identity());
         pairDTO.setRmsd(conformerPair.getRmsd());

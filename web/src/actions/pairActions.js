@@ -10,10 +10,8 @@ export function getPairsDetailsAction(query) {
   return async (dispatch) => {
     dispatch(getPairsDetails())
     try {
-      console.log('HOLA 1')
       const urlComparison = `/pair/comparison/${query}`
       const [res1] = await Promise.all([clientAxios(urlComparison)])
-      console.log('HOLA 2')
       dispatch(
         getPairsDetailsSuccess({
           res1: res1.data.payload,

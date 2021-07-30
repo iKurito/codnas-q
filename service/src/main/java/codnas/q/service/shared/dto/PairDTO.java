@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class PairDTO {
     private Integer id;
+    private String codnasq_id;
     private String query;
     private String target;
     private Integer seq_id;
