@@ -11,10 +11,10 @@ public class QueryDTO {
     private String clusterId;
     private String oligomericState;
     private String group;
-    private Double quatFrom;
-    private Double quatTo;
-    private Double tertFrom;
-    private Double tertTo;
+    private String quatFrom;
+    private String quatTo;
+    private String tertFrom;
+    private String tertTo;
     private String description;
     private String bioAssembly;
     private String resolution;

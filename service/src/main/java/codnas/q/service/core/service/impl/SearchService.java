@@ -145,13 +145,7 @@ public class SearchService implements ISearchService {
                 List<String> clustersStrings = Arrays.asList(strings);
                 clustersStrings.forEach(s -> {
                     List<Cluster> clusterList = clusterDAO.getAllByOligomericState(Integer.parseInt(s));
-                    clusterList.forEach(cluster -> {
-                        if (!(clusters.contains(cluster.getCodnasq_id()))) {
-                            clusters.add(cluster.getCodnasq_id());
-                            List<Conformer> conformerList = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
-                            resultDTOS.add(ResultParser.toResultDTO(cluster, conformerList.size()));
-                        }
-                    });
+                    clusterList.forEach(cluster -> addToResultDTOSByCluster(cluster, clusters, resultDTOS));
                 });
             }
             // Group
@@ -164,6 +158,16 @@ public class SearchService implements ISearchService {
                         resultDTOS.add(resultDTO);
                     }
                 });
+            }
+            // QuatFrom && QuatTo
+            if (!queryDTO.getQuatFrom().equals("") && !queryDTO.getQuatTo().equals("")) {
+                List<Cluster> clusterList = clusterDAO.getAllByQuatRmsdRange(Double.parseDouble(queryDTO.getQuatFrom()), Double.parseDouble(queryDTO.getQuatTo()));
+                clusterList.forEach(cluster -> addToResultDTOSByCluster(cluster, clusters, resultDTOS));
+            }
+            // TertFrom && TertTo
+            if (!queryDTO.getTertFrom().equals("") && !queryDTO.getTertTo().equals("")) {
+                List<Cluster> clusterList = clusterDAO.getAllByTertRmsdRange(Double.parseDouble(queryDTO.getTertFrom()), Double.parseDouble(queryDTO.getTertTo()));
+                clusterList.forEach(cluster -> addToResultDTOSByCluster(cluster, clusters, resultDTOS));
             }
             // Description
             if (!queryDTO.getDescription().equals("")) {
@@ -215,6 +219,14 @@ public class SearchService implements ISearchService {
         if (!(clusters.contains(conformer.getCluster_id()))) {
             clusters.add(conformer.getCluster_id());
             Cluster cluster = clusterDAO.getByCodnasqId(conformer.getCluster_id());
+            List<Conformer> conformerList = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
+            resultDTOS.add(ResultParser.toResultDTO(cluster, conformerList.size()));
+        }
+    }
+
+    private void addToResultDTOSByCluster(Cluster cluster, List<String> clusters, List<ResultDTO> resultDTOS) {
+        if (!(clusters.contains(cluster.getCodnasq_id()))) {
+            clusters.add(cluster.getCodnasq_id());
             List<Conformer> conformerList = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
             resultDTOS.add(ResultParser.toResultDTO(cluster, conformerList.size()));
         }
