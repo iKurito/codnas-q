@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface IClusterService {
     ClusterInformationDTO getClusterInformation(String cluster_id);
-    List<PairMaxQuatDTO> getPairMaxQuat(String cluster_id);
+    List<PairMaxQuatDTO> getPairMaxQuaternary(String cluster_id);
     List<ConformerDTO> getConformers(String cluster_id);
 }

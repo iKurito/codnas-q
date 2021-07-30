@@ -58,7 +58,7 @@ public class ClusterService implements IClusterService {
     }
 
     @Override
-    public List<PairMaxQuatDTO> getPairMaxQuat(String cluster_id) {
+    public List<PairMaxQuatDTO> getPairMaxQuaternary(String cluster_id) {
         try {
             Pattern pat = Pattern.compile("[+-]?\\d*(\\.\\d+)?");
             Matcher mat = pat.matcher(cluster_id);
@@ -75,16 +75,16 @@ public class ClusterService implements IClusterService {
                 conformerPair = conformerPairDAO.getConformerPairByMaxRmsd(cluster.getCodnasq_id(),
                         cluster.getMax_rmsd_quaternary());
             }
-            List<PairMaxQuatDTO> pairMaxQuatDTOS = new ArrayList<>();
+            List<PairMaxQuatDTO> pairMaxQuaternaryDTOS = new ArrayList<>();
             // Conformer 1
             Conformer conformer1 = conformerDAO.getConformerById(conformerPair.getQuery_id());
-            pairMaxQuatDTOS.add(PairMaxQuatParser.toPairMaxQuatDTO(conformer1, conformerPair, 1, true));
+            pairMaxQuaternaryDTOS.add(PairMaxQuatParser.toPairMaxQuatDTO(conformer1, conformerPair, 1, true));
             // Conformer 2
             Conformer conformer2 = conformerDAO.getConformerById(conformerPair.getTarget_id());
-            pairMaxQuatDTOS.add(PairMaxQuatParser.toPairMaxQuatDTO(conformer2, conformerPair, 2, true));
+            pairMaxQuaternaryDTOS.add(PairMaxQuatParser.toPairMaxQuatDTO(conformer2, conformerPair, 2, true));
             // Comparison
-            pairMaxQuatDTOS.add(PairMaxQuatParser.toPairMaxQuatDTO(conformer1, conformerPair, 3, false));
-            return pairMaxQuatDTOS;
+            pairMaxQuaternaryDTOS.add(PairMaxQuatParser.toPairMaxQuatDTO(conformer1, conformerPair, 3, false));
+            return pairMaxQuaternaryDTOS;
         } catch (Exception e) {
             return null;
         }
@@ -107,9 +107,7 @@ public class ClusterService implements IClusterService {
                 conformers = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
             }
             List<ConformerDTO> conformerDTOS = new ArrayList<>();
-            conformers.forEach(conformer -> {
-                conformerDTOS.add(ConformerParser.toConformerDTO(conformer));
-            });
+            conformers.forEach(conformer -> conformerDTOS.add(ConformerParser.toConformerDTO(conformer)));
             return conformerDTOS;
         } catch (Exception e) {
             return null;

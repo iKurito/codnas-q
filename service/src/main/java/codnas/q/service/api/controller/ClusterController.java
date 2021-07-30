@@ -37,7 +37,7 @@ public class ClusterController {
     @GetMapping(value = "/cluster/pairMaxQuat/{cluster_id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getPairMaximumQuaternary(@PathVariable String cluster_id) {
         RestResponse restResponse;
-        List<PairMaxQuatDTO> pairMaxQuatDTOS = clusterService.getPairMaxQuat(cluster_id);
+        List<PairMaxQuatDTO> pairMaxQuatDTOS = clusterService.getPairMaxQuaternary(cluster_id);
         if (pairMaxQuatDTOS == null) restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.NO_SUCCESS_GET_PAIR_MAXIMUM);
         else restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.SUCCESS_GET_PAIR_MAXIMUM, pairMaxQuatDTOS);
         return ResponseEntity.
