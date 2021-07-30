@@ -2,24 +2,24 @@ package codnas.q.service.data.parser;
 
 import codnas.q.service.core.model.Conformer;
 import codnas.q.service.core.model.ConformerPair;
-import codnas.q.service.shared.dto.PairMaxQuatDTO;
+import codnas.q.service.shared.dto.PairQuatDTO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class PairMaxQuatParser {
-    public static PairMaxQuatDTO toPairMaxQuatDTO(Conformer conformer, ConformerPair conformerPair,
-                                                  Integer id, Boolean isComparison) {
-        PairMaxQuatDTO pairMaxQuatDTO = new PairMaxQuatDTO();
-        pairMaxQuatDTO.setId(id);
-        if (isComparison) pairMaxQuatDTO.setName(conformer.getPdb_id());
-        else pairMaxQuatDTO.setName("Comparison");
-        pairMaxQuatDTO.setData(toInformation(conformerPair, conformer, isComparison));
-        return pairMaxQuatDTO;
+    public static PairQuatDTO toPairMaxQuatDTO(Conformer conformer, ConformerPair conformerPair,
+                                               Integer id, Boolean isComparison) {
+        PairQuatDTO pairQuatDTO = new PairQuatDTO();
+        pairQuatDTO.setId(id);
+        if (isComparison) pairQuatDTO.setName(conformer.getPdb_id());
+        else pairQuatDTO.setName("Comparison");
+        pairQuatDTO.setData(toInformation(conformerPair, conformer, isComparison));
+        return pairQuatDTO;
     }
 
-    private static PairMaxQuatDTO.Information toInformation(ConformerPair conformerPair, Conformer conformer,
-                                                            Boolean isComparison) {
-        PairMaxQuatDTO.Information information = new PairMaxQuatDTO.Information();
+    private static PairQuatDTO.Information toInformation(ConformerPair conformerPair, Conformer conformer,
+                                                         Boolean isComparison) {
+        PairQuatDTO.Information information = new PairQuatDTO.Information();
         if (isComparison) {
             information.setSeq_id(0);
             information.setMax_rmsd_quat(0.0);

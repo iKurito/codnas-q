@@ -12,7 +12,7 @@ import codnas.q.service.data.repository.IConformerDAO;
 import codnas.q.service.data.repository.IConformerPairDAO;
 import codnas.q.service.shared.dto.ClusterInformationDTO;
 import codnas.q.service.shared.dto.ConformerDTO;
-import codnas.q.service.shared.dto.PairMaxQuatDTO;
+import codnas.q.service.shared.dto.PairQuatDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -58,7 +58,7 @@ public class ClusterService implements IClusterService {
     }
 
     @Override
-    public List<PairMaxQuatDTO> getPairMaxQuaternary(String cluster_id) {
+    public List<PairQuatDTO> getPairMaxQuaternary(String cluster_id) {
         try {
             Pattern pat = Pattern.compile("[+-]?\\d*(\\.\\d+)?");
             Matcher mat = pat.matcher(cluster_id);
@@ -75,7 +75,7 @@ public class ClusterService implements IClusterService {
                 conformerPair = conformerPairDAO.getConformerPairByMaxRmsd(cluster.getCodnasq_id(),
                         cluster.getMax_rmsd_quaternary());
             }
-            List<PairMaxQuatDTO> pairMaxQuaternaryDTOS = new ArrayList<>();
+            List<PairQuatDTO> pairMaxQuaternaryDTOS = new ArrayList<>();
             // Conformer 1
             Conformer conformer1 = conformerDAO.getConformerById(conformerPair.getQuery_id());
             pairMaxQuaternaryDTOS.add(PairMaxQuatParser.toPairMaxQuatDTO(conformer1, conformerPair, 1, true));

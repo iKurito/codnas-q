@@ -15,5 +15,5 @@ public class PairDTO {
     private Integer struct_similarity;
     private Integer struct_equivalent;
     private Double dist_error;
-    private PairMaxQuatDTO pairMaxQuatDTO;
+    private PairQuatDTO pairQuatDTO;
 }

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PairMaxQuatDTO {
+public class PairQuatDTO {
     private Integer id;
     private String name;
     private Information data;

@@ -4,7 +4,7 @@ import codnas.q.service.api.response.RestResponse;
 import codnas.q.service.core.service.impl.ClusterService;
 import codnas.q.service.shared.dto.ClusterInformationDTO;
 import codnas.q.service.shared.dto.ConformerDTO;
-import codnas.q.service.shared.dto.PairMaxQuatDTO;
+import codnas.q.service.shared.dto.PairQuatDTO;
 import codnas.q.service.shared.util.message.ClusterMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -37,9 +37,9 @@ public class ClusterController {
     @GetMapping(value = "/cluster/pairMaxQuat/{cluster_id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getPairMaximumQuaternary(@PathVariable String cluster_id) {
         RestResponse restResponse;
-        List<PairMaxQuatDTO> pairMaxQuatDTOS = clusterService.getPairMaxQuaternary(cluster_id);
-        if (pairMaxQuatDTOS == null) restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.NO_SUCCESS_GET_PAIR_MAXIMUM);
-        else restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.SUCCESS_GET_PAIR_MAXIMUM, pairMaxQuatDTOS);
+        List<PairQuatDTO> pairQuatDTOS = clusterService.getPairMaxQuaternary(cluster_id);
+        if (pairQuatDTOS == null) restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.NO_SUCCESS_GET_PAIR_MAXIMUM);
+        else restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.SUCCESS_GET_PAIR_MAXIMUM, pairQuatDTOS);
         return ResponseEntity.
                 status(restResponse.getStatus()).
                 body(restResponse);
