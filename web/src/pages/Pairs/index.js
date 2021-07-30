@@ -137,9 +137,14 @@ const Pairs = () => {
                 </div>
               </>
             ) : (
-              <h1 className="text-center text-xl font-bold text-gray-700">
-                Loading of Selected Pairs... Please wait.
-              </h1>
+              <>
+                <div id="loader" style={{ textAlign: '-webkit-center' }}>
+                  <ReactLoading type="spin" color="#2d699b" />
+                </div>
+                <h1 className="text-center text-xl font-bold text-gray-700">
+                  Loading of Selected Pairs... Please wait.
+                </h1>
+              </>
             )}
           </div>
         </div>

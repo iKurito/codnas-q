@@ -10,6 +10,6 @@ public interface IConformerPairDAO extends JpaRepository<ConformerPair, Integer>
     ConformerPair getConformerPairByMaxRmsd(@Param("cluster_id") String cluster_id, @Param("rmsd") Double rmsd);
 
     @Query(value = "select * from conformer_pair where (query_id = :query_id and target_id = :target_id) or " +
-            "(query_id = :target_id and target_id = :query_id)", nativeQuery = true)
+            "(query_id = :target_id and target_id = :query_id) limit 1", nativeQuery = true)
     ConformerPair getConformerPairByQueryIdAndTargetId(@Param("query_id") String query_id, @Param("target_id") String target_id);
 }
