@@ -1,4 +1,5 @@
 import { Fragment, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import MaterialTable from 'material-table'
 import MuiAlert from '@material-ui/lab/Alert'
 import CompareArrowsIcon from '@material-ui/icons/CompareArrows'
@@ -11,12 +12,15 @@ function Alert(props) {
 }
 
 const Conformer = () => {
+  const params = useParams()
   const [selectedRow, setSelectedRow] = useState(null)
   const [loading, setLoading] = useState(false)
   const [idx, setIdx] = useState(0)
   const [open, setOpen] = useState(false)
 
   const conformers = useSelector((state) => state.cluster.conformers)
+
+  const { id } = params
 
   const handleClick = () => {
     setOpen(true)
@@ -31,12 +35,11 @@ const Conformer = () => {
     if (rowData.length > 1) {
       handleClose()
       let query = ''
-      // setCurrentInput(cluster)
       for (let i = 0; i < rowData.length - 1; i += 1) {
-        query = query.concat(rowData[i].conformer).concat('-')
+        query = query.concat(rowData[i].pdb_id).concat('-')
       }
-      query = query.concat(rowData[rowData.length - 1].conformer)
-      // window.open(`/cluster/${cluster}/pairs/${query}`)
+      query = query.concat(rowData[rowData.length - 1].pdb_id)
+      window.open(`/cluster/${id}/pairs/${query}`)
     } else {
       handleClick()
     }

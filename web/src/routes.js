@@ -9,4 +9,5 @@ export const Routes = {
   Contact: { path: '/contact', name: 'Contact us' },
   NotFound: { path: '/not-found', name: 'Not Found' },
   Cluster: { path: '/cluster/:id', name: 'Cluster' },
+  Pairs: { path: '/cluster/:id/pairs/:conformers', name: 'Pairs' },
 }

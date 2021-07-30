@@ -11,6 +11,7 @@ import About from './About'
 import Tutorial from './Tutorial'
 import Contact from './Contact'
 import Cluster from './Cluster'
+import Pairs from './Pairs'
 // components
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -35,6 +36,7 @@ const App = () => {
             <RouteWithLoader exact path={Routes.Tutorial.path} component={Tutorial} />
             <RouteWithLoader exact path={Routes.Contact.path} component={Contact} />
             <RouteWithLoader exact path={Routes.Cluster.path} component={Cluster} />
+            <RouteWithLoader exact path={Routes.Pairs.path} component={Pairs} />
             <Redirect exact path="/" to={Routes.Home.path} />
           </Switch>
           <Footer />
