@@ -104,7 +104,9 @@ const Comparison = ({ data, codnasqId, query, target }) => {
                     </p>
                   </td>
                   <td className="text-center pl-10 pr-2 md:px-10 ">
-                    <p className="text-xs sm:text-sm leading-5 text-gray-600">{item.data.temp}</p>
+                    <p className="text-xs sm:text-sm leading-5 text-gray-600">
+                      {item.data.temp === '' ? '' : `${item.data.temp}K`}
+                    </p>
                   </td>
                   <td className="text-center pl-10 pr-2 md:px-10 ">
                     <p className="text-xs sm:text-sm leading-5 text-gray-600">

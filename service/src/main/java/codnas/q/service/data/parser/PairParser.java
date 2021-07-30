@@ -17,7 +17,7 @@ public class PairParser {
                                           Cluster cluster) {
         PairDTO pairDTO = new PairDTO();
         pairDTO.setId(id);
-        pairDTO.setCluster_id(cluster.getCluster_id());
+        pairDTO.setCluster_id(cluster.getCluster_id().toString());
         pairDTO.setQuery(conformerPair.getQuery_id());
         pairDTO.setCodnasq_id(conformer1.getCluster_id());
         pairDTO.setTarget(conformerPair.getTarget_id());
