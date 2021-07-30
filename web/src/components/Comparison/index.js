@@ -1,6 +1,5 @@
 import { Fragment } from 'react'
-// Redux
-import { useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
 
 const headers = [
   { id: 1, value: '' },
@@ -19,9 +18,7 @@ const headers = [
   { id: 14, value: 'Ligands' },
 ]
 
-const Comparison = () => {
-  const comparison = useSelector((state) => state.pair.comparison)
-
+const Comparison = ({ data }) => {
   return (
     <Fragment>
       <div className="border border-gray-200 rounded-t-xl shadow-md hover:shadow-2xl">
@@ -42,7 +39,7 @@ const Comparison = () => {
               </tr>
             </thead>
             <tbody className="w-full">
-              {comparison.map((item) => (
+              {data.map((item) => (
                 <tr
                   key={item.id}
                   className="h-11 text-sm leading-none text-gray-800 bg-white hover:bg-gray-100 border-b border-t border-gray-100"
@@ -121,6 +118,10 @@ const Comparison = () => {
       </div>
     </Fragment>
   )
+}
+
+Comparison.propTypes = {
+  data: PropTypes.any.isRequired,
 }
 
 export default Comparison

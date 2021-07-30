@@ -4,6 +4,7 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core'
 import MaterialTable from 'material-table'
 import { useSelector, useDispatch } from 'react-redux'
 import { getPairsDetailsAction } from '../../actions/pairActions'
+import Comparison from '../../components/Comparison'
 
 const Pairs = () => {
   const dispatch = useDispatch()
@@ -110,7 +111,7 @@ const Pairs = () => {
                       </MuiThemeProvider>
                     </div>
                   </div>
-                  {loading && <h1>{idx}</h1>}
+                  {loading && <Comparison data={pairs[idx].pairQuatDTOS} />}
                 </div>
               </>
             ) : (
