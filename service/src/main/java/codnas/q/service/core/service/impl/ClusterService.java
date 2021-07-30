@@ -78,12 +78,12 @@ public class ClusterService implements IClusterService {
             List<PairQuatDTO> pairMaxQuaternaryDTOS = new ArrayList<>();
             // Conformer 1
             Conformer conformer1 = conformerDAO.getConformerById(conformerPair.getQuery_id());
-            pairMaxQuaternaryDTOS.add(PairQuatParser.toPairMaxQuatDTO(conformer1, conformerPair, 1, true));
+            pairMaxQuaternaryDTOS.add(PairQuatParser.toPairQuatDTO(conformer1, conformerPair, 1, false));
             // Conformer 2
             Conformer conformer2 = conformerDAO.getConformerById(conformerPair.getTarget_id());
-            pairMaxQuaternaryDTOS.add(PairQuatParser.toPairMaxQuatDTO(conformer2, conformerPair, 2, true));
+            pairMaxQuaternaryDTOS.add(PairQuatParser.toPairQuatDTO(conformer2, conformerPair, 2, false));
             // Comparison
-            pairMaxQuaternaryDTOS.add(PairQuatParser.toPairMaxQuatDTO(conformer1, conformerPair, 3, false));
+            pairMaxQuaternaryDTOS.add(PairQuatParser.toPairQuatDTO(conformer1, conformerPair, 3, true));
             return pairMaxQuaternaryDTOS;
         } catch (Exception e) {
             return null;

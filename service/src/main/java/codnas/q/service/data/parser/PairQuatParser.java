@@ -7,12 +7,12 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class PairQuatParser {
-    public static PairQuatDTO toPairMaxQuatDTO(Conformer conformer, ConformerPair conformerPair,
+    public static PairQuatDTO toPairQuatDTO(Conformer conformer, ConformerPair conformerPair,
                                                Integer id, Boolean isComparison) {
         PairQuatDTO pairQuatDTO = new PairQuatDTO();
         pairQuatDTO.setId(id);
-        if (isComparison) pairQuatDTO.setName(conformer.getPdb_id());
-        else pairQuatDTO.setName("Comparison");
+        if (isComparison) pairQuatDTO.setName("Comparison");
+        else pairQuatDTO.setName(conformer.getPdb_id());
         pairQuatDTO.setData(toInformation(conformerPair, conformer, isComparison));
         return pairQuatDTO;
     }
@@ -20,7 +20,7 @@ public class PairQuatParser {
     private static PairQuatDTO.Information toInformation(ConformerPair conformerPair, Conformer conformer,
                                                          Boolean isComparison) {
         PairQuatDTO.Information information = new PairQuatDTO.Information();
-        if (isComparison) {
+        if (!isComparison) {
             information.setSeq_id(0);
             information.setMax_rmsd_quat(0.0);
             information.setStruct_similarity(0);
