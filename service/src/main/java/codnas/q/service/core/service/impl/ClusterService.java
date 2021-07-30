@@ -6,7 +6,7 @@ import codnas.q.service.core.model.ConformerPair;
 import codnas.q.service.core.service.IClusterService;
 import codnas.q.service.data.parser.ClusterInformationParser;
 import codnas.q.service.data.parser.ConformerParser;
-import codnas.q.service.data.parser.PairMaxQuatParser;
+import codnas.q.service.data.parser.PairQuatParser;
 import codnas.q.service.data.repository.IClusterDAO;
 import codnas.q.service.data.repository.IConformerDAO;
 import codnas.q.service.data.repository.IConformerPairDAO;
@@ -78,12 +78,12 @@ public class ClusterService implements IClusterService {
             List<PairQuatDTO> pairMaxQuaternaryDTOS = new ArrayList<>();
             // Conformer 1
             Conformer conformer1 = conformerDAO.getConformerById(conformerPair.getQuery_id());
-            pairMaxQuaternaryDTOS.add(PairMaxQuatParser.toPairMaxQuatDTO(conformer1, conformerPair, 1, true));
+            pairMaxQuaternaryDTOS.add(PairQuatParser.toPairMaxQuatDTO(conformer1, conformerPair, 1, true));
             // Conformer 2
             Conformer conformer2 = conformerDAO.getConformerById(conformerPair.getTarget_id());
-            pairMaxQuaternaryDTOS.add(PairMaxQuatParser.toPairMaxQuatDTO(conformer2, conformerPair, 2, true));
+            pairMaxQuaternaryDTOS.add(PairQuatParser.toPairMaxQuatDTO(conformer2, conformerPair, 2, true));
             // Comparison
-            pairMaxQuaternaryDTOS.add(PairMaxQuatParser.toPairMaxQuatDTO(conformer1, conformerPair, 3, false));
+            pairMaxQuaternaryDTOS.add(PairQuatParser.toPairMaxQuatDTO(conformer1, conformerPair, 3, false));
             return pairMaxQuaternaryDTOS;
         } catch (Exception e) {
             return null;

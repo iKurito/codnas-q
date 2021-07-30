@@ -6,7 +6,7 @@ import codnas.q.service.shared.dto.PairQuatDTO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class PairMaxQuatParser {
+public class PairQuatParser {
     public static PairQuatDTO toPairMaxQuatDTO(Conformer conformer, ConformerPair conformerPair,
                                                Integer id, Boolean isComparison) {
         PairQuatDTO pairQuatDTO = new PairQuatDTO();
