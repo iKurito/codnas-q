@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import PropTypes from 'prop-types'
+import Superposition from '../Superposition'
 
 const headers = [
   { id: 1, value: '' },
@@ -18,7 +19,7 @@ const headers = [
   { id: 14, value: 'Ligands' },
 ]
 
-const Comparison = ({ data, codnasqId }) => {
+const Comparison = ({ data, codnasqId, query, target }) => {
   return (
     <Fragment>
       <div className="border border-gray-200 rounded-t-xl shadow-md hover:shadow-2xl">
@@ -116,7 +117,7 @@ const Comparison = ({ data, codnasqId }) => {
           </table>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
-          <div></div>
+          <Superposition query={query} target={target} />
           <div>
             <div className="overflow-auto">
               <div className="p-4 h-auto" style={{ width: '800px', textAlign: '-webkit-center' }}>
@@ -147,6 +148,8 @@ const Comparison = ({ data, codnasqId }) => {
 Comparison.propTypes = {
   data: PropTypes.any.isRequired,
   codnasqId: PropTypes.string.isRequired,
+  query: PropTypes.string.isRequired,
+  target: PropTypes.string.isRequired,
 }
 
 export default Comparison

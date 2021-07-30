@@ -5,6 +5,7 @@ import MaterialTable from 'material-table'
 import { useSelector, useDispatch } from 'react-redux'
 import { getPairsDetailsAction } from '../../actions/pairActions'
 import Comparison from '../../components/Comparison'
+import ReactLoading from 'react-loading'
 
 const Pairs = () => {
   const dispatch = useDispatch()
@@ -14,15 +15,22 @@ const Pairs = () => {
   const [loading, setLoading] = useState(false)
   const [selectedRow, setSelectedRow] = useState(null)
   const [idx, setIdx] = useState(0)
+  const [loadSuperposition, setLoadSuperposition] = useState(true)
 
   const pairs = useSelector((state) => state.pair.comparison)
-  // const loaded = useSelector((state) => state.pair.loading)
 
   useEffect(() => {
-    console.log(conformers)
     const getPairsComparison = () => dispatch(getPairsDetailsAction(conformers))
     getPairsComparison()
   }, [])
+
+  useEffect(() => {
+    setLoadSuperposition(false)
+    const timer = setTimeout(() => {
+      setLoadSuperposition(true)
+    }, 500)
+    return () => clearTimeout(timer)
+  }, [idx])
 
   const onRowClick = (row) => {
     setIdx(row.tableData.id)
@@ -111,9 +119,21 @@ const Pairs = () => {
                       </MuiThemeProvider>
                     </div>
                   </div>
-                  {loading && (
-                    <Comparison data={pairs[idx].pairQuatDTOS} codnasqId={pairs[idx].codnasq_id} />
-                  )}
+                  <div className="pt-8">
+                    {loading &&
+                      (loadSuperposition ? (
+                        <Comparison
+                          data={pairs[idx].pairQuatDTOS}
+                          codnasqId={pairs[idx].codnasq_id}
+                          query={pairs[idx].query}
+                          target={pairs[idx].target}
+                        />
+                      ) : (
+                        <div id="loader">
+                          <ReactLoading type="spin" color="#2d699b" />
+                        </div>
+                      ))}
+                  </div>
                 </div>
               </>
             ) : (
