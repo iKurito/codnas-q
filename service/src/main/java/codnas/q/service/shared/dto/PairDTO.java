@@ -10,6 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PairDTO {
+    private Integer id;
     private String query;
     private String target;
     private Integer seq_id;

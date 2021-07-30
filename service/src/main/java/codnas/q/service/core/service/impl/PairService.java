@@ -1,15 +1,72 @@
 package codnas.q.service.core.service.impl;
 
+import codnas.q.service.core.model.Conformer;
+import codnas.q.service.core.model.ConformerPair;
+import codnas.q.service.core.model.Perm;
+import codnas.q.service.core.service.IConformerService;
 import codnas.q.service.core.service.IPairService;
+import codnas.q.service.data.parser.PairParser;
+import codnas.q.service.data.repository.IConformerDAO;
+import codnas.q.service.data.repository.IConformerPairDAO;
 import codnas.q.service.shared.dto.PairDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
 public class PairService implements IPairService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(PairService.class);
+
+    private final IConformerPairDAO conformerPairDAO;
+    private final IConformerDAO conformerDAO;
+
+    public PairService(IConformerPairDAO conformerPairDAO, IConformerDAO conformerDAO) {
+        this.conformerPairDAO = conformerPairDAO;
+        this.conformerDAO = conformerDAO;
+    }
+
     @Override
     public List<PairDTO> getAllPairs(String query) {
-        return null;
+        try {
+            HashSet<Perm> pdbHashSet = new HashSet<>();
+            List<PairDTO> pairDTOS = new ArrayList<>();
+            String[] conformers = query.split("-");
+            if (conformers.length > 1) {
+                Perm2(conformers, "", 2, conformers.length, pdbHashSet);
+                var ref = new Object() {
+                    int id = 1;
+                };
+                pdbHashSet.forEach(s -> {
+                    LOGGER.info("KURITO: INICIO {}. {}", ref.id, s);
+                    ConformerPair conformerPair = conformerPairDAO.getConformerPairByQueryIdAndTargetId(s.getVal1(), s.getVal2());
+                    Conformer conformer1 = conformerDAO.getConformerById(conformerPair.getQuery_id());
+                    Conformer conformer2 = conformerDAO.getConformerById(conformerPair.getTarget_id());
+                    pairDTOS.add(PairParser.toPairParserDTO(ref.id, conformer1, conformer2, conformerPair));
+                    ref.id++;
+                });
+                return pairDTOS;
+            }
+            return null;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private void Perm2(String[] elem, String act, int n, int r, HashSet<Perm> pdbHashSet) {
+        if (n == 0) {
+            String temp[] = act.split(" ");
+            Perm permModel = new Perm(temp[0], temp[1]);
+            pdbHashSet.add(permModel);
+        } else {
+            for (int i = 0; i < r; i++) {
+                if (!act.contains(elem[i])) {
+                    Perm2(elem, act + elem[i] + " ", n - 1, r, pdbHashSet);
+                }
+            }
+        }
     }
 }

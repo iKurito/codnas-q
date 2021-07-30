@@ -11,8 +11,10 @@ import java.util.List;
 
 @Slf4j
 public class PairParser {
-    public static PairDTO toPairParserDTO(Conformer conformer1, Conformer conformer2, ConformerPair conformerPair) {
+    public static PairDTO toPairParserDTO(Integer id, Conformer conformer1,
+                                          Conformer conformer2, ConformerPair conformerPair) {
         PairDTO pairDTO = new PairDTO();
+        pairDTO.setId(id);
         pairDTO.setQuery(conformerPair.getQuery_id());
         pairDTO.setTarget(conformerPair.getTarget_id());
         pairDTO.setSeq_id(conformerPair.getSequence_identity());
