@@ -7,7 +7,7 @@ import codnas.q.service.shared.dto.PairQuatDTO;
 import java.util.List;
 
 public interface IClusterService {
-    ClusterInformationDTO getClusterInformation(String cluster_id);
-    List<PairQuatDTO> getPairMaxQuaternary(String cluster_id);
-    List<ConformerDTO> getConformers(String cluster_id);
+    ClusterInformationDTO getClusterInformation(String id_cluster);
+    List<PairQuatDTO> getPairMaxQuaternary(String id_cluster);
+    List<ConformerDTO> getConformers(String id_cluster);
 }

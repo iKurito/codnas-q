@@ -1,17 +1,13 @@
 package codnas.q.service.core.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -19,7 +15,7 @@ import javax.persistence.Table;
 public class Cluster {
     @Id
     @Column
-    private Integer cluster_id;
+    private Integer id_cluster;
 
     @Column
     private String codnasq_id;

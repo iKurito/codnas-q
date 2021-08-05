@@ -23,10 +23,10 @@ public class ClusterController {
         this.clusterService = clusterService;
     }
 
-    @GetMapping(value = "/cluster/information/{cluster_id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getClusterInformation(@PathVariable String cluster_id) {
+    @GetMapping(value = "/cluster/information/{id_cluster}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getClusterInformation(@PathVariable String id_cluster) {
         RestResponse restResponse;
-        ClusterInformationDTO clusterInformationDTO = clusterService.getClusterInformation(cluster_id);
+        ClusterInformationDTO clusterInformationDTO = clusterService.getClusterInformation(id_cluster);
         if (clusterInformationDTO == null) restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.NO_SUCCESS_GET_CLUSTER_INFORMATION);
         else restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.SUCCESS_GET_CLUSTER_INFORMATION, clusterInformationDTO);
         return ResponseEntity.
@@ -34,10 +34,10 @@ public class ClusterController {
                 body(restResponse);
     }
 
-    @GetMapping(value = "/cluster/pairMaxQuat/{cluster_id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getPairMaximumQuaternary(@PathVariable String cluster_id) {
+    @GetMapping(value = "/cluster/pairMaxQuat/{id_cluster}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getPairMaximumQuaternary(@PathVariable String id_cluster) {
         RestResponse restResponse;
-        List<PairQuatDTO> pairQuatDTOS = clusterService.getPairMaxQuaternary(cluster_id);
+        List<PairQuatDTO> pairQuatDTOS = clusterService.getPairMaxQuaternary(id_cluster);
         if (pairQuatDTOS == null) restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.NO_SUCCESS_GET_PAIR_MAXIMUM);
         else restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.SUCCESS_GET_PAIR_MAXIMUM, pairQuatDTOS);
         return ResponseEntity.
@@ -45,10 +45,10 @@ public class ClusterController {
                 body(restResponse);
     }
 
-    @GetMapping(value = "/cluster/conformers/{cluster_id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getConformers(@PathVariable String cluster_id) {
+    @GetMapping(value = "/cluster/conformers/{id_cluster}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getConformers(@PathVariable String id_cluster) {
         RestResponse restResponse;
-        List<ConformerDTO> conformerDTOS = clusterService.getConformers(cluster_id);
+        List<ConformerDTO> conformerDTOS = clusterService.getConformers(id_cluster);
         if (conformerDTOS == null) restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.NO_SUCCESS_GET_CONFORMERS);
         else restResponse = new RestResponse(HttpStatus.OK, ClusterMessage.SUCCESS_GET_CONFORMERS, conformerDTOS);
         return ResponseEntity.

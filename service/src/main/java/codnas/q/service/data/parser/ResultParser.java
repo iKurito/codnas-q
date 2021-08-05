@@ -9,7 +9,7 @@ public class ResultParser {
 
     public static ResultDTO toResultDTO(Cluster cluster, Integer num) {
         ResultDTO resultDTO = new ResultDTO();
-        resultDTO.setCluster_id(cluster.getCluster_id());
+        resultDTO.setCluster_id(cluster.getId_cluster());
         resultDTO.setCodnasq_id(cluster.getCodnasq_id());
         resultDTO.setGroup(groupParse(cluster.getCluster_group()));
         resultDTO.setOligomeric_state(oligomericStateParse(cluster.getOligomeric_state()));
