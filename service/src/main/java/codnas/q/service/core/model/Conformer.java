@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class Conformer {
     @Id
     @Column
-    private Integer conformer_id;
+    private Integer id_conformer;
 
     @Column
     private String cluster_id;

@@ -123,12 +123,12 @@ public class SearchService implements ISearchService {
                     Pattern pat = Pattern.compile("[+-]?\\d*(\\.\\d+)?");
                     Matcher mat = pat.matcher(s);
                     if (mat.matches()) {
-                        Optional<Cluster> cluster = clusterDAO.findById(Integer.parseInt(s));
-                        if (cluster.isPresent()) {
-                            if (!(clusters.contains(cluster.get().getCodnasq_id()))) {
-                                clusters.add(cluster.get().getCodnasq_id());
-                                List<Conformer> conformerList = conformerDAO.getAllConformersByClusterId(cluster.get().getCodnasq_id());
-                                resultDTOS.add(ResultParser.toResultDTO(cluster.get(), conformerList.size()));
+                        Cluster cluster = clusterDAO.getByClusterId(Integer.parseInt(s));
+                        if (cluster != null) {
+                            if (!(clusters.contains(cluster.getCodnasq_id()))) {
+                                clusters.add(cluster.getCodnasq_id());
+                                List<Conformer> conformerList = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
+                                resultDTOS.add(ResultParser.toResultDTO(cluster, conformerList.size()));
                             }
                         }
                     } else {

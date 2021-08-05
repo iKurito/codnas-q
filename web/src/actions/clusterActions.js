@@ -52,7 +52,6 @@ const getClusterDetailError = () => ({
 // Function that cleans the cluster details
 export function cleanClusterDetailsAction() {
   return (dispatch) => {
-    console.log('HOLA')
     dispatch(cleanClusterDetails())
     try {
       dispatch(cleanClusterDetailsSuccess())

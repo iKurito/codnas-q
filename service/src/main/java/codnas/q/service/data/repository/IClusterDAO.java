@@ -8,6 +8,9 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface IClusterDAO extends JpaRepository<Cluster, Integer> {
+    @Query(value = "select * from cluster where id_cluster = :id_cluster", nativeQuery = true)
+    Cluster getByClusterId(@Param("id_cluster") Integer id_cluster);
+
     @Query(value = "select * from cluster where cluster_group = :group", nativeQuery = true)
     List<Cluster> getAllByGroup(@Param("group") String group);
 

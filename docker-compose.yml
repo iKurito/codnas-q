@@ -1,0 +1,41 @@
+# Define services
+services:
+  # Database Service (Mysql)
+  db:
+    build:
+      context: db
+      dockerfile: Dockerfile
+    image: codnas-q:db-1.0.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: codnas-q
+      MYSQL_ROOT_PASSWORD: secret
+  # App backend service
+  api:
+    # Configuration for building the docker image for the backend
+    build:
+      context: service
+      dockerfile: Dockerfile
+    image: codnas-q:api-1.0.0
+    restart: always
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db/codnas-q?serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: secret
+    ports:
+      - "8080:8080"
+  # Frontend service
+  web:
+    build:
+      context: web
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_API_BASE_URL: http://127.0.0.1:8080
+    image: codnas-q:web-1.0.0
+    ports:
+      - "80:80"
+    restart: always
+    depends_on:
+      - api

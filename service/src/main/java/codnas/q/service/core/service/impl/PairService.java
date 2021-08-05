@@ -4,7 +4,6 @@ import codnas.q.service.core.model.Cluster;
 import codnas.q.service.core.model.Conformer;
 import codnas.q.service.core.model.ConformerPair;
 import codnas.q.service.core.model.Perm;
-import codnas.q.service.core.service.IConformerService;
 import codnas.q.service.core.service.IPairService;
 import codnas.q.service.data.parser.PairParser;
 import codnas.q.service.data.repository.IClusterDAO;

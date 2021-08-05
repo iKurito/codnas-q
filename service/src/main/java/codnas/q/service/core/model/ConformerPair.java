@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class ConformerPair {
     @Id
     @Column
-    private Integer conformer_pair_id;
+    private Integer id_conformer_pair;
 
     @Column
     private String query_id;
