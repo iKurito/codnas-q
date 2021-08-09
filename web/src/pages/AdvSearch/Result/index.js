@@ -37,7 +37,7 @@ const Result = ({ searchResults }) => {
               <div className="flex justify-between">
                 <div className="has-tooltip text-xs sm:text-sm">
                   {item.match.name !== '' && (
-                    <div className="tooltip rounded shadow-lg bg-primary-dark text-white -mt-16 ml-36 p-2">
+                    <div className="tooltip rounded shadow-lg bg-primary-dark text-white -mt-16 sm:ml-36 p-2">
                       <h1 className="text-sm sm:text-base">Match:</h1>
                       <ul>
                         <li>

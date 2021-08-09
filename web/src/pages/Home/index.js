@@ -91,7 +91,7 @@ const Home = ({ history }) => {
               <h2 className="text-sm sm:text-base pt-6 pb-2">
                 browse by type of movement{' '}
                 <div className="has-tooltip text-xs sm:text-sm inline text-justify">
-                  <div className="tooltip rounded shadow-lg bg-primary-dark text-white -mt-32 ml-80 p-2">
+                  <div className="tooltip rounded shadow-lg bg-primary-dark text-white sm:-mt-32 sm:ml-80 p-2">
                     <h1 className="text-sm sm:text-base">We can find three types of movements:</h1>
                     <ul>
                       <li>

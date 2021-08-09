@@ -28,7 +28,7 @@ const Comparison = ({ data, codnasqId, query, target, flag }) => {
           <h2 className="text-xl sm:text-2xl font-bold text-gray-700 text-justify">
             Maximum RMSD Quaternary pair Comparison
             <div className="has-tooltip text-xs sm:text-sm inline text-justify">
-              <div className="tooltip rounded shadow-lg bg-primary-dark text-white -mt-20 ml-60 p-2">
+              <div className="tooltip rounded shadow-lg bg-primary-dark text-white sm:-mt-20 sm:ml-60 p-2">
                 <h1 className="text-sm sm:text-base">
                   Comparison between the most different conformers for the cluster/protein.
                 </h1>

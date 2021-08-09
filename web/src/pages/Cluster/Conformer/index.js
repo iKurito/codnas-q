@@ -74,7 +74,7 @@ const Conformer = () => {
           <h2 className="text-xl sm:text-2xl font-bold text-gray-700 text-justify">
             Conformer
             <div className="has-tooltip text-xs sm:text-sm inline text-justify">
-              <div className="tooltip rounded shadow-lg bg-primary-dark text-white -mt-12 ml-40 p-2">
+              <div className="tooltip rounded shadow-lg bg-primary-dark text-white sm:-mt-12 sm:ml-40 p-2">
                 <h1 className="text-sm sm:text-base">
                   List of others conformers of the cluster/protein.
                 </h1>

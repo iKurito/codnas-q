@@ -8,7 +8,7 @@ const Conformer = ({ onKeyPress, setQuery, query }) => {
       <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-700">
         Conformer Properties
         <div className="has-tooltip text-xs sm:text-sm inline text-justify">
-          <div className="tooltip rounded shadow-lg bg-primary-dark text-white ml-64 p-2">
+          <div className="tooltip rounded shadow-lg bg-primary-dark text-white sm:ml-64 p-2">
             <h1 className="text-sm sm:text-base">Optional extra fields:</h1>
             <ul>
               <li>
