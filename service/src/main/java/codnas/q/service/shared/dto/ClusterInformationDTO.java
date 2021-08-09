@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ClusterInformationDTO {
     private String cluster_id;
+    private Integer codnasq_id;
     private String group;
     private String oligomeric_state;
     private Integer num_conf;
