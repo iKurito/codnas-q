@@ -10,6 +10,7 @@ public class ClusterInformationParser {
     public static ClusterInformationDTO toClusterInformationDTO(Cluster cluster, Conformer conformer, Integer num) {
         ClusterInformationDTO clusterInformationDTO = new ClusterInformationDTO();
         clusterInformationDTO.setCluster_id(cluster.getCodnasq_id());
+        clusterInformationDTO.setCodnasq_id(cluster.getId_cluster());
         clusterInformationDTO.setGroup(groupParse(cluster.getCluster_group()));
         clusterInformationDTO.setOligomeric_state(oligomericStateParse(cluster.getOligomeric_state()));
         clusterInformationDTO.setNum_conf(num);

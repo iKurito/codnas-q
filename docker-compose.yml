@@ -33,6 +33,7 @@ services:
       dockerfile: Dockerfile
       args:
         REACT_APP_API_BASE_URL: http://127.0.0.1:8080
+        REACT_APP_MAPS_KEY: 
     image: codnas-q:web-1.0.0
     ports:
       - "80:80"

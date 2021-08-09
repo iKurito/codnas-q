@@ -31,4 +31,7 @@ public interface IConformerDAO extends JpaRepository<Conformer, Integer> {
 
     @Query(value = "select * from conformer where length >= :lengthFrom and length <= :lengthTo", nativeQuery = true)
     List<Conformer> getAllByLengthRange(@Param("lengthFrom") Integer lengthFrom, @Param("lengthTo") Integer lengthTo);
+
+    @Query(value = "select * from conformer where temperature >= :tempFrom and temperature <= :tempTo", nativeQuery = true)
+    List<Conformer> getAllByTemperatureRange(@Param("tempFrom") Integer tempFrom, @Param("tempTo") Integer tempTo);
 }
