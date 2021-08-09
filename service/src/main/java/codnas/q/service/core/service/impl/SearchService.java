@@ -163,13 +163,13 @@ public class SearchService implements ISearchService {
             if (!queryDTO.getQuatFrom().equals("") && !queryDTO.getQuatTo().equals("")) {
                 List<Cluster> clusterList = clusterDAO.getAllByQuatRmsdRange(Double.parseDouble(queryDTO.getQuatFrom()), Double.parseDouble(queryDTO.getQuatTo()));
                 clusterList.forEach(cluster -> addToResultDTOSByCluster(cluster, clusters, resultDTOS,
-                        "RMSD Quat.", cluster.getMax_rmsd_quaternary().toString()));
+                        "RMSD Quat.", cluster.getMax_rmsd_quaternary().toString().concat(" Å")));
             }
             // TertFrom && TertTo
             if (!queryDTO.getTertFrom().equals("") && !queryDTO.getTertTo().equals("")) {
                 List<Cluster> clusterList = clusterDAO.getAllByTertRmsdRange(Double.parseDouble(queryDTO.getTertFrom()), Double.parseDouble(queryDTO.getTertTo()));
                 clusterList.forEach(cluster -> addToResultDTOSByCluster(cluster, clusters, resultDTOS,
-                        "RMSD Tert.", cluster.getMax_rmsd_tertiary().toString()));
+                        "RMSD Tert.", cluster.getMax_rmsd_tertiary().toString().concat(" Å")));
             }
             // Description
             if (!queryDTO.getDescription().equals("")) {
@@ -220,8 +220,14 @@ public class SearchService implements ISearchService {
                 List<String> organismStrings = Arrays.asList(strings);
                 organismStrings.forEach(s -> {
                     List<Conformer> conformers = conformerDAO.getConformersByOrganism(s);
-                    conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS, "Organims", "%".concat(s).concat("%")));
+                    conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS, "Organism", "%".concat(s).concat("%")));
                 });
+            }
+            // Temperature (From && To)
+            if (!queryDTO.getTempFrom().equals("") && !queryDTO.getTempTo().equals("")) {
+                List<Conformer> conformers =
+                        conformerDAO.getAllByTemperatureRange(Integer.parseInt(queryDTO.getTempFrom()), Integer.parseInt(queryDTO.getTempTo()));
+                conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS, "Temperature", conf.getTemperature().concat(" K")));
             }
             return resultDTOS;
         } catch (Exception e) {
