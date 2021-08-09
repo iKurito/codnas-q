@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ResultParser {
 
-    public static ResultDTO toResultDTO(Cluster cluster, Integer num) {
+    public static ResultDTO toResultDTO(Cluster cluster, Integer num, String name, String value) {
         ResultDTO resultDTO = new ResultDTO();
         resultDTO.setCluster_id(cluster.getId_cluster());
         resultDTO.setCodnasq_id(cluster.getCodnasq_id());
@@ -16,6 +16,7 @@ public class ResultParser {
         resultDTO.setNum_conf(num);
         resultDTO.setMax_rmsd_quaternary(cluster.getMax_rmsd_quaternary());
         resultDTO.setMax_rmsd_tertiary(cluster.getMax_rmsd_tertiary());
+        resultDTO.setMatch(new ResultDTO.Match(name, value));
         return resultDTO;
     }
 

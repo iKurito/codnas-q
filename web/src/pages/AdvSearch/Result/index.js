@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useHistory } from 'react-router'
+import SearchIcon from '@material-ui/icons/Search'
 import Pagination from '../../../components/Pagination'
 import Protein from '../../../assets/img/protein.png'
 // import { data } from './data'
@@ -31,14 +32,33 @@ const Result = ({ searchResults }) => {
           return (
             <div
               key={item.cluster_id}
-              className="col-span-1 mx-auto custom-shadow p-4 w-full cursor-pointer hover:shadow-2xl"
-              onClick={() => history.push(`/cluster/${item.cluster_id}`)}
+              className="col-span-1 mx-auto custom-shadow p-4 w-full hover:shadow-2xl"
             >
-              <h1 className="pb-2 text-base sm:text-lg md:text-xl font-bold text-gray-700">
-                Cluster: {item.codnasq_id}
-              </h1>
+              <div className="flex justify-between">
+                <div className="has-tooltip text-xs sm:text-sm">
+                  {item.match.name !== '' && (
+                    <div className="tooltip rounded shadow-lg bg-primary-dark text-white -mt-16 ml-36 p-2">
+                      <h1 className="text-sm sm:text-base">Match:</h1>
+                      <ul>
+                        <li>
+                          <span>
+                            {item.match.name}: {item.match.value}
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                  <h1 className="pb-2 text-base sm:text-lg md:text-xl font-bold text-gray-700 cursor-pointer">
+                    Cluster: {item.codnasq_id}
+                  </h1>
+                </div>
+                <SearchIcon className="cursor-pointer" titleAccess="View Details" />
+              </div>
               <hr />
-              <div className="grid grid-cols-1 xl:grid-cols-2">
+              <div
+                className="grid grid-cols-1 xl:grid-cols-2 cursor-pointer"
+                onClick={() => history.push(`/cluster/${item.cluster_id}`)}
+              >
                 <div className="self-center space-y-2">
                   <h1 className="pt-2 text-sm sm:text-base">Group: {item.group}</h1>
                   <hr />

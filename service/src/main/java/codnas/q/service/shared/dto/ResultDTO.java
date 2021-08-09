@@ -15,4 +15,13 @@ public class ResultDTO {
     private Integer num_conf;
     private Double max_rmsd_quaternary;
     private Double max_rmsd_tertiary;
+    private Match match;
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Match {
+        private String name;
+        private String value;
+    }
 }
