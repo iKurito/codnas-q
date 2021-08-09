@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import HelpIcon from '@material-ui/icons/Help'
 import Search from './Search'
 import Logo from '../../assets/img/codnas-q-logo.png'
 import MovFixed from '../../assets/img/mov_mixed.gif'
@@ -87,7 +88,30 @@ const Home = ({ history }) => {
                   Mus musculus
                 </span>
               </h2>
-              <h2 className="text-sm sm:text-base pt-6 pb-2">browse by type of movement</h2>
+              <h2 className="text-sm sm:text-base pt-6 pb-2">
+                browse by type of movement{' '}
+                <div className="has-tooltip text-xs sm:text-sm inline text-justify">
+                  <div className="tooltip rounded shadow-lg bg-primary-dark text-white -mt-32 ml-80 p-2">
+                    <h1 className="text-sm sm:text-base">We can find three types of movements:</h1>
+                    <ul>
+                      <li>
+                        <span>
+                          Tertiary deformations: where exist a predominance of local variations.
+                        </span>
+                      </li>
+                      <li>
+                        <span>Rigid body: predominance of large displacements of subunits.</span>
+                      </li>
+                      <li>
+                        <span>
+                          Mixed motions: they have the save (no) variation at both levels.
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                  <HelpIcon fontSize="small" className="text-gray-500 mb-1" />
+                </div>
+              </h2>
               <div className="px-6 lg:px-24">
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
                   <div

@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect } from 'react'
 import MaterialTable from 'material-table'
 import MuiAlert from '@material-ui/lab/Alert'
+import HelpIcon from '@material-ui/icons/Help'
 import CompareArrowsIcon from '@material-ui/icons/CompareArrows'
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core'
 import { useSelector } from 'react-redux'
@@ -70,7 +71,17 @@ const Conformer = () => {
     <Fragment>
       <div className="border border-gray-200 rounded-t-xl shadow-md hover:shadow-2xl">
         <div className="bg-gray-200 rounded-t-xl p-4">
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-700 text-justify">Conformer</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-700 text-justify">
+            Conformer
+            <div className="has-tooltip text-xs sm:text-sm inline text-justify">
+              <div className="tooltip rounded shadow-lg bg-primary-dark text-white -mt-12 ml-40 p-2">
+                <h1 className="text-sm sm:text-base">
+                  List of others conformers of the cluster/protein.
+                </h1>
+              </div>
+              <HelpIcon fontSize="small" className="text-gray-500 ml-1 mb-2" />
+            </div>
+          </h2>
         </div>
         {open && (
           <Alert onClose={handleClose} severity="error">

@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import PropTypes from 'prop-types'
+import HelpIcon from '@material-ui/icons/Help'
 import Superposition from '../Superposition'
 
 const headers = [
@@ -26,6 +27,14 @@ const Comparison = ({ data, codnasqId, query, target, flag }) => {
         <div className="bg-gray-200 rounded-t-xl p-4">
           <h2 className="text-xl sm:text-2xl font-bold text-gray-700 text-justify">
             Maximum RMSD Quaternary pair Comparison
+            <div className="has-tooltip text-xs sm:text-sm inline text-justify">
+              <div className="tooltip rounded shadow-lg bg-primary-dark text-white -mt-20 ml-60 p-2">
+                <h1 className="text-sm sm:text-base">
+                  Comparison between the most different conformers for the cluster/protein.
+                </h1>
+              </div>
+              <HelpIcon fontSize="small" className="text-gray-500 ml-1 mb-1" />
+            </div>
           </h2>
         </div>
         <div className="overflow-x-auto overflow-y-auto">

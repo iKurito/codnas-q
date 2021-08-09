@@ -1,11 +1,23 @@
 import { Fragment } from 'react'
 import PropTypes from 'prop-types'
+import HelpIcon from '@material-ui/icons/Help'
 
 const Conformer = ({ onKeyPress, setQuery, query }) => {
   return (
     <Fragment>
       <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-700">
         Conformer Properties
+        <div className="has-tooltip text-xs sm:text-sm inline text-justify">
+          <div className="tooltip rounded shadow-lg bg-primary-dark text-white ml-64 p-2">
+            <h1 className="text-sm sm:text-base">Optional extra fields:</h1>
+            <ul>
+              <li>
+                <span>Exact match (including uppercase letters).</span>
+              </li>
+            </ul>
+          </div>
+          <HelpIcon fontSize="small" className="text-gray-500 ml-1 mb-1" />
+        </div>
       </h1>
       <form className="space-y-2" onKeyPress={(e) => onKeyPress(e, 's')}>
         <h2 className="text-sm sm:text-base font-bold text-gray-700 text-justify">Description</h2>
