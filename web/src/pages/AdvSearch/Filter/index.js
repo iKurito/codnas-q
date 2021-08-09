@@ -6,7 +6,7 @@ import Cluster from '../Cluster'
 import Conformer from '../Conformer'
 import { useDispatch } from 'react-redux'
 import { getSearchResultsFromAdvSearchAction } from '../../../actions/searchActions'
-import { groups } from '../Cluster/data'
+import { groups, operators } from '../Cluster/data'
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />
@@ -17,6 +17,7 @@ const Filter = ({ setLoaded }) => {
   const [open, setOpen] = useState(false)
   const [msgError, setMsgError] = useState('')
   const [groupBy, setGroup] = useState(groups[0])
+  const [prop1, setProp1] = useState(operators[0])
   const [query, setQuery] = useState({
     clusterId: '',
     oligomericState: '',
@@ -81,6 +82,7 @@ const Filter = ({ setLoaded }) => {
         setMsgError('Please, you must fill in at least one field')
         handleClick()
       } else {
+        console.log(query)
         const getClusters = () => dispatch(getSearchResultsFromAdvSearchAction(query))
         getClusters()
         setLoaded(true)
@@ -91,6 +93,10 @@ const Filter = ({ setLoaded }) => {
   useEffect(() => {
     setQuery({ ...query, group: groupBy.value })
   }, [groupBy])
+
+  useEffect(() => {
+    setQuery({ ...query, clusterProperty: prop1.name })
+  }, [prop1])
 
   const handleClick = () => {
     setOpen(true)
@@ -111,6 +117,9 @@ const Filter = ({ setLoaded }) => {
           group={groupBy}
           setGroup={setGroup}
           groups={groups}
+          prop1={prop1}
+          setProp1={setProp1}
+          operators={operators}
         />
       </div>
       <div className="space-y-2">

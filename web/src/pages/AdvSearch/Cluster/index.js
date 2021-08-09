@@ -2,10 +2,27 @@ import { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import ListBox from '../../../components/ListBox'
 
-const Cluster = ({ onKeyPress, setQuery, query, group, setGroup, groups }) => {
+const Cluster = ({
+  onKeyPress,
+  setQuery,
+  query,
+  group,
+  setGroup,
+  groups,
+  prop1,
+  setProp1,
+  operators,
+}) => {
   return (
     <Fragment>
-      <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-700">Cluster Properties</h1>
+      <div className="flex justify-between">
+        <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-700">
+          Cluster Properties
+        </h1>
+        <div className="w-24">
+          <ListBox selected={prop1} setSelected={setProp1} data={operators} />
+        </div>
+      </div>
       <form className="space-y-2" onKeyPress={(e) => onKeyPress(e)}>
         <h2 className="text-sm sm:text-base font-bold text-gray-700 text-justify">Cluster ID</h2>
         <input
@@ -103,6 +120,9 @@ Cluster.propTypes = {
   group: PropTypes.any.isRequired,
   setGroup: PropTypes.func.isRequired,
   groups: PropTypes.any.isRequired,
+  prop1: PropTypes.any.isRequired,
+  setProp1: PropTypes.func.isRequired,
+  operators: PropTypes.any.isRequired,
 }
 
 export default Cluster

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class QueryDTO {
+    private String clusterProperty;
     private String clusterId;
     private String oligomericState;
     private String group;

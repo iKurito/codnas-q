@@ -4,3 +4,8 @@ export const groups = [
   { id: 2, name: 'Mixed Motions', unavailable: false, value: 'b' },
   { id: 3, name: 'Rigid Body', unavailable: false, value: 'c' },
 ]
+
+export const operators = [
+  { id: 1, name: 'OR', unavailable: false },
+  { id: 2, name: 'AND', unavailable: false },
+]
