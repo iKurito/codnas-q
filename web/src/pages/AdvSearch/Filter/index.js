@@ -1,13 +1,21 @@
 import { useState, Fragment, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { Snackbar } from '@material-ui/core'
+import MuiAlert from '@material-ui/lab/Alert'
 import Cluster from '../Cluster'
 import Conformer from '../Conformer'
 import { useDispatch } from 'react-redux'
 import { getSearchResultsFromAdvSearchAction } from '../../../actions/searchActions'
 import { groups } from '../Cluster/data'
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />
+}
+
 const Filter = ({ setLoaded }) => {
   const dispatch = useDispatch()
+  const [open, setOpen] = useState(false)
+  const [msgError, setMsgError] = useState('')
   const [groupBy, setGroup] = useState(groups[0])
   const [query, setQuery] = useState({
     clusterId: '',
@@ -70,7 +78,8 @@ const Filter = ({ setLoaded }) => {
         tempFrom.trim() === '' &&
         tempTo.trim() === ''
       ) {
-        console.log('PONER ERORR')
+        setMsgError('Please, you must fill in at least one field')
+        handleClick()
       } else {
         const getClusters = () => dispatch(getSearchResultsFromAdvSearchAction(query))
         getClusters()
@@ -82,6 +91,15 @@ const Filter = ({ setLoaded }) => {
   useEffect(() => {
     setQuery({ ...query, group: groupBy.value })
   }, [groupBy])
+
+  const handleClick = () => {
+    setOpen(true)
+  }
+
+  const handleClose = (_e, reason) => {
+    if (reason === 'clickaway') return
+    setOpen(false)
+  }
 
   return (
     <Fragment>
@@ -98,6 +116,17 @@ const Filter = ({ setLoaded }) => {
       <div className="space-y-2">
         <Conformer onKeyPress={onKeyPress} setQuery={setQuery} query={query} />
       </div>
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        style={{ textAlign: 'center' }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert onClose={handleClose} severity="error">
+          {msgError}
+        </Alert>
+      </Snackbar>
     </Fragment>
   )
 }
