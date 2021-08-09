@@ -1,16 +1,18 @@
-import { useState, Fragment } from 'react'
+import { useState, Fragment, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Cluster from '../Cluster'
 import Conformer from '../Conformer'
 import { useDispatch } from 'react-redux'
 import { getSearchResultsFromAdvSearchAction } from '../../../actions/searchActions'
+import { groups } from '../Cluster/data'
 
 const Filter = ({ setLoaded }) => {
   const dispatch = useDispatch()
+  const [groupBy, setGroup] = useState(groups[0])
   const [query, setQuery] = useState({
     clusterId: '',
     oligomericState: '',
-    group: '',
+    group: groupBy.value,
     quatFrom: '',
     quatTo: '',
     tertFrom: '',
@@ -23,7 +25,8 @@ const Filter = ({ setLoaded }) => {
     lengthTo: '',
     name: '',
     organism: '',
-    temperature: '',
+    tempFrom: '',
+    tempTo: '',
   })
 
   const {
@@ -42,7 +45,8 @@ const Filter = ({ setLoaded }) => {
     lengthTo,
     name,
     organism,
-    temperature,
+    tempFrom,
+    tempTo,
   } = query
 
   const onKeyPress = (e) => {
@@ -63,7 +67,8 @@ const Filter = ({ setLoaded }) => {
         lengthTo.trim() === '' &&
         name.trim() === '' &&
         organism.trim() === '' &&
-        temperature.trim() === ''
+        tempFrom.trim() === '' &&
+        tempTo.trim() === ''
       ) {
         console.log('PONER ERORR')
       } else {
@@ -74,10 +79,21 @@ const Filter = ({ setLoaded }) => {
     }
   }
 
+  useEffect(() => {
+    setQuery({ ...query, group: groupBy.value })
+  }, [groupBy])
+
   return (
     <Fragment>
       <div className="space-y-2">
-        <Cluster onKeyPress={onKeyPress} setQuery={setQuery} query={query} />
+        <Cluster
+          onKeyPress={onKeyPress}
+          setQuery={setQuery}
+          query={query}
+          group={groupBy}
+          setGroup={setGroup}
+          groups={groups}
+        />
       </div>
       <div className="space-y-2">
         <Conformer onKeyPress={onKeyPress} setQuery={setQuery} query={query} />

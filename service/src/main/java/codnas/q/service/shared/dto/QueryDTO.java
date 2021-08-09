@@ -23,5 +23,6 @@ public class QueryDTO {
     private String lengthTo;
     private String name;
     private String organism;
-    private String temperature;
+    private String tempFrom;
+    private String tempTo;
 }
