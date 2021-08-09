@@ -19,7 +19,7 @@ const headers = [
   { id: 14, value: 'Ligands' },
 ]
 
-const Comparison = ({ data, codnasqId, query, target }) => {
+const Comparison = ({ data, codnasqId, query, target, flag }) => {
   return (
     <Fragment>
       <div className="border border-gray-200 rounded-t-xl shadow-md hover:shadow-2xl">
@@ -118,33 +118,39 @@ const Comparison = ({ data, codnasqId, query, target }) => {
             </tbody>
           </table>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
-          <Superposition query={query} target={target} />
-          <div>
-            <div className="overflow-auto">
-              <div className="p-4 h-auto" style={{ width: '800px', textAlign: '-webkit-center' }}>
-                <img
-                  className="mx-auto"
-                  src={`http://ufq.unq.edu.ar/codnasq/assets/dendrograms/${codnasqId}_dendrogram_2020.png`}
-                  alt="dendogram"
-                />
+        {flag === 'true' && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
+            <Superposition query={query} target={target} />
+            <div>
+              <div className="overflow-auto">
+                <div className="p-4 h-auto" style={{ width: '800px', textAlign: '-webkit-center' }}>
+                  <img
+                    className="mx-auto"
+                    src={`http://ufq.unq.edu.ar/codnasq/assets/dendrograms/${codnasqId}_dendrogram_2020.png`}
+                    alt="dendogram"
+                  />
+                </div>
+              </div>
+              <div className="text-center pb-4">
+                <a
+                  className="text-primary-original hover:text-primary-dark"
+                  href={`http://ufq.unq.edu.ar/codnasq/assets/dendrograms/${codnasqId}_dendrogram_2020.png`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span className="text-sm sm:text-base">View full size dendrogram </span>
+                </a>
               </div>
             </div>
-            <div className="text-center pb-4">
-              <a
-                className="text-primary-original hover:text-primary-dark"
-                href={`http://ufq.unq.edu.ar/codnasq/assets/dendrograms/${codnasqId}_dendrogram_2020.png`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span className="text-sm sm:text-base">View full size dendrogram </span>
-              </a>
-            </div>
           </div>
-        </div>
+        )}
       </div>
     </Fragment>
   )
+}
+
+Comparison.defaultProps = {
+  flag: 'true',
 }
 
 Comparison.propTypes = {
@@ -152,6 +158,7 @@ Comparison.propTypes = {
   codnasqId: PropTypes.string.isRequired,
   query: PropTypes.string.isRequired,
   target: PropTypes.string.isRequired,
+  flag: PropTypes.string,
 }
 
 export default Comparison

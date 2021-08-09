@@ -145,6 +145,7 @@ const Pairs = () => {
                             codnasqId={pairs[idx].codnasq_id}
                             query={pairs[idx].query}
                             target={pairs[idx].target}
+                            flag="false"
                           />
                         ) : (
                           <div id="loader" style={{ textAlign: '-webkit-center' }}>
