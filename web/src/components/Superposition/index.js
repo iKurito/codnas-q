@@ -41,7 +41,7 @@ const Superposition = ({ query, target }) => {
   }, [])
 
   const onWheel = () => {
-    const element = document.getElementById('viewport')
+    const element = document.getElementById('viewport2')
     function wheel(event) {
       event.preventDefault()
       return false
