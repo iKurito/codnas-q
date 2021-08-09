@@ -52,8 +52,8 @@ const Unq = () => {
           />
           <Profile
             srcImg={NEscobedo}
-            name="Martín González Buitrón"
-            email="martingonzalezbuitron@gmail.com"
+            name="Nahuel Escobedo"
+            email="nahuelescobedo@gmail.com"
             orcid="https://orcid.org/0000-0003-1123-9853"
             gitlab="https://gitlab.com/Nahuele"
             researcher="PhD Student, UNQ-CONICET (Argentina)"
