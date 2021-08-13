@@ -16,10 +16,8 @@ const Superposition = ({ query, target, bioQuery, bioTarget, codnasqId }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       const NGL = require('ngl')
-      const conformer1 = `https://s3.us-east-1.amazonaws.com/codnas.inf.pucp.edu.pe/codnas-q/clusters_aligned_max/${codnasqId}/${query}-${bioQuery}_${target}-${bioTarget.toString()}/${query}-${bioQuery.toString()}.pdb`
-      const conformer2 = `https://s3.us-east-1.amazonaws.com/codnas.inf.pucp.edu.pe/codnas-q/clusters_aligned_max/${codnasqId}/${query}-${bioQuery}_${target}-${bioTarget.toString()}/${target}-${bioTarget.toString()}.pdb`
-      console.log(conformer1)
-      console.log(conformer2)
+      const conformer1 = `https://s3.us-east-1.amazonaws.com/codnas.inf.pucp.edu.pe/codnas-q/clusters_aligned_max/${query}.pdb`
+      const conformer2 = `https://s3.us-east-1.amazonaws.com/codnas.inf.pucp.edu.pe/codnas-q/clusters_aligned_max/${target}.pdb`
       const stage = new NGL.Stage('viewport2', { backgroundColor: 'white' })
       Promise.all([
         stage.loadFile(conformer1, { sele: ':A' }).then(function lFile(o) {
