@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import ReactLoading from 'react-loading'
 import Brightness1Icon from '@material-ui/icons/Brightness1'
 
-const Superposition = ({ query, target }) => {
+const Superposition = ({ query, target, bioQuery, bioTarget, codnasqId }) => {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -16,13 +16,11 @@ const Superposition = ({ query, target }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       const NGL = require('ngl')
-      const conformer1 = `rcsb://${query}.pdb.gz`
-      const conformer2 = `rcsb://${target}.pdb.gz`
+      const conformer1 = `https://s3.us-east-1.amazonaws.com/codnas.inf.pucp.edu.pe/codnas-q/clusters_aligned_max/${codnasqId}/${query}-${bioQuery}_${target}-${bioTarget.toString()}/${query}-${bioQuery.toString()}.pdb`
+      const conformer2 = `https://s3.us-east-1.amazonaws.com/codnas.inf.pucp.edu.pe/codnas-q/clusters_aligned_max/${codnasqId}/${query}-${bioQuery}_${target}-${bioTarget.toString()}/${target}-${bioTarget.toString()}.pdb`
+      console.log(conformer1)
+      console.log(conformer2)
       const stage = new NGL.Stage('viewport2', { backgroundColor: 'white' })
-      NGL.DatasourceRegistry.add(
-        'data',
-        new NGL.StaticDatasource('https://unpkg.com/ngl@0.10.4-1/')
-      )
       Promise.all([
         stage.loadFile(conformer1, { sele: ':A' }).then(function lFile(o) {
           o.addRepresentation('cartoon', { color: 'red' })
@@ -104,6 +102,9 @@ const Superposition = ({ query, target }) => {
 Superposition.propTypes = {
   query: PropTypes.string.isRequired,
   target: PropTypes.string.isRequired,
+  bioQuery: PropTypes.number.isRequired,
+  bioTarget: PropTypes.number.isRequired,
+  codnasqId: PropTypes.string.isRequired,
 }
 
 export default Superposition

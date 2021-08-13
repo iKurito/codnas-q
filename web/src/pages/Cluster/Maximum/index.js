@@ -15,6 +15,8 @@ const Maximum = () => {
         query={pairMaximum[0].name}
         target={pairMaximum[1].name}
         imageUrl={information.image_url}
+        bioQuery={pairMaximum[0].data.bio_assembly}
+        bioTarget={pairMaximum[1].data.bio_assembly}
       />
     </Fragment>
   )

@@ -20,7 +20,7 @@ const headers = [
   { id: 14, value: 'Ligands' },
 ]
 
-const Comparison = ({ data, codnasqId, query, target, flag, imageUrl }) => {
+const Comparison = ({ data, query, target, flag, imageUrl, bioQuery, bioTarget, codnasqId }) => {
   return (
     <Fragment>
       <div className="border border-gray-200 rounded-t-xl shadow-md hover:shadow-2xl">
@@ -129,7 +129,13 @@ const Comparison = ({ data, codnasqId, query, target, flag, imageUrl }) => {
         </div>
         {flag === 'true' && (
           <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
-            <Superposition query={query} target={target} />
+            <Superposition
+              query={query}
+              target={target}
+              bioQuery={bioQuery}
+              bioTarget={bioTarget}
+              codnasqId={codnasqId}
+            />
             <div>
               <div className="overflow-auto">
                 <div className="p-4 h-auto" style={{ width: '800px', textAlign: '-webkit-center' }}>
@@ -155,17 +161,22 @@ const Comparison = ({ data, codnasqId, query, target, flag, imageUrl }) => {
 }
 
 Comparison.defaultProps = {
+  codnasqId: '',
   flag: 'true',
   imageUrl: '',
+  bioQuery: 0,
+  bioTarget: 0,
 }
 
 Comparison.propTypes = {
   data: PropTypes.any.isRequired,
-  codnasqId: PropTypes.string.isRequired,
   query: PropTypes.string.isRequired,
+  codnasqId: PropTypes.string,
   target: PropTypes.string.isRequired,
   flag: PropTypes.string,
   imageUrl: PropTypes.string,
+  bioQuery: PropTypes.number,
+  bioTarget: PropTypes.number,
 }
 
 export default Comparison

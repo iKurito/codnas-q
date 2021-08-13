@@ -30,20 +30,20 @@ public class ClusterInformationParser {
 
     private static String oligomericStateParse(Integer type) {
         String oligomeric_state = type.toString();
-        if (type == 2) oligomeric_state = "Dimer";
-        else if (type == 3) oligomeric_state = "Trimer";
-        else if (type == 4) oligomeric_state ="Tetramer";
-        else if (type == 5) oligomeric_state = "Pentamer";
-        else if (type == 6) oligomeric_state = "Hexamer";
-        else if (type == 7) oligomeric_state = "Heptamer";
-        else if (type == 8) oligomeric_state = "Octamer";
-        else if (type == 9) oligomeric_state = "Nonamer";
-        else if (type == 10) oligomeric_state ="Decamer";
-        else if (type == 11) oligomeric_state = "Undecamer";
-        else if (type == 12) oligomeric_state = "Dodecamer";
-        else if (type == 14) oligomeric_state = "Tetradecamer";
-        else if (type == 24) oligomeric_state = "24-mer";
-        else if (type == 60) oligomeric_state = "60-mer";
+        if (type == 2) oligomeric_state = "Dimer_2";
+        else if (type == 3) oligomeric_state = "Trimer_3";
+        else if (type == 4) oligomeric_state ="Tetramer_4";
+        else if (type == 5) oligomeric_state = "Pentamer_5";
+        else if (type == 6) oligomeric_state = "Hexamer_6";
+        else if (type == 7) oligomeric_state = "Heptamer_7";
+        else if (type == 8) oligomeric_state = "Octamer_8";
+        else if (type == 9) oligomeric_state = "Nonamer_9";
+        else if (type == 10) oligomeric_state ="Decamer_10";
+        else if (type == 11) oligomeric_state = "Undecamer_11";
+        else if (type == 12) oligomeric_state = "Dodecamer_12";
+        else if (type == 14) oligomeric_state = "Tetradecamer_14";
+        else if (type == 24) oligomeric_state = "24-mer_24";
+        else if (type == 60) oligomeric_state = "60-mer_60";
         return oligomeric_state;
     }
 
