@@ -15,6 +15,7 @@ public class ResultDTO {
     private Integer num_conf;
     private Double max_rmsd_quaternary;
     private Double max_rmsd_tertiary;
+    private String image_url;
     private Match match;
 
     @Data

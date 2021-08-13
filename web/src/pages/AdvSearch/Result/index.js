@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useHistory } from 'react-router'
 import SearchIcon from '@material-ui/icons/Search'
 import Pagination from '../../../components/Pagination'
-import Protein from '../../../assets/img/protein.png'
+// import Protein from '../../../assets/img/protein.png'
 // import { data } from './data'
 
 const PageSize = 10
@@ -77,7 +77,7 @@ const Result = ({ searchResults }) => {
                   </h1>
                 </div>
                 <div className="slef-center">
-                  <img className="mx-auto" src={Protein} alt="protein" />
+                  <img className="mx-auto" src={item.image_url} alt="protein" />
                 </div>
               </div>
             </div>

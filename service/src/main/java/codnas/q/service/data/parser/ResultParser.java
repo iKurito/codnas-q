@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ResultParser {
 
+    private static String url = "https://s3.us-east-1.amazonaws.com/codnas.inf.pucp.edu.pe/codnas-q/thumbnails_clusters/";
+
     public static ResultDTO toResultDTO(Cluster cluster, Integer num, String name, String value) {
         ResultDTO resultDTO = new ResultDTO();
         resultDTO.setCluster_id(cluster.getId_cluster());
@@ -16,6 +18,7 @@ public class ResultParser {
         resultDTO.setNum_conf(num);
         resultDTO.setMax_rmsd_quaternary(cluster.getMax_rmsd_quaternary());
         resultDTO.setMax_rmsd_tertiary(cluster.getMax_rmsd_tertiary());
+        resultDTO.setImage_url(url.concat(cluster.getCodnasq_id()).concat(".png"));
         resultDTO.setMatch(new ResultDTO.Match(name, value));
         return resultDTO;
     }
