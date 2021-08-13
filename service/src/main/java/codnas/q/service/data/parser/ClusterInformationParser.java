@@ -7,6 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class ClusterInformationParser {
+
+    private static String url = "https://s3.us-east-1.amazonaws.com/codnas.inf.pucp.edu.pe/codnas-q/dendrograms/";
+
     public static ClusterInformationDTO toClusterInformationDTO(Cluster cluster, Conformer conformer, Integer num) {
         ClusterInformationDTO clusterInformationDTO = new ClusterInformationDTO();
         clusterInformationDTO.setCluster_id(cluster.getCodnasq_id());
@@ -21,6 +24,7 @@ public class ClusterInformationParser {
         clusterInformationDTO.setOrganism(conformer.getOrganism());
         clusterInformationDTO.setGenes(conformer.getGene_names());
         clusterInformationDTO.setLength(conformer.getLength());
+        clusterInformationDTO.setImage_url(url.concat(cluster.getCodnasq_id()).concat("_dendogram_2020.png"));
         return clusterInformationDTO;
     }
 

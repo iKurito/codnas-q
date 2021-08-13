@@ -20,7 +20,7 @@ const headers = [
   { id: 14, value: 'Ligands' },
 ]
 
-const Comparison = ({ data, codnasqId, query, target, flag }) => {
+const Comparison = ({ data, codnasqId, query, target, flag, imageUrl }) => {
   return (
     <Fragment>
       <div className="border border-gray-200 rounded-t-xl shadow-md hover:shadow-2xl">
@@ -133,17 +133,13 @@ const Comparison = ({ data, codnasqId, query, target, flag }) => {
             <div>
               <div className="overflow-auto">
                 <div className="p-4 h-auto" style={{ width: '800px', textAlign: '-webkit-center' }}>
-                  <img
-                    className="mx-auto"
-                    src={`http://ufq.unq.edu.ar/codnasq/assets/dendrograms/${codnasqId}_dendrogram_2020.png`}
-                    alt="dendogram"
-                  />
+                  <img className="mx-auto" src={imageUrl} alt="dendogram" />
                 </div>
               </div>
               <div className="text-center pb-4">
                 <a
-                  className="text-primary-original hover:text-primary-dark"
-                  href={`http://ufq.unq.edu.ar/codnasq/assets/dendrograms/${codnasqId}_dendrogram_2020.png`}
+                  className="text-primary-original hover:text-primary-dark cursor-pointer"
+                  href={imageUrl}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -160,6 +156,7 @@ const Comparison = ({ data, codnasqId, query, target, flag }) => {
 
 Comparison.defaultProps = {
   flag: 'true',
+  imageUrl: '',
 }
 
 Comparison.propTypes = {
@@ -168,6 +165,7 @@ Comparison.propTypes = {
   query: PropTypes.string.isRequired,
   target: PropTypes.string.isRequired,
   flag: PropTypes.string,
+  imageUrl: PropTypes.string,
 }
 
 export default Comparison

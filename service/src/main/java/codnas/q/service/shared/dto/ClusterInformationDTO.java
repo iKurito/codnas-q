@@ -20,4 +20,5 @@ public class ClusterInformationDTO {
     private String organism;
     private String genes;
     private String length;
+    private String image_url;
 }
