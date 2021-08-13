@@ -19,7 +19,7 @@ const Superposition = ({ query, target, bioQuery, bioTarget, codnasqId }) => {
       const conformer1 = `https://s3.us-east-1.amazonaws.com/codnas.inf.pucp.edu.pe/codnas-q/clusters_aligned_max/${query}.pdb`
       const conformer2 = `https://s3.us-east-1.amazonaws.com/codnas.inf.pucp.edu.pe/codnas-q/clusters_aligned_max/${target}.pdb`
       const stage = new NGL.Stage('viewport2', { backgroundColor: 'white' })
-      Promise.all([
+      /* Promise.all([
         stage.loadFile(conformer1, { sele: ':A' }).then(function lFile(o) {
           o.addRepresentation('cartoon', { color: 'red' })
           return o
@@ -31,6 +31,18 @@ const Superposition = ({ query, target, bioQuery, bioTarget, codnasqId }) => {
       ]).then(function lFile(o) {
         o[0].superpose(o[1], false, '1-320:A')
         o[0].autoView(':A')
+      }) */
+      stage.loadFile(conformer1).then(function lFile(o) {
+        o.addRepresentation('cartoon', { color: 'red' })
+        o.addRepresentation('base')
+        o.autoView()
+        setLoading(true)
+      })
+      stage.loadFile(conformer2).then(function lFile(o) {
+        o.addRepresentation('cartoon', { color: 'green' })
+        o.addRepresentation('base')
+        o.autoView()
+        setLoading(true)
       })
     }, 1000)
     return () => clearTimeout(timer)
