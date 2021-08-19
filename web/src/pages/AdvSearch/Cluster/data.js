@@ -6,6 +6,6 @@ export const groups = [
 ]
 
 export const operators = [
-  { id: 1, name: 'OR', unavailable: false },
-  { id: 2, name: 'AND', unavailable: false },
+  { id: 1, name: 'AND', unavailable: false },
+  { id: 2, name: 'OR', unavailable: false },
 ]

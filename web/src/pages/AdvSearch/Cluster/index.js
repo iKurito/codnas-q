@@ -64,7 +64,7 @@ const Cluster = ({
                 type="number"
                 step=".01"
                 min="0"
-                placeholder="From..."
+                placeholder="From 0..."
                 name="quatFrom"
                 onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
               />
@@ -74,7 +74,7 @@ const Cluster = ({
                 type="number"
                 step=".01"
                 min="0"
-                placeholder="To..."
+                placeholder="To 9..."
                 name="quatTo"
                 onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
               />
@@ -91,7 +91,7 @@ const Cluster = ({
                 type="number"
                 step=".01"
                 min="0"
-                placeholder="From..."
+                placeholder="From 0..."
                 name="tertFrom"
                 onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
               />
@@ -101,7 +101,7 @@ const Cluster = ({
                 type="number"
                 step=".01"
                 min="0"
-                placeholder="To..."
+                placeholder="To 3..."
                 name="tertTo"
                 onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
               />

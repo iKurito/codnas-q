@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useHistory } from 'react-router'
-import SearchIcon from '@material-ui/icons/Search'
 import Pagination from '../../../components/Pagination'
 // import Protein from '../../../assets/img/protein.png'
 // import { data } from './data'
@@ -52,7 +51,6 @@ const Result = ({ searchResults }) => {
                     Cluster: {item.codnasq_id}
                   </h1>
                 </div>
-                <SearchIcon className="cursor-pointer" titleAccess="View Details" />
               </div>
               <hr />
               <div
