@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import Profile from '../../../../components/Profile'
 import Map from '../../../../components/Map'
 import GParisi from '../../../../assets/img/gparisi.png'
+import AMonzon from '../../../../assets/img/amonzon.jpg'
 import NPalopoli from '../../../../assets/img/npalopoli.png'
 import NEscobedo from '../../../../assets/img/nescobedo.png'
 import GCaruso from '../../../../assets/img/gcaruso.jpeg'
@@ -34,7 +35,7 @@ const Unq = () => {
             alt="GParisi"
           />
           <Profile
-            srcImg={GParisi}
+            srcImg={AMonzon}
             name="Alexander Monzon"
             email="monzon.alexander@gmail.com"
             orcid="https://orcid.org/0000-0003-0362-8218"
