@@ -90,6 +90,36 @@ const Filter = ({ setLoaded }) => {
     }
   }
 
+  const onClick = () => {
+    if (
+      clusterId.trim() === '' &&
+      oligomericState.trim() === '' &&
+      group.trim() === '' &&
+      quatFrom.trim() === '' &&
+      quatTo.trim() === '' &&
+      tertFrom.trim() === '' &&
+      tertTo.trim() === '' &&
+      description.trim() === '' &&
+      bioAssembly.trim() === '' &&
+      resFrom.trim() === '' &&
+      resTo.trim() === '' &&
+      lengthFrom.trim() === '' &&
+      lengthTo.trim() === '' &&
+      name.trim() === '' &&
+      organism.trim() === '' &&
+      tempFrom.trim() === '' &&
+      tempTo.trim() === ''
+    ) {
+      setMsgError('Please, you must fill in at least one field')
+      handleClick()
+    } else {
+      console.log(query)
+      const getClusters = () => dispatch(getSearchResultsFromAdvSearchAction(query))
+      getClusters()
+      setLoaded(true)
+    }
+  }
+
   useEffect(() => {
     setQuery({ ...query, group: groupBy.value })
   }, [groupBy])
@@ -124,6 +154,14 @@ const Filter = ({ setLoaded }) => {
       </div>
       <div className="space-y-2">
         <Conformer onKeyPress={onKeyPress} setQuery={setQuery} query={query} />
+      </div>
+      <div className="space-y-2">
+        <button
+          className="bg-primary-dark py-2 px-3 w-full rounded text-white font-bold hover:bg-opacity-95"
+          onClick={() => onClick()}
+        >
+          Search
+        </button>
       </div>
       <Snackbar
         open={open}
