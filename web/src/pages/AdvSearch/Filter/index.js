@@ -106,7 +106,6 @@ const Filter = ({ setLoaded, all, setAll }) => {
         setMsgError('Please, you must fill in at least one field')
         handleClick()
       } else {
-        console.log(query)
         const getClusters = () => dispatch(getSearchResultsFromAdvSearchAction(query))
         getClusters()
         setLoaded(true)
