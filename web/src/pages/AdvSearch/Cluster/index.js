@@ -31,6 +31,7 @@ const Cluster = ({
           type="text"
           placeholder="Cluster ID..."
           name="clusterId"
+          value={query.clusterId}
           onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 sm:gap-4 sm:pt-2">
@@ -44,6 +45,7 @@ const Cluster = ({
               type="text"
               placeholder="Oligomeric State..."
               name="oligomericState"
+              value={query.oligomericState}
               onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
             />
           </div>
@@ -66,6 +68,7 @@ const Cluster = ({
                 min="0"
                 placeholder="From 0..."
                 name="quatFrom"
+                value={query.quatFrom}
                 onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
               />
               <input
@@ -76,6 +79,7 @@ const Cluster = ({
                 min="0"
                 placeholder="To 9..."
                 name="quatTo"
+                value={query.quatTo}
                 onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
               />
             </div>
@@ -93,6 +97,7 @@ const Cluster = ({
                 min="0"
                 placeholder="From 0..."
                 name="tertFrom"
+                value={query.tertFrom}
                 onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
               />
               <input
@@ -103,6 +108,7 @@ const Cluster = ({
                 min="0"
                 placeholder="To 3..."
                 name="tertTo"
+                value={query.tertTo}
                 onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
               />
             </div>

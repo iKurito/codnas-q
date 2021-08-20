@@ -27,6 +27,7 @@ const Conformer = ({ onKeyPress, setQuery, query }) => {
           type="text"
           placeholder="Description..."
           name="description"
+          value={query.description}
           onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
         />
         <h2 className="text-sm sm:text-base font-bold text-gray-700 text-justify">
@@ -38,6 +39,7 @@ const Conformer = ({ onKeyPress, setQuery, query }) => {
           type="text"
           placeholder="Biological Assembly..."
           name="bioAssembly"
+          value={query.bioAssembly}
           onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2 sm:gap-4 sm:pt-2">
@@ -54,6 +56,7 @@ const Conformer = ({ onKeyPress, setQuery, query }) => {
                 min="0"
                 placeholder="From..."
                 name="resFrom"
+                value={query.resFrom}
                 onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
               />
               <input
@@ -64,6 +67,7 @@ const Conformer = ({ onKeyPress, setQuery, query }) => {
                 min="0"
                 placeholder="To..."
                 name="resTo"
+                value={query.resTo}
                 onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
               />
             </div>
@@ -79,6 +83,7 @@ const Conformer = ({ onKeyPress, setQuery, query }) => {
                 min="0"
                 placeholder="From..."
                 name="lengthFrom"
+                value={query.lengthFrom}
                 onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
               />
               <input
@@ -89,6 +94,7 @@ const Conformer = ({ onKeyPress, setQuery, query }) => {
                 min="0"
                 placeholder="To..."
                 name="lengthTo"
+                value={query.lengthTo}
                 onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
               />
             </div>
@@ -101,6 +107,7 @@ const Conformer = ({ onKeyPress, setQuery, query }) => {
           type="text"
           placeholder="Name..."
           name="name"
+          value={query.name}
           onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
         />
         <h2 className="text-sm sm:text-base font-bold text-gray-700 text-justify">Organism</h2>
@@ -110,6 +117,7 @@ const Conformer = ({ onKeyPress, setQuery, query }) => {
           type="text"
           placeholder="Organism..."
           name="organism"
+          value={query.organism}
           onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
         />
         <div className="space-y-2">
@@ -123,6 +131,7 @@ const Conformer = ({ onKeyPress, setQuery, query }) => {
               min="0"
               placeholder="From..."
               name="tempFrom"
+              value={query.tempFrom}
               onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
             />
             <input
@@ -133,6 +142,7 @@ const Conformer = ({ onKeyPress, setQuery, query }) => {
               min="0"
               placeholder="To..."
               name="tempTo"
+              value={query.tempTo}
               onChange={(e) => setQuery({ ...query, [e.target.name]: e.target.value })}
             />
           </div>

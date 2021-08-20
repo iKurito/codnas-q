@@ -12,7 +12,7 @@ function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />
 }
 
-const Filter = ({ setLoaded }) => {
+const Filter = ({ setLoaded, all, setAll }) => {
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
   const [msgError, setMsgError] = useState('')
@@ -58,6 +58,30 @@ const Filter = ({ setLoaded }) => {
     tempTo,
   } = query
 
+  useEffect(() => {
+    if (all) {
+      setQuery({
+        clusterId: '',
+        oligomericState: '',
+        group: groupBy.value,
+        quatFrom: '',
+        quatTo: '',
+        tertFrom: '',
+        tertTo: '',
+        description: '',
+        bioAssembly: '',
+        resFrom: '',
+        resTo: '',
+        lengthFrom: '',
+        lengthTo: '',
+        name: '',
+        organism: '',
+        tempFrom: '',
+        tempTo: '',
+      })
+    }
+  }, [all])
+
   const onKeyPress = (e) => {
     if (e.key === 'Enter') {
       if (
@@ -86,6 +110,7 @@ const Filter = ({ setLoaded }) => {
         const getClusters = () => dispatch(getSearchResultsFromAdvSearchAction(query))
         getClusters()
         setLoaded(true)
+        setAll(false)
       }
     }
   }
@@ -113,10 +138,10 @@ const Filter = ({ setLoaded }) => {
       setMsgError('Please, you must fill in at least one field')
       handleClick()
     } else {
-      console.log(query)
       const getClusters = () => dispatch(getSearchResultsFromAdvSearchAction(query))
       getClusters()
       setLoaded(true)
+      setAll(false)
     }
   }
 
@@ -180,6 +205,8 @@ const Filter = ({ setLoaded }) => {
 
 Filter.propTypes = {
   setLoaded: PropTypes.func.isRequired,
+  all: PropTypes.bool.isRequired,
+  setAll: PropTypes.func.isRequired,
 }
 
 export default Filter
