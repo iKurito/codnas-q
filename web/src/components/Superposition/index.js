@@ -76,7 +76,7 @@ const Superposition = ({ query, target, bioQuery, bioTarget, codnasqId }) => {
                 />
                 <a
                   className="text-primary-original hover:text-primary-dark"
-                  href={`https://codnasq.herokuapp.com/pdb/${query}`}
+                  href={`https://s3.us-east-1.amazonaws.com/codnas.inf.pucp.edu.pe/codnas-q/clusters_aligned_max/${query}.pdb`}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -90,7 +90,7 @@ const Superposition = ({ query, target, bioQuery, bioTarget, codnasqId }) => {
                 />
                 <a
                   className="text-primary-original hover:text-primary-dark"
-                  href={`https://codnasq.herokuapp.com/pdb/${target}`}
+                  href={`https://s3.us-east-1.amazonaws.com/codnas.inf.pucp.edu.pe/codnas-q/clusters_aligned_max/${target}.pdb`}
                   target="_blank"
                   rel="noreferrer"
                 >
