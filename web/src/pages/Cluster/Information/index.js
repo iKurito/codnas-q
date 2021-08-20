@@ -15,9 +15,6 @@ const Information = () => {
 
   return (
     <Fragment>
-      <h1 className="text-gray-700 text-3xl md:text-4xl font-bold text-center pb-4">
-        Cluster {information.codnasq_id}
-      </h1>
       <div className="border border-gray-200 rounded-t-xl shadow-md hover:shadow-2xl">
         <div className="bg-gray-200 rounded-t-xl p-4">
           <h2 className="text-xl sm:text-2xl font-bold text-gray-700 text-justify">
