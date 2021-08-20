@@ -53,6 +53,7 @@ const Pagination = (props) => {
               disabled: currentPage === 1,
             })}
             onClick={onFirstPage}
+            title="First"
           >
             <ChevronDoubleLeftIcon />
           </li>
@@ -61,6 +62,7 @@ const Pagination = (props) => {
               disabled: currentPage === 1,
             })}
             onClick={onPrevious}
+            title="Previous"
           >
             <ChevronLeftIcon />
           </li>
@@ -78,6 +80,7 @@ const Pagination = (props) => {
               disabled: currentPage === lastPage,
             })}
             onClick={onNext}
+            title="Next"
           >
             <ChevronRightIcon />
           </li>
@@ -86,6 +89,7 @@ const Pagination = (props) => {
               disabled: currentPage === lastPage,
             })}
             onClick={onLastPage}
+            title="Last"
           >
             <ChevronDoubleRightIcon />
           </li>
