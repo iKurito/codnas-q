@@ -45,25 +45,25 @@ const View = ({ idx }) => {
   }
 
   return (
-    <div className="mt-8 border border-gray-200 rounded-t-xl shadow-md hover:shadow-2xl">
+    <>
       <div className="bg-gray-200 rounded-t-xl p-4">
         <h2 className="text-xl sm:text-2xl font-bold text-gray-700 text-justify">3D View</h2>
       </div>
-      <div className="p-4 flex place-content-center">
+      <div className="px-4 flex place-content-center items-center">
         {loaded ? (
           <div
             id="view"
-            className="h-96 w-40 lg:w-96"
+            className="h-80 w-72"
             onWheel={() => onWheel()}
             title={`${!loading ? 'Loading...' : conformer.information.pdb_id}`}
           />
         ) : (
-          <div id="loader">
+          <div id="loader" className="flex items-center h-80">
             <ReactLoading type="spin" color="#2d699b" />
           </div>
         )}
       </div>
-    </div>
+    </>
   )
 }
 

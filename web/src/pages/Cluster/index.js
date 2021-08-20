@@ -27,10 +27,10 @@ const Cluster = () => {
 
   return (
     <Fragment>
-      <div className="pt-6 pb-52">
+      <div className="pt-6 pb-36">
         <div className="sm:px-4">
           {loading ? (
-            <div className="space-y-4">
+            <div className="space-y-4 pt-12">
               <div id="loader" style={{ textAlign: '-webkit-center' }}>
                 <ReactLoading type="spin" color="#2d699b" />
               </div>

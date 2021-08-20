@@ -24,7 +24,7 @@ const Header = () => {
   const { pathname } = location
 
   return (
-    <Popover className="bg-primary-dark sticky top-0 py-1 lg:py-3 shadow-lg z-50">
+    <Popover className="bg-primary-dark sticky top-0 py-1 lg:py-3 shadow-lg z-50 select-none">
       {({ open }) => (
         <div className="px-4 mx-auto">
           <div className="max-w-full px-1 mx-auto lg:px-4">
