@@ -17,6 +17,8 @@ const AdvSearch = () => {
   const [load, setLoaded] = useState(false)
   const [all, setAll] = useState(false)
 
+  console.log(searchResults)
+
   useEffect(() => {
     if (!loading) {
       if (searchResults.length === 0) {

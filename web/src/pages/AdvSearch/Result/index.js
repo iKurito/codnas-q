@@ -5,7 +5,7 @@ import Pagination from '../../../components/Pagination'
 // import Protein from '../../../assets/img/protein.png'
 // import { data } from './data'
 
-const PageSize = 10
+const PageSize = 20
 
 const Result = ({ searchResults }) => {
   const history = useHistory()
@@ -33,7 +33,7 @@ const Result = ({ searchResults }) => {
               key={item.cluster_id}
               className="col-span-1 mx-auto custom-shadow p-4 w-full hover:shadow-2xl"
             >
-              <div className="flex justify-between">
+              <div className="flex justify-between select-none">
                 <div className="has-tooltip text-xs sm:text-sm">
                   {item.match.name !== '' && (
                     <div className="tooltip rounded shadow-lg bg-primary-dark text-white -mt-16 sm:ml-36 p-2">
@@ -54,7 +54,7 @@ const Result = ({ searchResults }) => {
               </div>
               <hr />
               <div
-                className="grid grid-cols-1 xl:grid-cols-2 cursor-pointer"
+                className="grid grid-cols-1 xl:grid-cols-2 cursor-pointer select-none"
                 onClick={() => history.push(`/cluster/${item.cluster_id}`)}
               >
                 <div className="self-center space-y-2">

@@ -107,6 +107,8 @@ export function getSearchResultsFromAdvSearchAction(data) {
     dispatch(getSearchResults())
     try {
       const result = await clientAxios.post('/search/clusters/allFields', data)
+      console.log(data)
+      console.log(result.data.payload)
       dispatch(getSearchResultsSuccess(result.data.payload))
     } catch (error) {
       dispatch(getSearchResultsError())

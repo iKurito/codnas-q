@@ -19,6 +19,7 @@ const Filter = ({ setLoaded, all, setAll }) => {
   const [groupBy, setGroup] = useState(groups[0])
   const [prop1, setProp1] = useState(operators[0])
   const [query, setQuery] = useState({
+    clusterProperty: operators[0].name,
     clusterId: '',
     oligomericState: '',
     group: groupBy.value,
@@ -61,6 +62,7 @@ const Filter = ({ setLoaded, all, setAll }) => {
   useEffect(() => {
     if (all) {
       setQuery({
+        clusterProperty: operators[0].name,
         clusterId: '',
         oligomericState: '',
         group: groupBy.value,
