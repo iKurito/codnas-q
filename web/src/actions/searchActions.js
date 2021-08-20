@@ -75,6 +75,19 @@ export function getSearchResultsByOrganismAction(organism) {
   }
 }
 
+// Function that gets the search results by UniProt
+export function getSearchResultsByUniProtAction(uniprot) {
+  return async (dispatch) => {
+    dispatch(getSearchResults())
+    try {
+      const result = await clientAxios.get(`/search/clusters/uniprot/${uniprot}`)
+      dispatch(getSearchResultsSuccess(result.data.payload))
+    } catch (error) {
+      dispatch(getSearchResultsError())
+    }
+  }
+}
+
 // Function that gets the search results by all fields
 export function getSearchResultsByAllFieldsAction(value) {
   return async (dispatch) => {

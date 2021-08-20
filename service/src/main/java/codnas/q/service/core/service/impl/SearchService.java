@@ -83,6 +83,19 @@ public class SearchService implements ISearchService {
     }
 
     @Override
+    public List<ResultDTO> getAllClustersByUniProt(String uniprot) {
+        try {
+            List<ResultDTO> resultDTOS = new ArrayList<>();
+            List<Conformer> conformers = conformerDAO.getConformersByUniProt(uniprot);
+            List<String> clusters = new ArrayList<>();
+            conformers.forEach(conformer -> addToResultDTOS(conformer, clusters, resultDTOS, "UniProt", uniprot));
+            return resultDTOS;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
     public List<ResultDTO> getAllClustersByAllFieldsFromHome(String value) {
         try {
             List<ResultDTO> resultDTOS = new ArrayList<>();

@@ -5,6 +5,7 @@ import {
   getSearchResultsByNameAction,
   getSearchResultsByOrganismAction,
   getSearchResultsByAllFieldsAction,
+  getSearchResultsByUniProtAction,
 } from '../../../actions/searchActions'
 import { Snackbar } from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert'
@@ -39,6 +40,16 @@ const Search = () => {
         } else if (area.name === 'Organism') {
           const getClusters = () => dispatch(getSearchResultsByOrganismAction(query))
           getClusters()
+        } else if (area.name === 'UniProt') {
+          const regex = /[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}/
+          if (regex.test(query)) {
+            const getClusters = () => dispatch(getSearchResultsByUniProtAction(query))
+            getClusters()
+          } else {
+            setOpen(true)
+            setMsgError('Please, the values in the UniProt field must be valid identifiers')
+            return
+          }
         } else {
           const getClusters = () => dispatch(getSearchResultsByAllFieldsAction(query))
           getClusters()
