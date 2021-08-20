@@ -69,7 +69,9 @@ const Pairs = () => {
                     </button>
                   </div>
                 </div>
-              ) : pairs[0].cluster_id === id ? (
+              ) : `CQ${pairs[0].codnasq_id}` === id ||
+                `cq${pairs[0].codnasq_id}` === id ||
+                pairs[0].cluster_id === id ? (
                 <>
                   <h1 className="text-gray-700 text-3xl md:text-4xl font-bold text-center">
                     Cluster {id}

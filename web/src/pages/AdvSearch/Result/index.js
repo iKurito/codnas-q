@@ -55,7 +55,7 @@ const Result = ({ searchResults }) => {
               <hr />
               <div
                 className="grid grid-cols-1 xl:grid-cols-2 cursor-pointer select-none"
-                onClick={() => history.push(`/cluster/${item.cluster_id}`)}
+                onClick={() => history.push(`/cluster/${item.codnasq_id}`)}
               >
                 <div className="self-center space-y-2">
                   <h1 className="pt-2 text-sm sm:text-base">Group: {item.group}</h1>

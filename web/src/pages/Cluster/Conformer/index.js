@@ -47,7 +47,7 @@ const Conformer = () => {
         query = query.concat(rowData[i].pdb_id).concat('-')
       }
       query = query.concat(rowData[rowData.length - 1].pdb_id)
-      window.open(`/cluster/${information.codnasq_id}/pairs/${query}`)
+      window.open(`/cluster/${information.cluster_id}/pairs/${query}`)
     } else {
       handleClick()
     }
