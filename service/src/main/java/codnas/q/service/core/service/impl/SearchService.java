@@ -31,7 +31,7 @@ public class SearchService implements ISearchService {
             List<Cluster> clusters = clusterDAO.findAll();
             clusters.forEach(cluster -> {
                 List<Conformer> conformers = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
-                ResultDTO resultDTO = ResultParser.toResultDTO(cluster, conformers.size(), "", "");
+                ResultDTO resultDTO = ResultParser.toResultDTO(cluster, conformers.size(), "", "", "", "");
                 resultDTOS.add(resultDTO);
             });
             return resultDTOS;
@@ -47,7 +47,7 @@ public class SearchService implements ISearchService {
             List<Cluster> clusters = clusterDAO.getAllByGroup(group);
             clusters.forEach(cluster -> {
                 List<Conformer> conformers = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
-                ResultDTO resultDTO = ResultParser.toResultDTO(cluster, conformers.size(), "", "");
+                ResultDTO resultDTO = ResultParser.toResultDTO(cluster, conformers.size(), "", "", "", "");
                 resultDTOS.add(resultDTO);
             });
             return resultDTOS;
@@ -62,7 +62,8 @@ public class SearchService implements ISearchService {
             List<ResultDTO> resultDTOS = new ArrayList<>();
             List<Conformer> conformers = conformerDAO.getConformersByName(name);
             List<String> clusters = new ArrayList<>();
-            conformers.forEach(conformer -> addToResultDTOS(conformer, clusters, resultDTOS, "Name", "%".concat(name).concat("%")));
+            // conformers.forEach(conformer -> addToResultDTOS(conformer, clusters, resultDTOS, "Name", "%".concat(name).concat("%")));
+            conformers.forEach(conformer -> addToResultDTOS(conformer, clusters, resultDTOS, "Name", name));
             return resultDTOS;
         } catch (Exception e) {
             return null;
@@ -75,7 +76,8 @@ public class SearchService implements ISearchService {
             List<ResultDTO> resultDTOS = new ArrayList<>();
             List<Conformer> conformers = conformerDAO.getConformersByOrganism(organism);
             List<String> clusters = new ArrayList<>();
-            conformers.forEach(conformer -> addToResultDTOS(conformer, clusters, resultDTOS, "Organism", "%".concat(organism).concat("%")));
+            // conformers.forEach(conformer -> addToResultDTOS(conformer, clusters, resultDTOS, "Organism", "%".concat(organism).concat("%")));
+            conformers.forEach(conformer -> addToResultDTOS(conformer, clusters, resultDTOS, "Organism", organism));
             return resultDTOS;
         } catch (Exception e) {
             return null;
@@ -106,14 +108,17 @@ public class SearchService implements ISearchService {
             if (conformer != null) {
                 Cluster cluster = clusterDAO.getByCodnasqId(conformer.getCluster_id());
                 conformers = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
-                resultDTOS.add(ResultParser.toResultDTO(cluster, conformers.size(), "PDB ID", value));
+                // resultDTOS.add(ResultParser.toResultDTO(cluster, conformers.size(), "PDB ID", value));
+                resultDTOS.add(ResultParser.toResultDTO(cluster, conformers.size(), "PDB ID", value, "PDB ID", value));
             }
             // Name
             conformers = conformerDAO.getConformersByName(value);
-            conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS, "Name", "%".concat(value).concat("%")));
+            // conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS, "Name", "%".concat(value).concat("%")));
+            conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS, "Name", value));
             // Organism
             conformers = conformerDAO.getConformersByOrganism(value);
-            conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS, "Organism", "%".concat(value).concat("%")));
+            // conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS, "Organism", "%".concat(value).concat("%")));
+            conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS, "Organism", value));
             return resultDTOS;
         } catch (Exception e) {
             return null;
@@ -283,7 +288,8 @@ public class SearchService implements ISearchService {
                         if (!(clusters.contains(cluster.getCodnasq_id()))) {
                             clusters.add(cluster.getCodnasq_id());
                             List<Conformer> conformerList = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
-                            resultDTOS.add(ResultParser.toResultDTO(cluster, conformerList.size(), "PDB ID", cluster.getCodnasq_id()));
+                            resultDTOS.add(ResultParser.toResultDTO(cluster, conformerList.size(), "PDB ID", cluster.getCodnasq_id(),
+                                    "PDB ID", cluster.getCodnasq_id()));
                         }
                     }
                 } else {
@@ -311,7 +317,7 @@ public class SearchService implements ISearchService {
                 if (!(clusters.contains(cluster.getCodnasq_id()))) {
                     clusters.add(cluster.getCodnasq_id());
                     List<Conformer> conformersGroup = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
-                    ResultDTO resultDTO = ResultParser.toResultDTO(cluster, conformersGroup.size(), "", "");
+                    ResultDTO resultDTO = ResultParser.toResultDTO(cluster, conformersGroup.size(), "", "", "", "");
                     resultDTOS.add(resultDTO);
                 }
             });
@@ -389,22 +395,23 @@ public class SearchService implements ISearchService {
         return resultDTOS;
     }
 
-    private void addToResultDTOS(Conformer conformer, List<String> clusters, List<ResultDTO> resultDTOS, String name,
-                                 String value) {
+    private void addToResultDTOS(Conformer conformer, List<String> clusters, List<ResultDTO> resultDTOS, String nameSearch,
+                                 String valueSearch) {
         if (!(clusters.contains(conformer.getCluster_id()))) {
             clusters.add(conformer.getCluster_id());
             Cluster cluster = clusterDAO.getByCodnasqId(conformer.getCluster_id());
             List<Conformer> conformerList = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
-            resultDTOS.add(ResultParser.toResultDTO(cluster, conformerList.size(), name, value));
+            // resultDTOS.add(ResultParser.toResultDTO(cluster, conformerList.size(), name, value));
+            resultDTOS.add(ResultParser.toResultDTO(cluster, conformerList.size(), nameSearch, valueSearch, "PDB ID", conformer.getPdb_id()));
         }
     }
 
-    private void addToResultDTOSByCluster(Cluster cluster, List<String> clusters, List<ResultDTO> resultDTOS, String name,
-                                          String value) {
+    private void addToResultDTOSByCluster(Cluster cluster, List<String> clusters, List<ResultDTO> resultDTOS, String nameSearch,
+                                          String valueSearch) {
         if (!(clusters.contains(cluster.getCodnasq_id()))) {
             clusters.add(cluster.getCodnasq_id());
             List<Conformer> conformerList = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
-            resultDTOS.add(ResultParser.toResultDTO(cluster, conformerList.size(), name, value));
+            resultDTOS.add(ResultParser.toResultDTO(cluster, conformerList.size(), nameSearch, valueSearch, "PDB ID", cluster.getCodnasq_id()));
         }
     }
 }

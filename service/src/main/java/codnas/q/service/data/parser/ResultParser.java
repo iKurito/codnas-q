@@ -9,7 +9,8 @@ public class ResultParser {
 
     private static String url = "https://s3.us-east-1.amazonaws.com/codnas.inf.pucp.edu.pe/codnas-q/thumbnails_clusters/";
 
-    public static ResultDTO toResultDTO(Cluster cluster, Integer num, String name, String value) {
+    public static ResultDTO toResultDTO(Cluster cluster, Integer num, String nameSearch, String valueSearch,
+                                        String nameMatch, String valueMatch) {
         ResultDTO resultDTO = new ResultDTO();
         resultDTO.setCluster_id(cluster.getId_cluster());
         resultDTO.setCodnasq_id("CQ".concat(cluster.getCodnasq_id()));
@@ -19,7 +20,8 @@ public class ResultParser {
         resultDTO.setMax_rmsd_quaternary(cluster.getMax_rmsd_quaternary());
         resultDTO.setMax_rmsd_tertiary(cluster.getMax_rmsd_tertiary());
         resultDTO.setImage_url(url.concat(cluster.getCodnasq_id()).concat(".png"));
-        resultDTO.setMatch(new ResultDTO.Match(name, value));
+        resultDTO.setSearch(new ResultDTO.NameValue(nameSearch, valueSearch));
+        resultDTO.setMatch(new ResultDTO.NameValue(nameMatch, valueMatch));
         return resultDTO;
     }
 
