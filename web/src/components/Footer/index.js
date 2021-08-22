@@ -1,10 +1,12 @@
 import SbgLogo from '../../assets/img/sbg-logo.png'
 import UnqLogo from '../../assets/img/unq-logo.png'
+import Ialogo from '../../assets/img/ia.svg'
+import PucpLogo from '../../assets/img/pucp-logo.png'
 
 const Footer = () => {
   return (
     <div className="bottom-0 min-w-full absolute">
-      <div className="bg-gray-100 py-6">
+      <div className="bg-primary-dark py-6">
         <div className="px-4 mx-auto">
           <div className="max-w-full px-1 mx-auto lg:px-4">
             <div className="flex justify-between">
@@ -17,17 +19,18 @@ const Footer = () => {
                 </a>
               </div>
               <div className="space-x-2 sm:space-x-10">
-                <a href="http://ufq.unq.edu.ar/sbg" target="_blank" rel="noreferrer">
-                  <img className="image-footer inline-block" src={SbgLogo} alt="sbg-logo" />
+                <a href="http://ia.inf.pucp.edu.pe/" target="_blank" rel="noreferrer">
+                  <img className="image-footer inline-block" src={Ialogo} alt="sbg-logo" />
                 </a>
-                <a href="http://ufq.unq.edu.ar/sbg" target="_blank" rel="noreferrer">
-                  <img className="image-footer inline-block" src={SbgLogo} alt="sbg-logo" />
+                <a href="https://www.pucp.edu.pe/" target="_blank" rel="noreferrer">
+                  <img className="image-footer inline-block" src={PucpLogo} alt="sbg-logo" />
                 </a>
               </div>
             </div>
           </div>
         </div>
       </div>
+      {/*
       <footer className="bg-primary-dark py-6">
         <div className="px-4 mx-auto">
           <div className="max-w-full px-1 mx-auto lg:px-4">
@@ -51,6 +54,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
+      */}
     </div>
   )
 }

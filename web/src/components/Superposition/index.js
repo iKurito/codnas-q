@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import ReactLoading from 'react-loading'
 import Brightness1Icon from '@material-ui/icons/Brightness1'
 
-const Superposition = ({ query, target }) => {
+const Superposition = ({ query, target, bioQuery, bioTarget, codnasqId }) => {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -16,14 +16,10 @@ const Superposition = ({ query, target }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       const NGL = require('ngl')
-      const conformer1 = `rcsb://${query}.pdb.gz`
-      const conformer2 = `rcsb://${target}.pdb.gz`
+      const conformer1 = `https://s3.us-east-1.amazonaws.com/codnas.inf.pucp.edu.pe/codnas-q/clusters_aligned_max/${query}.pdb`
+      const conformer2 = `https://s3.us-east-1.amazonaws.com/codnas.inf.pucp.edu.pe/codnas-q/clusters_aligned_max/${target}.pdb`
       const stage = new NGL.Stage('viewport2', { backgroundColor: 'white' })
-      NGL.DatasourceRegistry.add(
-        'data',
-        new NGL.StaticDatasource('https://unpkg.com/ngl@0.10.4-1/')
-      )
-      Promise.all([
+      /* Promise.all([
         stage.loadFile(conformer1, { sele: ':A' }).then(function lFile(o) {
           o.addRepresentation('cartoon', { color: 'red' })
           return o
@@ -35,13 +31,25 @@ const Superposition = ({ query, target }) => {
       ]).then(function lFile(o) {
         o[0].superpose(o[1], false, '1-320:A')
         o[0].autoView(':A')
+      }) */
+      stage.loadFile(conformer1).then(function lFile(o) {
+        o.addRepresentation('cartoon', { color: 'red' })
+        o.addRepresentation('base')
+        o.autoView()
+        setLoading(true)
+      })
+      stage.loadFile(conformer2).then(function lFile(o) {
+        o.addRepresentation('cartoon', { color: 'green' })
+        o.addRepresentation('base')
+        o.autoView()
+        setLoading(true)
       })
     }, 1000)
     return () => clearTimeout(timer)
   }, [])
 
   const onWheel = () => {
-    const element = document.getElementById('viewport')
+    const element = document.getElementById('viewport2')
     function wheel(event) {
       event.preventDefault()
       return false
@@ -68,7 +76,7 @@ const Superposition = ({ query, target }) => {
                 />
                 <a
                   className="text-primary-original hover:text-primary-dark"
-                  href={`https://codnasq.herokuapp.com/pdb/${query}`}
+                  href={`https://s3.us-east-1.amazonaws.com/codnas.inf.pucp.edu.pe/codnas-q/clusters_aligned_max/${query}.pdb`}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -82,7 +90,7 @@ const Superposition = ({ query, target }) => {
                 />
                 <a
                   className="text-primary-original hover:text-primary-dark"
-                  href={`https://codnasq.herokuapp.com/pdb/${target}`}
+                  href={`https://s3.us-east-1.amazonaws.com/codnas.inf.pucp.edu.pe/codnas-q/clusters_aligned_max/${target}.pdb`}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -104,6 +112,9 @@ const Superposition = ({ query, target }) => {
 Superposition.propTypes = {
   query: PropTypes.string.isRequired,
   target: PropTypes.string.isRequired,
+  bioQuery: PropTypes.number.isRequired,
+  bioTarget: PropTypes.number.isRequired,
+  codnasqId: PropTypes.string.isRequired,
 }
 
 export default Superposition

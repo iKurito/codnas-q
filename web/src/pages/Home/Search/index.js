@@ -1,25 +1,35 @@
-import React, { Fragment, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import {
   getSearchResultsByNameAction,
   getSearchResultsByOrganismAction,
   getSearchResultsByAllFieldsAction,
+  getSearchResultsByUniProtAction,
 } from '../../../actions/searchActions'
+import { Snackbar } from '@material-ui/core'
+import MuiAlert from '@material-ui/lab/Alert'
 import ListBox from '../../../components/ListBox'
 import { areas } from './data'
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />
+}
 
 const Search = () => {
   const dispatch = useDispatch()
   const history = useHistory()
 
+  const [msgError, setMsgError] = useState('')
+  const [open, setOpen] = useState(false)
   const [area, setArea] = useState(areas[0])
   const [query, setQuery] = useState('')
 
   const onSubmit = (e) => {
     e.preventDefault()
     if (query.trim() === '') {
-      console.log('COLOCAR ERROR')
+      setOpen(true)
+      setMsgError('Please, you must fill in the field')
     } else {
       if (area.name === 'Cluster (by PDB)') {
         history.push(`/cluster/${query}`)
@@ -30,6 +40,16 @@ const Search = () => {
         } else if (area.name === 'Organism') {
           const getClusters = () => dispatch(getSearchResultsByOrganismAction(query))
           getClusters()
+        } else if (area.name === 'UniProt') {
+          const regex = /[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}/
+          if (regex.test(query)) {
+            const getClusters = () => dispatch(getSearchResultsByUniProtAction(query))
+            getClusters()
+          } else {
+            setOpen(true)
+            setMsgError('Please, the values in the UniProt field must be valid identifiers')
+            return
+          }
         } else {
           const getClusters = () => dispatch(getSearchResultsByAllFieldsAction(query))
           getClusters()
@@ -37,6 +57,11 @@ const Search = () => {
         history.push('/adv-search')
       }
     }
+  }
+
+  const handleClose = (_e, reason) => {
+    if (reason === 'clickaway') return
+    setOpen(false)
   }
 
   return (
@@ -64,6 +89,17 @@ const Search = () => {
             </button>
           </div>
         </div>
+        <Snackbar
+          open={open}
+          autoHideDuration={3000}
+          onClose={handleClose}
+          style={{ textAlign: 'center' }}
+          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        >
+          <Alert onClose={handleClose} severity="error">
+            {msgError}
+          </Alert>
+        </Snackbar>
       </form>
     </Fragment>
   )

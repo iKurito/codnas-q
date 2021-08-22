@@ -57,7 +57,7 @@ const Information = () => {
                   </td>
                   <td className="text-left pl-10 pr-2 md:px-10 ">
                     <p className="text-xs sm:text-sm leading-5 text-gray-600">
-                      {information.oligomeric_state}
+                      {information.oligomeric_state.split('_')[0]}
                     </p>
                   </td>
                 </tr>

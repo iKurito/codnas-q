@@ -20,6 +20,9 @@ public interface IConformerDAO extends JpaRepository<Conformer, Integer> {
     @Query(value = "SELECT * from conformer where organism like concat('%', :organism, '%');", nativeQuery = true)
     List<Conformer> getConformersByOrganism(@Param("organism") String organism);
 
+    @Query(value = "select * from conformer where uniprot_id like concat('%', :uniprot, '%')", nativeQuery = true)
+    List<Conformer> getConformersByUniProt(@Param("uniprot") String uniprot);
+
     @Query(value = "SELECT * from conformer where description like concat('%', :description, '%');", nativeQuery = true)
     List<Conformer> getConformersByDescription(@Param("description") String description);
 
@@ -31,4 +34,7 @@ public interface IConformerDAO extends JpaRepository<Conformer, Integer> {
 
     @Query(value = "select * from conformer where length >= :lengthFrom and length <= :lengthTo", nativeQuery = true)
     List<Conformer> getAllByLengthRange(@Param("lengthFrom") Integer lengthFrom, @Param("lengthTo") Integer lengthTo);
+
+    @Query(value = "select * from conformer where temperature >= :tempFrom and temperature <= :tempTo", nativeQuery = true)
+    List<Conformer> getAllByTemperatureRange(@Param("tempFrom") Integer tempFrom, @Param("tempTo") Integer tempTo);
 }

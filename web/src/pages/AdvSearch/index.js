@@ -15,12 +15,14 @@ const AdvSearch = () => {
   const loading = useSelector((state) => state.search.loading)
 
   const [load, setLoaded] = useState(false)
+  const [all, setAll] = useState(false)
 
   useEffect(() => {
     if (!loading) {
       if (searchResults.length === 0) {
         const getClusters = () => dispatch(getSearchResultsAction())
         getClusters()
+        setAll(true)
       }
     }
   }, [])
@@ -28,6 +30,7 @@ const AdvSearch = () => {
   const getAllClusters = () => {
     const getClusters = () => dispatch(getSearchResultsAction())
     getClusters()
+    setAll(true)
   }
 
   useEffect(() => {
@@ -44,7 +47,7 @@ const AdvSearch = () => {
             </h1>
             <div className="pt-5  md:space-y-0 lg:space-x-10 grid lg:grid-cols-4">
               <aside className="md:block space-y-4 md:col-span-1">
-                <Filter setLoaded={setLoaded} />
+                <Filter setLoaded={setLoaded} all={all} setAll={setAll} />
               </aside>
               <div className="pt-4 lg:pt-0 md:col-span-3">
                 <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-700">Results</h1>

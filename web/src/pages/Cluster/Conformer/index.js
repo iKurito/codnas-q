@@ -1,7 +1,7 @@
 import { Fragment, useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
 import MaterialTable from 'material-table'
 import MuiAlert from '@material-ui/lab/Alert'
+import HelpIcon from '@material-ui/icons/Help'
 import CompareArrowsIcon from '@material-ui/icons/CompareArrows'
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core'
 import { useSelector } from 'react-redux'
@@ -13,7 +13,6 @@ function Alert(props) {
 }
 
 const Conformer = () => {
-  const params = useParams()
   const [loadPdb, setLoadPdb] = useState(false)
   const [selectedRow, setSelectedRow] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -21,8 +20,7 @@ const Conformer = () => {
   const [open, setOpen] = useState(false)
 
   const conformers = useSelector((state) => state.cluster.conformers)
-
-  const { id } = params
+  const information = useSelector((state) => state.cluster.information)
 
   useEffect(() => {
     setLoadPdb(false)
@@ -49,7 +47,7 @@ const Conformer = () => {
         query = query.concat(rowData[i].pdb_id).concat('-')
       }
       query = query.concat(rowData[rowData.length - 1].pdb_id)
-      window.open(`/cluster/${id}/pairs/${query}`)
+      window.open(`/cluster/${information.cluster_id}/pairs/${query}`)
     } else {
       handleClick()
     }
@@ -73,7 +71,17 @@ const Conformer = () => {
     <Fragment>
       <div className="border border-gray-200 rounded-t-xl shadow-md hover:shadow-2xl">
         <div className="bg-gray-200 rounded-t-xl p-4">
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-700 text-justify">Conformer</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-700 text-justify">
+            Conformer
+            <div className="has-tooltip text-xs sm:text-sm inline text-justify">
+              <div className="tooltip rounded shadow-lg bg-primary-dark text-white sm:-mt-12 sm:ml-40 p-2">
+                <h1 className="text-sm sm:text-base">
+                  List of others conformers of the cluster/protein.
+                </h1>
+              </div>
+              <HelpIcon fontSize="small" className="text-gray-500 ml-1 mb-2" />
+            </div>
+          </h2>
         </div>
         {open && (
           <Alert onClose={handleClose} severity="error">

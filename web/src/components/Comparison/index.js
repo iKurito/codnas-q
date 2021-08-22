@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import PropTypes from 'prop-types'
+import HelpIcon from '@material-ui/icons/Help'
 import Superposition from '../Superposition'
 
 const headers = [
@@ -19,13 +20,21 @@ const headers = [
   { id: 14, value: 'Ligands' },
 ]
 
-const Comparison = ({ data, codnasqId, query, target }) => {
+const Comparison = ({ data, query, target, flag, imageUrl, bioQuery, bioTarget, codnasqId }) => {
   return (
     <Fragment>
       <div className="border border-gray-200 rounded-t-xl shadow-md hover:shadow-2xl">
         <div className="bg-gray-200 rounded-t-xl p-4">
           <h2 className="text-xl sm:text-2xl font-bold text-gray-700 text-justify">
             Maximum RMSD Quaternary pair Comparison
+            <div className="has-tooltip text-xs sm:text-sm inline text-justify">
+              <div className="tooltip rounded shadow-lg bg-primary-dark text-white sm:-mt-20 sm:ml-60 p-2">
+                <h1 className="text-sm sm:text-base">
+                  Comparison between the most different conformers for the cluster/protein.
+                </h1>
+              </div>
+              <HelpIcon fontSize="small" className="text-gray-500 ml-1 mb-1" />
+            </div>
           </h2>
         </div>
         <div className="overflow-x-auto overflow-y-auto">
@@ -118,40 +127,56 @@ const Comparison = ({ data, codnasqId, query, target }) => {
             </tbody>
           </table>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
-          <Superposition query={query} target={target} />
-          <div>
-            <div className="overflow-auto">
-              <div className="p-4 h-auto" style={{ width: '800px', textAlign: '-webkit-center' }}>
-                <img
-                  className="mx-auto"
-                  src={`http://ufq.unq.edu.ar/codnasq/assets/dendrograms/${codnasqId}_dendrogram_2020.png`}
-                  alt="dendogram"
-                />
+        {flag === 'true' && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
+            <Superposition
+              query={query}
+              target={target}
+              bioQuery={bioQuery}
+              bioTarget={bioTarget}
+              codnasqId={codnasqId}
+            />
+            <div>
+              <div className="overflow-auto">
+                <div className="p-4 h-auto" style={{ width: '800px', textAlign: '-webkit-center' }}>
+                  <img className="mx-auto" src={imageUrl} alt="dendogram" />
+                </div>
+              </div>
+              <div className="text-center pb-4">
+                <a
+                  className="text-primary-original hover:text-primary-dark cursor-pointer"
+                  href={imageUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span className="text-sm sm:text-base">View full size dendrogram </span>
+                </a>
               </div>
             </div>
-            <div className="text-center pb-4">
-              <a
-                className="text-primary-original hover:text-primary-dark"
-                href={`http://ufq.unq.edu.ar/codnasq/assets/dendrograms/${codnasqId}_dendrogram_2020.png`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span className="text-sm sm:text-base">View full size dendrogram </span>
-              </a>
-            </div>
           </div>
-        </div>
+        )}
       </div>
     </Fragment>
   )
 }
 
+Comparison.defaultProps = {
+  codnasqId: '',
+  flag: 'true',
+  imageUrl: '',
+  bioQuery: 0,
+  bioTarget: 0,
+}
+
 Comparison.propTypes = {
   data: PropTypes.any.isRequired,
-  codnasqId: PropTypes.string.isRequired,
   query: PropTypes.string.isRequired,
+  codnasqId: PropTypes.string,
   target: PropTypes.string.isRequired,
+  flag: PropTypes.string,
+  imageUrl: PropTypes.string,
+  bioQuery: PropTypes.number,
+  bioTarget: PropTypes.number,
 }
 
 export default Comparison

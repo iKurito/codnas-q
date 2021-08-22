@@ -15,4 +15,15 @@ public class ResultDTO {
     private Integer num_conf;
     private Double max_rmsd_quaternary;
     private Double max_rmsd_tertiary;
+    private String image_url;
+    private NameValue search;
+    private NameValue match;
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class NameValue {
+        private String name;
+        private String value;
+    }
 }

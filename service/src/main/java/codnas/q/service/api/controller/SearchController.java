@@ -66,6 +66,17 @@ public class SearchController {
                 body(restResponse);
     }
 
+    @GetMapping(value = "/search/clusters/uniprot/{uniprot}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getAllClustersByUniProt(@PathVariable String uniprot) {
+        RestResponse restResponse;
+        List<ResultDTO> resultDTOS = searchService.getAllClustersByUniProt(uniprot);
+        if (resultDTOS == null) restResponse = new RestResponse(HttpStatus.OK, SearchMessage.NO_SUCCESS_GET_RESULTS);
+        else restResponse = new RestResponse(HttpStatus.OK, SearchMessage.SUCCESS_GET_RESULTS, resultDTOS);
+        return ResponseEntity.
+                status(restResponse.getStatus()).
+                body(restResponse);
+    }
+
     @GetMapping(value = "/search/clusters/allFields/{value}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllClustersByAllFields(@PathVariable String value) {
         RestResponse restResponse;
