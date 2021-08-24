@@ -6,6 +6,18 @@ import {
   START_CLEANING_SEARCH_RESULTS,
   CLEAN_SEARCH_RESULTS_SUCCESS,
   CLEAN_SEARCH_RESULTS_ERROR,
+  START_GETTING_SEARCH_RESULTS_BY_NAME,
+  GET_SEARCH_RESULTS_BY_NAME_SUCCESS,
+  GET_SEARCH_RESULTS_BY_NAME_ERROR,
+  START_GETTING_SEARCH_RESULTS_BY_ORGANISM,
+  GET_SEARCH_RESULTS_BY_ORGANISM_SUCCESS,
+  GET_SEARCH_RESULTS_BY_ORGANISM_ERROR,
+  START_GETTING_SEARCH_RESULTS_ALL_FIELDS,
+  GET_SEARCH_RESULTS_BY_ALL_FIELDS_SUCCESS,
+  GET_SEARCH_RESULTS_BY_ALL_FIELDS_ERROR,
+  START_GETTING_SEARCH_RESULTS_BY_GROUP,
+  GET_SEARCH_RESULTS_BY_GROUP_SUCCESS,
+  GET_SEARCH_RESULTS_BY_GROUP_ERROR,
 } from '../types'
 
 // Function that gets the search results
@@ -39,41 +51,94 @@ const getSearchResultsError = () => ({
 // Function that gets the search results by group
 export function getSearchResultsByGroupAction(group) {
   return async (dispatch) => {
-    dispatch(getSearchResults())
+    let value = 0
+    if (group === 'a') {
+      value = 1
+    } else if (group === 'b') {
+      value = 2
+    } else if (group === 'c') {
+      value = 3
+    }
+    dispatch(getSearchResultsByGroup(value))
     try {
       const result = await clientAxios.get(`/search/clusters/group/${group}`)
-      dispatch(getSearchResultsSuccess(result.data.payload))
+      dispatch(getSearchResultsByGroupSuccess(result.data.payload))
     } catch (error) {
-      dispatch(getSearchResultsError())
+      dispatch(getSearchResultsByGroupError())
     }
   }
 }
+
+const getSearchResultsByGroup = (value) => ({
+  type: START_GETTING_SEARCH_RESULTS_BY_GROUP,
+  payload: value,
+})
+
+const getSearchResultsByGroupSuccess = (data) => ({
+  type: GET_SEARCH_RESULTS_BY_GROUP_SUCCESS,
+  payload: data,
+})
+
+const getSearchResultsByGroupError = () => ({
+  type: GET_SEARCH_RESULTS_BY_GROUP_ERROR,
+  payload: true,
+})
 
 // Function that gets the search results by name
 export function getSearchResultsByNameAction(name) {
   return async (dispatch) => {
-    dispatch(getSearchResults())
+    dispatch(getSearchResultsByName(name))
     try {
       const result = await clientAxios.get(`/search/clusters/name/${name}`)
-      dispatch(getSearchResultsSuccess(result.data.payload))
+      dispatch(getSearchResultsByNameSuccess(result.data.payload))
     } catch (error) {
-      dispatch(getSearchResultsError())
+      dispatch(getSearchResultsByNameError())
     }
   }
 }
 
+const getSearchResultsByName = (value) => ({
+  type: START_GETTING_SEARCH_RESULTS_BY_NAME,
+  payload: value,
+})
+
+const getSearchResultsByNameSuccess = (data) => ({
+  type: GET_SEARCH_RESULTS_BY_NAME_SUCCESS,
+  payload: data,
+})
+
+const getSearchResultsByNameError = () => ({
+  type: GET_SEARCH_RESULTS_BY_NAME_ERROR,
+  payload: true,
+})
+
 // Function that gets the search results by Organism
 export function getSearchResultsByOrganismAction(organism) {
   return async (dispatch) => {
-    dispatch(getSearchResults())
+    dispatch(getSearchResultsByOrganism(organism))
     try {
       const result = await clientAxios.get(`/search/clusters/organism/${organism}`)
-      dispatch(getSearchResultsSuccess(result.data.payload))
+      dispatch(getSearchResultsByOrganismSuccess(result.data.payload))
     } catch (error) {
-      dispatch(getSearchResultsError())
+      dispatch(getSearchResultsByOrganismError())
     }
   }
 }
+
+const getSearchResultsByOrganism = (value) => ({
+  type: START_GETTING_SEARCH_RESULTS_BY_ORGANISM,
+  payload: value,
+})
+
+const getSearchResultsByOrganismSuccess = (data) => ({
+  type: GET_SEARCH_RESULTS_BY_ORGANISM_SUCCESS,
+  payload: data,
+})
+
+const getSearchResultsByOrganismError = () => ({
+  type: GET_SEARCH_RESULTS_BY_ORGANISM_ERROR,
+  payload: true,
+})
 
 // Function that gets the search results by UniProt
 export function getSearchResultsByUniProtAction(uniprot) {
@@ -91,17 +156,32 @@ export function getSearchResultsByUniProtAction(uniprot) {
 // Function that gets the search results by all fields
 export function getSearchResultsByAllFieldsAction(value) {
   return async (dispatch) => {
-    dispatch(getSearchResults())
+    dispatch(getSearchResultsByAllFields(value))
     try {
       const result = await clientAxios.get(`/search/clusters/allFields/${value}`)
-      dispatch(getSearchResultsSuccess(result.data.payload))
+      dispatch(getSearchResultsByAllFieldsSuccess(result.data.payload))
     } catch (error) {
-      dispatch(getSearchResultsError())
+      dispatch(getSearchResultsByAllFieldsError())
     }
   }
 }
 
-// Function that gets the search results by all fields
+const getSearchResultsByAllFields = (value) => ({
+  type: START_GETTING_SEARCH_RESULTS_ALL_FIELDS,
+  payload: value,
+})
+
+const getSearchResultsByAllFieldsSuccess = (data) => ({
+  type: GET_SEARCH_RESULTS_BY_ALL_FIELDS_SUCCESS,
+  payload: data,
+})
+
+const getSearchResultsByAllFieldsError = () => ({
+  type: GET_SEARCH_RESULTS_BY_ALL_FIELDS_ERROR,
+  payload: true,
+})
+
+// Function that gets the search results by all fields from Adv Search
 export function getSearchResultsFromAdvSearchAction(data) {
   return async (dispatch) => {
     dispatch(getSearchResults())
