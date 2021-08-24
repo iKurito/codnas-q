@@ -128,17 +128,22 @@ const Comparison = ({ data, query, target, flag, imageUrl, bioQuery, bioTarget, 
           </table>
         </div>
         {flag === 'true' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 items-center">
-            <Superposition
-              query={query}
-              target={target}
-              bioQuery={bioQuery}
-              bioTarget={bioTarget}
-              codnasqId={codnasqId}
-            />
-            <div>
+          <div className="grid grid-cols-1 xl:grid-cols-3 items-center">
+            <div className="col-span-1 xl:col-span-1">
+              <Superposition
+                query={query}
+                target={target}
+                bioQuery={bioQuery}
+                bioTarget={bioTarget}
+                codnasqId={codnasqId}
+              />
+            </div>
+            <div className="col-span-1 xl:col-span-2" style={{ textAlign: '-webkit-center' }}>
               <div className="overflow-auto">
-                <div className="p-4 h-auto" style={{ width: '800px', textAlign: '-webkit-center' }}>
+                <div
+                  className="p-4 h-auto"
+                  style={{ width: '1000px', textAlign: '-webkit-center' }}
+                >
                   <img className="mx-auto" src={imageUrl} alt="dendogram" />
                 </div>
               </div>
