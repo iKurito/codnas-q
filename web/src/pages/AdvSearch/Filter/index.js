@@ -4,7 +4,7 @@ import { Snackbar } from '@material-ui/core'
 import MuiAlert from '@material-ui/lab/Alert'
 import Cluster from '../Cluster'
 import Conformer from '../Conformer'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { getSearchResultsFromAdvSearchAction } from '../../../actions/searchActions'
 import { groups, operators } from '../Cluster/data'
 
@@ -14,13 +14,19 @@ function Alert(props) {
 
 const Filter = ({ setLoaded, all, setAll }) => {
   const dispatch = useDispatch()
+
+  const nameField = useSelector((state) => state.search.nameField)
+  const organismField = useSelector((state) => state.search.organismField)
+  const clusterField = useSelector((state) => state.search.clusterField)
+  const groupField = useSelector((state) => state.search.groupField)
+
   const [open, setOpen] = useState(false)
   const [msgError, setMsgError] = useState('')
-  const [groupBy, setGroup] = useState(groups[0])
+  const [groupBy, setGroup] = useState(groups[groupField])
   const [prop1, setProp1] = useState(operators[0])
   const [query, setQuery] = useState({
     clusterProperty: operators[0].name,
-    clusterId: '',
+    clusterId: clusterField,
     oligomericState: '',
     group: groupBy.value,
     quatFrom: '',
@@ -33,8 +39,8 @@ const Filter = ({ setLoaded, all, setAll }) => {
     resTo: '',
     lengthFrom: '',
     lengthTo: '',
-    name: '',
-    organism: '',
+    name: nameField,
+    organism: organismField,
     tempFrom: '',
     tempTo: '',
   })
