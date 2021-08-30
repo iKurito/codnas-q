@@ -5,7 +5,6 @@ import GParisi from '../../../../assets/img/gparisi.png'
 import AMonzon from '../../../../assets/img/amonzon.jpg'
 import NPalopoli from '../../../../assets/img/npalopoli.png'
 import NEscobedo from '../../../../assets/img/nescobedo.png'
-import GCaruso from '../../../../assets/img/gcaruso.jpeg'
 
 const Unq = () => {
   return (
@@ -27,20 +26,13 @@ const Unq = () => {
         </div>
         <div className="space-y-2">
           <Profile
-            srcImg={GParisi}
-            name="Gustavo Daniel Parisi"
-            email="gustavo@unq.edu.ar"
-            orcid="https://orcid.org/0000-0001-7444-1624"
-            researcher="Associated Professor, UNQ & Principal Researcher, CONICET (Argentina)"
-            alt="GParisi"
-          />
-          <Profile
-            srcImg={AMonzon}
-            name="Alexander Monzon"
-            email="monzon.alexander@gmail.com"
-            orcid="https://orcid.org/0000-0003-0362-8218"
-            researcher="PhD, Postdoctoral Researcher (University of Padova)"
-            alt="SFornasari"
+            srcImg={NEscobedo}
+            name="Nahuel Escobedo"
+            email="nahuelescobedo@gmail.com"
+            orcid="https://orcid.org/0000-0003-1123-9853"
+            gitlab="https://gitlab.com/Nahuele"
+            researcher="PhD Student, UNQ-CONICET (Argentina)"
+            alt="NEscobedo"
           />
           <Profile
             srcImg={NPalopoli}
@@ -52,22 +44,20 @@ const Unq = () => {
             alt="NPalopoli"
           />
           <Profile
-            srcImg={NEscobedo}
-            name="Nahuel Escobedo"
-            email="nahuelescobedo@gmail.com"
-            orcid="https://orcid.org/0000-0003-1123-9853"
-            gitlab="https://gitlab.com/Nahuele"
-            researcher="PhD Student, UNQ-CONICET (Argentina)"
-            alt="NEscobedo"
+            srcImg={AMonzon}
+            name="Alexander Monzon"
+            email="monzon.alexander@gmail.com"
+            orcid="https://orcid.org/0000-0003-0362-8218"
+            researcher="PhD, Postdoctoral Researcher (University of Padova)"
+            alt="SFornasari"
           />
           <Profile
-            srcImg={GCaruso}
-            name="Gastón Caruso"
-            email="gstn.caruso@gmail.com"
-            orcid="https://orcid.org/0000-0003-1123-9853"
-            github="https://github.com/gstn-caruso/"
-            researcher="Software Developer"
-            alt="GCaruso"
+            srcImg={GParisi}
+            name="Gustavo Daniel Parisi"
+            email="gustavo@unq.edu.ar"
+            orcid="https://orcid.org/0000-0001-7444-1624"
+            researcher="Associated Professor, UNQ & Principal Researcher, CONICET (Argentina)"
+            alt="GParisi"
           />
         </div>
         <Map
