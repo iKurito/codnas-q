@@ -25,12 +25,13 @@ const Pucp = () => {
         </div>
         <div className="space-y-2">
           <Profile
-            srcImg={LHirsh}
-            name="Layla Hirsh"
-            email="lhirsh@pucp.edu.pe"
-            orcid="https://orcid.org/0000-0002-8215-6716"
-            researcher="Principal Researcher & AI-PUCP Leader, PUCP (Perú)"
-            alt="LHirsh"
+            srcImg={RTunque}
+            name="Ronaldo Romario Tunque Cahui"
+            email="ronaldo.tunque@pucp.edu.pe"
+            orcid="https://orcid.org/0000-0002-1010-1222"
+            github="https://github.com/SfrRonaldo"
+            researcher="Student, PUCP (Perú)"
+            alt="RTunque"
           />
           <Profile
             srcImg={EGarcia}
@@ -42,13 +43,12 @@ const Pucp = () => {
             alt="EGarcia"
           />
           <Profile
-            srcImg={RTunque}
-            name="Ronaldo Romario Tunque Cahui"
-            email="ronaldo.tunque@pucp.edu.pe"
-            orcid="https://orcid.org/0000-0002-1010-1222"
-            github="https://github.com/SfrRonaldo"
-            researcher="Student, PUCP (Perú)"
-            alt="RTunque"
+            srcImg={LHirsh}
+            name="Layla Hirsh"
+            email="lhirsh@pucp.edu.pe"
+            orcid="https://orcid.org/0000-0002-8215-6716"
+            researcher="Principal Researcher & AI-PUCP Leader, PUCP (Perú)"
+            alt="LHirsh"
           />
         </div>
         <Map
