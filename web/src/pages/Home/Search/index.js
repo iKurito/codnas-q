@@ -35,15 +35,15 @@ const Search = () => {
         history.push(`/cluster/${query}`)
       } else {
         if (area.name === 'Name') {
-          const getClusters = () => dispatch(getSearchResultsByNameAction(query))
+          const getClusters = () => dispatch(getSearchResultsByNameAction(query.trim()))
           getClusters()
         } else if (area.name === 'Organism') {
-          const getClusters = () => dispatch(getSearchResultsByOrganismAction(query))
+          const getClusters = () => dispatch(getSearchResultsByOrganismAction(query.trim()))
           getClusters()
         } else if (area.name === 'UniProt') {
           const regex = /[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}/
           if (regex.test(query)) {
-            const getClusters = () => dispatch(getSearchResultsByUniProtAction(query))
+            const getClusters = () => dispatch(getSearchResultsByUniProtAction(query.trim()))
             getClusters()
           } else {
             setOpen(true)
@@ -51,7 +51,7 @@ const Search = () => {
             return
           }
         } else {
-          const getClusters = () => dispatch(getSearchResultsByAllFieldsAction(query))
+          const getClusters = () => dispatch(getSearchResultsByAllFieldsAction(query.trim()))
           getClusters()
         }
         history.push('/adv-search')
