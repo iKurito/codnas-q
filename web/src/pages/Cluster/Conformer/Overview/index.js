@@ -198,7 +198,11 @@ const Overview = ({ idx }) => {
                     </td>
                     <td className="text-left pl-10 pr-2 md:px-10 ">
                       <p className="text-xs sm:text-sm leading-5 text-gray-600">
-                        {conformer.information.temp} K
+                        {`${
+                          conformer.information.temp === 'no/data'
+                            ? conformer.information.temp
+                            : 'no/data'
+                        } `}
                       </p>
                     </td>
                   </tr>

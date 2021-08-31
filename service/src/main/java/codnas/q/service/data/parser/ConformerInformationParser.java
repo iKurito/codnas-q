@@ -16,11 +16,19 @@ public class ConformerInformationParser {
         conformerInformationDTO.setBiological_assembly(conformer.getBiological_assembly());
         conformerInformationDTO.setLigands(conformer.getLigands());
         conformerInformationDTO.setResolution(conformer.getResolution());
-        conformerInformationDTO.setLength(conformer.getLength());
+        if (conformer.getLength().equals("")) {
+            conformerInformationDTO.setLength("no/data");
+        } else {
+            conformerInformationDTO.setLength(conformer.getLength());
+        }
         conformerInformationDTO.setName(conformer.getName());
         conformerInformationDTO.setOrganism(conformer.getOrganism());
         conformerInformationDTO.setPH(conformer.getPh());
-        conformerInformationDTO.setTemp(conformer.getTemperature());
+        if (conformer.getTemperature().equals("")) {
+            conformerInformationDTO.setTemp("no/data");
+        } else {
+            conformerInformationDTO.setTemp(conformer.getTemperature());
+        }
         return conformerInformationDTO;
     }
 }

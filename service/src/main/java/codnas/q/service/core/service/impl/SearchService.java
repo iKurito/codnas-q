@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 @Service
 public class SearchService implements ISearchService {
@@ -145,6 +146,7 @@ public class SearchService implements ISearchService {
 
     public List<ResultDTO> getAllClustersFromAdvSearchWithAnd(List<ResultDTO> resultDTOS, List<String> clusters, QueryDTO queryDTO) {
         Integer i = 0;
+        List<String> clustersTemp = new ArrayList<>();
         // Cluster ID
         if (!queryDTO.getClusterId().equals("")) {
             i = i + 1;
@@ -166,6 +168,9 @@ public class SearchService implements ISearchService {
                 }
             });
         }
+        Set<String> hashSet = new HashSet<String>(clusters);
+        clusters.clear();
+        clustersTemp.addAll(hashSet);
         // Oligomeric State
         if (!queryDTO.getOligomericState().equals("")) {
             i = i + 1;
@@ -176,24 +181,36 @@ public class SearchService implements ISearchService {
                 clusterList.forEach(cluster -> clusters.add(cluster.getCodnasq_id()));
             });
         }
+        hashSet = new HashSet<String>(clusters);
+        clusters.clear();
+        clustersTemp.addAll(hashSet);
         // Group
         if (!queryDTO.getGroup().equals("")) {
             i = i + 1;
             List<Cluster> clustersGroup = clusterDAO.getAllByGroup(queryDTO.getGroup());
             clustersGroup.forEach(cluster -> clusters.add(cluster.getCodnasq_id()));
         }
+        hashSet = new HashSet<String>(clusters);
+        clusters.clear();
+        clustersTemp.addAll(hashSet);
         // QuatFrom && QuatTo
         if (!queryDTO.getQuatFrom().equals("") && !queryDTO.getQuatTo().equals("")) {
             i = i + 1;
             List<Cluster> clusterList = clusterDAO.getAllByQuatRmsdRange(Double.parseDouble(queryDTO.getQuatFrom()), Double.parseDouble(queryDTO.getQuatTo()));
             clusterList.forEach(cluster -> clusters.add(cluster.getCodnasq_id()));
         }
+        hashSet = new HashSet<String>(clusters);
+        clusters.clear();
+        clustersTemp.addAll(hashSet);
         // TertFrom && TertTo
         if (!queryDTO.getTertFrom().equals("") && !queryDTO.getTertTo().equals("")) {
             i = i + 1;
             List<Cluster> clusterList = clusterDAO.getAllByTertRmsdRange(Double.parseDouble(queryDTO.getTertFrom()), Double.parseDouble(queryDTO.getTertTo()));
             clusterList.forEach(cluster -> clusters.add(cluster.getCodnasq_id()));
         }
+        hashSet = new HashSet<String>(clusters);
+        clusters.clear();
+        clustersTemp.addAll(hashSet);
         // Description
         if (!queryDTO.getDescription().equals("")) {
             i = i + 1;
@@ -204,6 +221,9 @@ public class SearchService implements ISearchService {
                 conformers.forEach(conf -> clusters.add(conf.getCluster_id()));
             });
         }
+        hashSet = new HashSet<String>(clusters);
+        clusters.clear();
+        clustersTemp.addAll(hashSet);
         // Biological Assembly
         if (!queryDTO.getBioAssembly().equals("")) {
             i = i + 1;
@@ -218,19 +238,32 @@ public class SearchService implements ISearchService {
                 }
             });
         }
+        hashSet = new HashSet<String>(clusters);
+        clusters.clear();
+        clustersTemp.addAll(hashSet);
         // Resolution (From && To)
         if (!queryDTO.getResFrom().equals("") && !queryDTO.getResTo().equals("")) {
             i = i + 1;
             List<Conformer> conformers = conformerDAO.getAllByResolutionRange(Double.parseDouble(queryDTO.getResFrom()), Double.parseDouble(queryDTO.getResTo()));
             conformers.forEach(conf -> clusters.add(conf.getCluster_id()));
         }
+        hashSet = new HashSet<String>(clusters);
+        clusters.clear();
+        clustersTemp.addAll(hashSet);
         // Length (From && To)
         if (!queryDTO.getLengthFrom().equals("") && !queryDTO.getLengthTo().equals("")) {
             i = i + 1;
             List<Conformer> conformers =
                     conformerDAO.getAllByLengthRange(Integer.parseInt(queryDTO.getLengthFrom()), Integer.parseInt(queryDTO.getLengthTo()));
-            conformers.forEach(conf -> clusters.add(conf.getCluster_id()));
+            conformers.forEach(conf -> {
+                if (!conf.getLength().equals("")) {
+                    clusters.add(conf.getCluster_id());
+                }
+            });
         }
+        hashSet = new HashSet<String>(clusters);
+        clusters.clear();
+        clustersTemp.addAll(hashSet);
         // Name
         if (!queryDTO.getName().equals("")) {
             i = i + 1;
@@ -241,6 +274,9 @@ public class SearchService implements ISearchService {
                 conformers.forEach(conf -> clusters.add(conf.getCluster_id()));
             });
         }
+        hashSet = new HashSet<String>(clusters);
+        clusters.clear();
+        clustersTemp.addAll(hashSet);
         // Organism
         if (!queryDTO.getOrganism().equals("")) {
             i = i + 1;
@@ -251,17 +287,27 @@ public class SearchService implements ISearchService {
                 conformers.forEach(conf -> clusters.add(conf.getCluster_id()));
             });
         }
+        hashSet = new HashSet<String>(clusters);
+        clusters.clear();
+        clustersTemp.addAll(hashSet);
         // Temperature (From && To)
         if (!queryDTO.getTempFrom().equals("") && !queryDTO.getTempTo().equals("")) {
             i = i + 1;
             List<Conformer> conformers =
                     conformerDAO.getAllByTemperatureRange(Integer.parseInt(queryDTO.getTempFrom()), Integer.parseInt(queryDTO.getTempTo()));
-            conformers.forEach(conf -> clusters.add(conf.getCluster_id()));
+            conformers.forEach(conf -> {
+                if (!conf.getTemperature().equals("")) {
+                    clusters.add(conf.getCluster_id());
+                }
+            });
         }
+        hashSet = new HashSet<String>(clusters);
+        clusters.clear();
+        clustersTemp.addAll(hashSet);
         List<String> strings = new ArrayList<>();
         Integer finalI = i;
-        clusters.forEach(s -> {
-            if (Collections.frequency(clusters, s) == finalI) {
+        clustersTemp.forEach(s -> {
+            if (Collections.frequency(clustersTemp, s) == finalI) {
                 if (!strings.contains(s)) {
                     strings.add(s);
                 }
@@ -369,7 +415,11 @@ public class SearchService implements ISearchService {
         if (!queryDTO.getLengthFrom().equals("") && !queryDTO.getLengthTo().equals("")) {
             List<Conformer> conformers =
                     conformerDAO.getAllByLengthRange(Integer.parseInt(queryDTO.getLengthFrom()), Integer.parseInt(queryDTO.getLengthTo()));
-            conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS, "Length", conf.getLength()));
+            conformers.forEach(conf -> {
+                if (!conf.getLength().equals("")) {
+                    addToResultDTOS(conf, clusters, resultDTOS, "Length", conf.getLength());
+                }
+            });
         }
         // Name
         if (!queryDTO.getName().equals("")) {
@@ -393,7 +443,11 @@ public class SearchService implements ISearchService {
         if (!queryDTO.getTempFrom().equals("") && !queryDTO.getTempTo().equals("")) {
             List<Conformer> conformers =
                     conformerDAO.getAllByTemperatureRange(Integer.parseInt(queryDTO.getTempFrom()), Integer.parseInt(queryDTO.getTempTo()));
-            conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS, "Temperature", conf.getTemperature().concat(" K")));
+            conformers.forEach(conf -> {
+                if (!conf.getTemperature().equals("")) {
+                    addToResultDTOS(conf, clusters, resultDTOS, "Temperature", conf.getTemperature().concat(" K"));
+                }
+            });
         }
         return resultDTOS;
     }
