@@ -26,7 +26,9 @@ const Profile = ({ srcImg, name, email, orcid, github, gitlab, researcher, alt }
             <li className="text-sm sm:text-base text-left">
               <img src={Orcid} className="inline" alt="orcid" /> :{' '}
               <a href={orcid} target="_blank" rel="noreferrer">
-                <span className="text-primary-light hover:text-primary-dark">{orcid}</span>
+                <span className="text-primary-light hover:text-primary-dark">
+                  ORCID: {orcid.split('/')[3]}
+                </span>
               </a>
             </li>
             {github !== '' && (
@@ -39,7 +41,9 @@ const Profile = ({ srcImg, name, email, orcid, github, gitlab, researcher, alt }
                 />{' '}
                 :{' '}
                 <a href={github} target="_blank" rel="noreferrer">
-                  <span className="text-primary-light hover:text-primary-dark">{github}</span>
+                  <span className="text-primary-light hover:text-primary-dark">
+                    {github.split('/')[3]}
+                  </span>
                 </a>
               </li>
             )}
@@ -53,7 +57,9 @@ const Profile = ({ srcImg, name, email, orcid, github, gitlab, researcher, alt }
                 />{' '}
                 :{' '}
                 <a href={gitlab} target="_blank" rel="noreferrer">
-                  <span className="text-primary-light hover:text-primary-dark">{gitlab}</span>
+                  <span className="text-primary-light hover:text-primary-dark">
+                    {gitlab.split('/')[3]}
+                  </span>
                 </a>
               </li>
             )}
