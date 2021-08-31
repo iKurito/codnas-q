@@ -122,7 +122,7 @@ public class SearchService implements ISearchService {
             conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS, "Organism", value));
             // Uniprot
             conformers = conformerDAO.getConformersByUniProt(value);
-            conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS, "Uniport", value));
+            conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS, "Uniprot", value));
             return resultDTOS;
         } catch (Exception e) {
             return null;
