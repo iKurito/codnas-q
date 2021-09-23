@@ -2,6 +2,12 @@ import React, { Fragment } from 'react'
 import Data from './Data'
 
 const Download = () => {
+  const downloadData = () => {
+    window.open(
+      'https://s3.us-east-1.amazonaws.com/codnas.inf.pucp.edu.pe/codnas-q/downloads/maxRMSD-Q_CoDNaS-Q.csv'
+    )
+  }
+
   return (
     <Fragment>
       <div className="pt-6 pb-56">
@@ -12,7 +18,10 @@ const Download = () => {
               Download a custom semicolon-separated file with the main information about protein
               clusters in CoDNaS-Q.
             </p>
-            <button className="px-4 py-2 bg-primary-dark rounded hover:bg-opacity-90 text-white border-1">
+            <button
+              className="px-4 py-2 bg-primary-dark rounded hover:bg-opacity-90 text-white border-1"
+              onClick={downloadData}
+            >
               Click here
             </button>
             <Data />
