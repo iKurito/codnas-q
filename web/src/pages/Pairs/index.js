@@ -146,6 +146,7 @@ const Pairs = () => {
                             data={pairs[idx].pairQuatDTOS}
                             query={pairs[idx].query}
                             target={pairs[idx].target}
+                            title="RMSD Quaternary Comparison of selected Pair of Conformers"
                             flag="false"
                           />
                         ) : (

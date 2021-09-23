@@ -72,7 +72,7 @@ const Conformer = () => {
       <div className="border border-gray-200 rounded-t-xl shadow-md hover:shadow-2xl">
         <div className="bg-gray-200 rounded-t-xl p-4">
           <h2 className="text-xl sm:text-2xl font-bold text-gray-700 text-justify">
-            Conformer
+            Conformers
             <div className="has-tooltip text-xs sm:text-sm inline text-justify">
               <div className="tooltip rounded shadow-lg bg-primary-dark text-white sm:-mt-12 sm:ml-40 p-2">
                 <h1 className="text-sm sm:text-base">

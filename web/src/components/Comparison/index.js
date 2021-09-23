@@ -20,13 +20,24 @@ const headers = [
   { id: 14, value: 'Ligands' },
 ]
 
-const Comparison = ({ data, query, target, flag, imageUrl, bioQuery, bioTarget, codnasqId }) => {
+const Comparison = ({
+  data,
+  query,
+  target,
+  flag,
+  imageUrl,
+  bioQuery,
+  bioTarget,
+  codnasqId,
+  title,
+}) => {
   return (
     <Fragment>
       <div className="border border-gray-200 rounded-t-xl shadow-md hover:shadow-2xl">
         <div className="bg-gray-200 rounded-t-xl p-4">
           <h2 className="text-xl sm:text-2xl font-bold text-gray-700 text-justify">
-            Maximum RMSD Quaternary pair Comparison
+            {title}
+
             <div className="has-tooltip text-xs sm:text-sm inline text-justify">
               <div className="tooltip rounded shadow-lg bg-primary-dark text-white sm:-mt-20 sm:ml-60 p-2">
                 <h1 className="text-sm sm:text-base">
@@ -182,6 +193,7 @@ Comparison.propTypes = {
   imageUrl: PropTypes.string,
   bioQuery: PropTypes.number,
   bioTarget: PropTypes.number,
+  title: PropTypes.string,
 }
 
 export default Comparison
