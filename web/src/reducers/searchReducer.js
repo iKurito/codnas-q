@@ -8,6 +8,9 @@ import {
   START_GETTING_SEARCH_RESULTS_BY_NAME,
   GET_SEARCH_RESULTS_BY_NAME_SUCCESS,
   GET_SEARCH_RESULTS_BY_NAME_ERROR,
+  START_GETTING_SEARCH_RESULTS_BY_DESCRIPTION,
+  GET_SEARCH_RESULTS_BY_DESCRIPTION_SUCCESS,
+  GET_SEARCH_RESULTS_BY_DESCRIPTION_ERROR,
   START_GETTING_SEARCH_RESULTS_BY_ORGANISM,
   GET_SEARCH_RESULTS_BY_ORGANISM_SUCCESS,
   GET_SEARCH_RESULTS_BY_ORGANISM_ERROR,
@@ -26,6 +29,7 @@ const initialState = {
   loading: false,
   clusterField: '',
   nameField: '',
+  descriptionField: '',
   organismField: '',
   uniprotField: '',
   groupField: 0,
@@ -41,6 +45,7 @@ export default function (state = initialState, action) {
       }
     case GET_SEARCH_RESULTS_SUCCESS:
     case GET_SEARCH_RESULTS_BY_NAME_SUCCESS:
+    case GET_SEARCH_RESULTS_BY_DESCRIPTION_SUCCESS:
     case GET_SEARCH_RESULTS_BY_ORGANISM_SUCCESS:
     case GET_SEARCH_RESULTS_BY_ALL_FIELDS_SUCCESS:
     case GET_SEARCH_RESULTS_BY_GROUP_SUCCESS:
@@ -53,6 +58,7 @@ export default function (state = initialState, action) {
     case GET_SEARCH_RESULTS_ERROR:
     case CLEAN_SEARCH_RESULTS_ERROR:
     case GET_SEARCH_RESULTS_BY_NAME_ERROR:
+    case GET_SEARCH_RESULTS_BY_DESCRIPTION_ERROR:
     case GET_SEARCH_RESULTS_BY_ORGANISM_ERROR:
     case GET_SEARCH_RESULTS_BY_ALL_FIELDS_ERROR:
     case GET_SEARCH_RESULTS_BY_GROUP_ERROR:
@@ -68,6 +74,7 @@ export default function (state = initialState, action) {
         error: null,
         loading: false,
         nameField: '',
+        descriptionField: '',
         organismField: '',
         uniprotField: '',
         groupField: 0,
@@ -78,6 +85,18 @@ export default function (state = initialState, action) {
         loading: true,
         clusterField: '',
         nameField: action.payload,
+        descriptionField: '',
+        organismField: '',
+        uniprotField: '',
+        groupField: 0,
+      }
+    case START_GETTING_SEARCH_RESULTS_BY_DESCRIPTION:
+      return {
+        ...state,
+        loading: true,
+        clusterField: '',
+        nameField: '',
+        descriptionField: action.payload,
         organismField: '',
         uniprotField: '',
         groupField: 0,
@@ -88,6 +107,7 @@ export default function (state = initialState, action) {
         loading: true,
         clusterField: '',
         nameField: '',
+        descriptionField: '',
         organismField: action.payload,
         uniprotField: '',
         groupField: 0,
@@ -98,6 +118,7 @@ export default function (state = initialState, action) {
         loading: true,
         clusterField: '',
         nameField: '',
+        descriptionField: '',
         organismField: '',
         uniprotField: '',
         groupField: action.payload,
@@ -108,6 +129,7 @@ export default function (state = initialState, action) {
         loading: true,
         clusterField: action.payload,
         nameField: action.payload,
+        descriptionField: action.payload,
         organismField: action.payload,
         uniprotField: action.payload,
         groupField: 0,

@@ -9,6 +9,9 @@ import {
   START_GETTING_SEARCH_RESULTS_BY_NAME,
   GET_SEARCH_RESULTS_BY_NAME_SUCCESS,
   GET_SEARCH_RESULTS_BY_NAME_ERROR,
+  START_GETTING_SEARCH_RESULTS_BY_DESCRIPTION,
+  GET_SEARCH_RESULTS_BY_DESCRIPTION_SUCCESS,
+  GET_SEARCH_RESULTS_BY_DESCRIPTION_ERROR,
   START_GETTING_SEARCH_RESULTS_BY_ORGANISM,
   GET_SEARCH_RESULTS_BY_ORGANISM_SUCCESS,
   GET_SEARCH_RESULTS_BY_ORGANISM_ERROR,
@@ -109,6 +112,34 @@ const getSearchResultsByNameSuccess = (data) => ({
 
 const getSearchResultsByNameError = () => ({
   type: GET_SEARCH_RESULTS_BY_NAME_ERROR,
+  payload: true,
+})
+
+// Function that gets the search results by description
+export function getSearchResultsByDescriptionAction(description) {
+  return async (dispatch) => {
+    dispatch(getSearchResultsByDescription(description))
+    try {
+      const result = await clientAxios.get(`/search/clusters/description/${description}`)
+      dispatch(getSearchResultsByDescriptionSuccess(result.data.payload))
+    } catch (error) {
+      dispatch(getSearchResultsByDescriptionError())
+    }
+  }
+}
+
+const getSearchResultsByDescription = (value) => ({
+  type: START_GETTING_SEARCH_RESULTS_BY_DESCRIPTION,
+  payload: value,
+})
+
+const getSearchResultsByDescriptionSuccess = (data) => ({
+  type: GET_SEARCH_RESULTS_BY_DESCRIPTION_SUCCESS,
+  payload: data,
+})
+
+const getSearchResultsByDescriptionError = () => ({
+  type: GET_SEARCH_RESULTS_BY_DESCRIPTION_ERROR,
   payload: true,
 })
 

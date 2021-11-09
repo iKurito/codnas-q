@@ -71,6 +71,20 @@ public class SearchService implements ISearchService {
     }
 
     @Override
+    public List<ResultDTO> getAllClustersByDescription(String description) {
+        try {
+            List<ResultDTO> resultDTOS = new ArrayList<>();
+            List<Conformer> conformers = conformerDAO.getConformersByDescription(description);
+            List<String> clusters = new ArrayList<>();
+            // conformers.forEach(conformer -> addToResultDTOS(conformer, clusters, resultDTOS, "Name", "%".concat(name).concat("%")));
+            conformers.forEach(conformer -> addToResultDTOS(conformer, clusters, resultDTOS, "Description", description));
+            return resultDTOS;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
     public List<ResultDTO> getAllClustersByOrganism(String organism) {
         try {
             List<ResultDTO> resultDTOS = new ArrayList<>();
@@ -115,6 +129,10 @@ public class SearchService implements ISearchService {
             conformers = conformerDAO.getConformersByName(value);
             // conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS, "Name", "%".concat(value).concat("%")));
             conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS, "Name", value));
+            // Description
+            conformers = conformerDAO.getConformersByDescription(value);
+            // conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS, "Name", "%".concat(value).concat("%")));
+            conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS, "Description", value));
             // Organism
             conformers = conformerDAO.getConformersByOrganism(value);
             // conformers.forEach(conf -> addToResultDTOS(conf, clusters, resultDTOS, "Organism", "%".concat(value).concat("%")));

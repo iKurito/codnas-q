@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import {
   getSearchResultsByNameAction,
+  getSearchResultsByDescriptionAction,
   getSearchResultsByOrganismAction,
   getSearchResultsByAllFieldsAction,
   getSearchResultsByUniProtAction,
@@ -50,6 +51,9 @@ const Search = () => {
             setMsgError('Please, the values in the UniProt field must be valid identifiers')
             return
           }
+        } else if (area.name === 'Description') {
+          const getClusters = () => dispatch(getSearchResultsByDescriptionAction(query.trim()))
+          getClusters()
         } else {
           const getClusters = () => dispatch(getSearchResultsByAllFieldsAction(query.trim()))
           getClusters()

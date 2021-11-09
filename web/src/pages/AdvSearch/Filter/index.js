@@ -16,6 +16,7 @@ const Filter = ({ setLoaded, all, setAll }) => {
   const dispatch = useDispatch()
 
   const nameField = useSelector((state) => state.search.nameField)
+  const descriptionField = useSelector((state) => state.search.descriptionField)
   const organismField = useSelector((state) => state.search.organismField)
   const clusterField = useSelector((state) => state.search.clusterField)
   const groupField = useSelector((state) => state.search.groupField)
@@ -33,7 +34,7 @@ const Filter = ({ setLoaded, all, setAll }) => {
     quatTo: '',
     tertFrom: '',
     tertTo: '',
-    description: '',
+    description: descriptionField,
     bioAssembly: '',
     resFrom: '',
     resTo: '',

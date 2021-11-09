@@ -55,6 +55,17 @@ public class SearchController {
                 body(restResponse);
     }
 
+    @GetMapping(value = "/search/clusters/description/{description}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getAllClustersByDescription(@PathVariable String description) {
+        RestResponse restResponse;
+        List<ResultDTO> resultDTOS = searchService.getAllClustersByDescription(description);
+        if (resultDTOS == null) restResponse = new RestResponse(HttpStatus.OK, SearchMessage.NO_SUCCESS_GET_RESULTS);
+        else restResponse = new RestResponse(HttpStatus.OK, SearchMessage.SUCCESS_GET_RESULTS, resultDTOS);
+        return ResponseEntity.
+                status(restResponse.getStatus()).
+                body(restResponse);
+    }
+
     @GetMapping(value = "/search/clusters/organism/{organism}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllClustersByOrganism(@PathVariable String organism) {
         RestResponse restResponse;
