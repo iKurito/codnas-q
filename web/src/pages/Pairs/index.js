@@ -20,7 +20,7 @@ const Pairs = () => {
   const pairs = useSelector((state) => state.pair.comparison)
 
   useEffect(() => {
-    const getPairsComparison = () => dispatch(getPairsDetailsAction(conformers))
+    const getPairsComparison = () => dispatch(getPairsDetailsAction(conformers, id))
     getPairsComparison()
   }, [])
 

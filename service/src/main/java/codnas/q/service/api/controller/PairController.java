@@ -20,10 +20,10 @@ public class PairController {
     public PairController(PairService pairService) {
         this.pairService = pairService;
     }
-    @GetMapping(value = "/pair/comparison/{query}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getAllPairs(@PathVariable String query) {
+    @GetMapping(value = "/pair/{cluster}/comparison/{query}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getAllPairs(@PathVariable String cluster, @PathVariable String query) {
         RestResponse restResponse;
-        List<PairDTO> pairDTOS = pairService.getAllPairs(query);
+        List<PairDTO> pairDTOS = pairService.getAllPairs(query, cluster);
         if (pairDTOS == null) restResponse = new RestResponse(HttpStatus.OK, PairMessage.NO_SUCCESS_GET_PAIRS);
         else restResponse = new RestResponse(HttpStatus.OK, PairMessage.SUCCESS_GET_PAIRS, pairDTOS);
         return ResponseEntity.

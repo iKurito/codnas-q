@@ -6,11 +6,11 @@ import {
 } from '../types'
 
 // Function that gets the pair detail
-export function getPairsDetailsAction(query) {
+export function getPairsDetailsAction(query, clusterId) {
   return async (dispatch) => {
     dispatch(getPairsDetails())
     try {
-      const urlComparison = `/pair/comparison/${query}`
+      const urlComparison = `/pair/${clusterId}/comparison/${query}`
       const [res1] = await Promise.all([clientAxios(urlComparison)])
       dispatch(
         getPairsDetailsSuccess({
