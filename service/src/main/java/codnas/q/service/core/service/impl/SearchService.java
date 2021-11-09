@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 @Service
 public class SearchService implements ISearchService {
@@ -105,7 +104,7 @@ public class SearchService implements ISearchService {
             List<String> clusters = new ArrayList<>();
             List<Conformer> conformers;
             // PDB
-            Conformer conformer = conformerDAO.getConformerById(value);
+            Conformer conformer = conformerDAO.getConformerById(value.toLowerCase());
             if (conformer != null) {
                 Cluster cluster = clusterDAO.getByCodnasqId(conformer.getCluster_id());
                 conformers = conformerDAO.getAllConformersByClusterId(cluster.getCodnasq_id());
@@ -161,9 +160,11 @@ public class SearchService implements ISearchService {
                         clusters.add(cluster.getCodnasq_id());
                     }
                 } else {
-                    Conformer conformer = conformerDAO.getConformerById(s);
+                    Conformer conformer = conformerDAO.getConformerById(s.toLowerCase());
                     if (conformer != null) {
                         clusters.add(conformer.getCluster_id());
+                    } else {
+                        System.out.println("NO LA");
                     }
                 }
             });
@@ -342,7 +343,7 @@ public class SearchService implements ISearchService {
                         }
                     }
                 } else {
-                    Conformer conformer = conformerDAO.getConformerById(s);
+                    Conformer conformer = conformerDAO.getConformerById(s.toLowerCase());
                     if (conformer != null) {
                         addToResultDTOS(conformer, clusters, resultDTOS, "PDB ID", s);
                     }
